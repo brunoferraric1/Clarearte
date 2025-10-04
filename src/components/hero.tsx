@@ -26,7 +26,7 @@ export function Hero({
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto text-center">
           {/* Subtitle */}
-          <p className="text-label font-mono font-medium text-muted-foreground mb-4 tracking-wide">
+          <p className="text-label font-mono font-medium text-muted-foreground mb-4">
             {subtitle}
           </p>
           
@@ -43,8 +43,9 @@ export function Hero({
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
-              size="lg" 
-              className="px-8 py-3 text-body-lg font-semibold"
+              variant="primary"
+              size="md" 
+              className="tracking-wide"
               asChild
             >
               <a href={primaryCTA.href}>
@@ -54,9 +55,9 @@ export function Hero({
             
             {secondaryCTA && (
               <Button 
-                variant="outline" 
-                size="lg" 
-                className="px-8 py-3 text-body-lg font-semibold"
+                variant="primary-outline" 
+                size="md" 
+                className="tracking-wide"
                 asChild
               >
                 <a href={secondaryCTA.href}>

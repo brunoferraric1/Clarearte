@@ -74,7 +74,7 @@
   --popover: oklch(0.3210 0.0078 223.6661);
   --popover-foreground: oklch(0.9219 0 0);
   --primary: oklch(0.8027 0.1355 349.2347);
-  --primary-foreground: oklch(0 0 0);
+  --primary-foreground: oklch(1.0000 0 0);
   --secondary: oklch(0.7395 0.2268 142.8504);
   --secondary-foreground: oklch(0 0 0);
   --muted: oklch(0.3867 0 0);
@@ -212,6 +212,13 @@
   --letter-spacing-display-1: -0.01em;
   --letter-spacing-title-1: -0.01em;
   --letter-spacing-label: 0.06em;
+
+  /* Font weight utilities */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 /* Custom utility classes for typography */
@@ -281,6 +288,19 @@
   
   .text-secondary-foreground {
     color: var(--secondary-foreground);
+  }
+
+  /* Letter spacing utilities */
+  .tracking-wide {
+    letter-spacing: var(--tracking-wide);
+  }
+  
+  .tracking-tight {
+    letter-spacing: var(--tracking-tight);
+  }
+  
+  .tracking-tighter {
+    letter-spacing: var(--tracking-tighter);
   }
 }
 
