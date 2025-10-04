@@ -4,21 +4,21 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.9809 0.0025 228.7836);
-  --foreground: oklch(0.3867 0 0);
+  --background: oklch(1.0000 0 0);
+  --foreground: oklch(0.3211 0 0);
   --card: oklch(1.0000 0 0);
   --card-foreground: oklch(0.3211 0 0);
   --popover: oklch(1.0000 0 0);
   --popover-foreground: oklch(0.3211 0 0);
-  --primary: oklch(0.8677 0.0735 7.0855);
-  --primary-foreground: oklch(0.3867 0 0);
-  --secondary: oklch(0.8148 0.0819 225.7537);
-  --secondary-foreground: oklch(0.3867 0 0);
-  --muted: oklch(0.8828 0.0285 98.1033);
-  --muted-foreground: oklch(0.5382 0 0);
-  --accent: oklch(0.9680 0.2110 109.7692);
-  --accent-foreground: oklch(0 0 0);
-  --destructive: oklch(0.6368 0.2078 25.3313);
+  --primary: oklch(0.6188 0.0682 107.2352);
+  --primary-foreground: oklch(1.0000 0 0);
+  --secondary: oklch(0.8654 0.0236 65.4211);
+  --secondary-foreground: oklch(0.2520 0 0);
+  --muted: oklch(0.9666 0.0026 106.4488);
+  --muted-foreground: oklch(0.5727 0 0);
+  --accent: oklch(0.9640 0.0357 98.4038);
+  --accent-foreground: oklch(0.2520 0 0);
+  --destructive: oklch(0.7002 0.1389 21.2429);
   --destructive-foreground: oklch(1.0000 0 0);
   --border: oklch(0.8699 0 0);
   --input: oklch(0.8699 0 0);
@@ -36,9 +36,14 @@
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.8699 0 0);
   --sidebar-ring: oklch(0.8677 0.0735 7.0855);
-  --font-sans: Inter, sans-serif;
+  --font-sans: Poppins, sans-serif;
   --font-serif: Playfair Display, ui-serif, serif;
-  --font-mono: Cousine, monospace;
+  --font-mono: Roboto Mono, monospace;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
   --radius: 0.5rem;
   --shadow-x: 0;
   --shadow-y: 1px;
@@ -55,6 +60,9 @@
   --shadow-xl: 0 1px 0px 0px hsl(0 0% 0% / 0.00), 0 8px 10px -1px hsl(0 0% 0% / 0.00);
   --shadow-2xl: 0 1px 0px 0px hsl(0 0% 0% / 0.00);
   --tracking-normal: 0em;
+  --tracking-tight: -0.02em;
+  --tracking-tighter: -0.01em;
+  --tracking-wide: 0.06em;
   --spacing: 0.3rem;
 }
 
@@ -91,9 +99,14 @@
   --sidebar-accent-foreground: oklch(0 0 0);
   --sidebar-border: oklch(0.3867 0 0);
   --sidebar-ring: oklch(0.8027 0.1355 349.2347);
-  --font-sans: Inter, sans-serif;
+  --font-sans: Poppins, sans-serif;
   --font-serif: Playfair Display, ui-serif, serif;
-  --font-mono: Cousine, monospace;
+  --font-mono: Roboto Mono, monospace;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
   --radius: 0.5rem;
   --shadow-x: 0;
   --shadow-y: 1px;
@@ -109,6 +122,10 @@
   --shadow-lg: 0 1px 0px 0px hsl(0 0% 0% / 0.00), 0 4px 6px -1px hsl(0 0% 0% / 0.00);
   --shadow-xl: 0 1px 0px 0px hsl(0 0% 0% / 0.00), 0 8px 10px -1px hsl(0 0% 0% / 0.00);
   --shadow-2xl: 0 1px 0px 0px hsl(0 0% 0% / 0.00);
+  --tracking-normal: 0em;
+  --tracking-tight: -0.02em;
+  --tracking-tighter: -0.01em;
+  --tracking-wide: 0.06em;
 }
 
 @theme inline {
@@ -148,6 +165,7 @@
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
   --font-serif: var(--font-serif);
+  --font-display: var(--font-serif);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -162,6 +180,108 @@
   --shadow-lg: var(--shadow-lg);
   --shadow-xl: var(--shadow-xl);
   --shadow-2xl: var(--shadow-2xl);
+}
+
+/* Typography Scale - Tailwind v4 syntax */
+@theme {
+  --font-size-display-2: clamp(2.75rem, calc(2.75rem + (5.75 - 2.75) * ((100vw - 320px) / 1120)), 5.75rem);
+  --font-size-display-1: clamp(2.125rem, calc(2.125rem + (4.25 - 2.125) * ((100vw - 320px) / 1120)), 4.25rem);
+  --font-size-title-1: clamp(1.75rem, calc(1.75rem + (2.5 - 1.75) * ((100vw - 320px) / 1120)), 2.5rem);
+  --font-size-title-2: clamp(1.5rem, calc(1.5rem + (2 - 1.5) * ((100vw - 320px) / 1120)), 2rem);
+  --font-size-title-3: clamp(1.25rem, calc(1.25rem + (1.75 - 1.25) * ((100vw - 320px) / 1120)), 1.75rem);
+  --font-size-body-xl: clamp(1.125rem, calc(1.125rem + (1.25 - 1.125) * ((100vw - 320px) / 1120)), 1.25rem);
+  --font-size-body-lg: 1.125rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-body-xs: 0.75rem;
+  --font-size-label: 0.75rem;
+
+  --line-height-display-2: 1.05;
+  --line-height-display-1: 1.08;
+  --line-height-title-1: 1.15;
+  --line-height-title-2: 1.2;
+  --line-height-title-3: 1.25;
+  --line-height-body-xl: 1.6;
+  --line-height-body-lg: 1.6;
+  --line-height-body: 1.65;
+  --line-height-body-sm: 1.6;
+  --line-height-body-xs: 1.5;
+  --line-height-label: 1.2;
+
+  --letter-spacing-display-2: -0.02em;
+  --letter-spacing-display-1: -0.01em;
+  --letter-spacing-title-1: -0.01em;
+  --letter-spacing-label: 0.06em;
+}
+
+/* Custom utility classes for typography */
+@layer utilities {
+  .text-display-2 {
+    font-size: var(--font-size-display-2);
+    line-height: var(--line-height-display-2);
+    letter-spacing: var(--letter-spacing-display-2);
+  }
+  
+  .text-display-1 {
+    font-size: var(--font-size-display-1);
+    line-height: var(--line-height-display-1);
+    letter-spacing: var(--letter-spacing-display-1);
+  }
+  
+  .text-title-1 {
+    font-size: var(--font-size-title-1);
+    line-height: var(--line-height-title-1);
+    letter-spacing: var(--letter-spacing-title-1);
+  }
+  
+  .text-title-2 {
+    font-size: var(--font-size-title-2);
+    line-height: var(--line-height-title-2);
+  }
+  
+  .text-title-3 {
+    font-size: var(--font-size-title-3);
+    line-height: var(--line-height-title-3);
+  }
+  
+  .text-body-xl {
+    font-size: var(--font-size-body-xl);
+    line-height: var(--line-height-body-xl);
+  }
+  
+  .text-body-lg {
+    font-size: var(--font-size-body-lg);
+    line-height: var(--line-height-body-lg);
+  }
+  
+  .text-body {
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+  }
+  
+  .text-body-sm {
+    font-size: var(--font-size-body-sm);
+    line-height: var(--line-height-body-sm);
+  }
+  
+  .text-body-xs {
+    font-size: var(--font-size-body-xs);
+    line-height: var(--line-height-body-xs);
+  }
+  
+  .text-label {
+    font-size: var(--font-size-label);
+    line-height: var(--line-height-label);
+    letter-spacing: var(--letter-spacing-label);
+  }
+  
+  .text-primary-foreground {
+    color: var(--primary-foreground);
+  }
+  
+  .text-secondary-foreground {
+    color: var(--secondary-foreground);
+  }
 }
 
 @layer base {

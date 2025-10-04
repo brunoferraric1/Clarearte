@@ -1,6 +1,4 @@
-import React from 'react'
 import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
 
 interface HeroProps {
   title: string
@@ -28,17 +26,17 @@ export function Hero({
       <div className="container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto text-center">
           {/* Subtitle */}
-          <p className="text-lg font-mono font-medium text-foreground dark:text-foreground mb-4">
+          <p className="text-label font-mono font-medium text-muted-foreground mb-4 tracking-wide">
             {subtitle}
           </p>
           
           {/* Main Title */}
-          <h1 className="text-4xl md:text-6xl font-serif font-bold text-foreground dark:text-foreground mb-6 leading-tight">
+          <h1 className="text-display-2 font-display font-bold text-foreground mb-6" style={{fontSize: 'clamp(2.75rem, 4vw + 2rem, 5.75rem)', lineHeight: '1.05', letterSpacing: '-0.02em'}}>
             {title}
           </h1>
           
           {/* Description */}
-          <p className="text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-body-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
             {description}
           </p>
           
@@ -46,7 +44,7 @@ export function Hero({
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button 
               size="lg" 
-              className="px-8 py-3 text-lg font-semibold"
+              className="px-8 py-3 text-body-lg font-semibold"
               asChild
             >
               <a href={primaryCTA.href}>
@@ -58,7 +56,7 @@ export function Hero({
               <Button 
                 variant="outline" 
                 size="lg" 
-                className="px-8 py-3 text-lg font-semibold"
+                className="px-8 py-3 text-body-lg font-semibold"
                 asChild
               >
                 <a href={secondaryCTA.href}>
