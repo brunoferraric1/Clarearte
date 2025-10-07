@@ -1,21 +1,16 @@
-import { HeroExample } from './components/hero'
-import { Navbar } from './components/navbar'
-import { Verticals } from './components/verticals'
-import { MarqueeSection } from './components/marquee-section'
-import { DetailsSection } from './components/details-section'
-import { AboutSection } from './components/about-section'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { HomePage } from './pages/home'
+import { CollectionsPage } from './pages/collections'
 import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <HeroExample />
-      <Verticals />
-      <MarqueeSection />
-      <DetailsSection />
-      <AboutSection />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/colecciones" element={<CollectionsPage />} />
+      </Routes>
+    </Router>
   )
 }
 
