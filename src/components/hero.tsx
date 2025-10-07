@@ -22,9 +22,9 @@ export function Hero({
   secondaryCTA 
 }: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-background">
+    <section className="relative h-[700px] flex items-center justify-center bg-background">
       <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto text-center">
           {/* Subtitle */}
           <p className="text-label font-mono font-medium text-muted-foreground mb-4">
             {subtitle}
@@ -42,22 +42,22 @@ export function Hero({
           
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
+            <Button
               variant="primary"
-              size="md" 
-              className="tracking-wide"
+              size="md"
+              className="tracking-wide cursor-pointer"
               asChild
             >
               <a href={primaryCTA.href}>
                 {primaryCTA.text}
               </a>
             </Button>
-            
+
             {secondaryCTA && (
-              <Button 
-                variant="primary-outline" 
-                size="md" 
-                className="tracking-wide"
+              <Button
+                variant="primary-outline"
+                size="md"
+                className="tracking-wide cursor-pointer"
                 asChild
               >
                 <a href={secondaryCTA.href}>
@@ -81,7 +81,7 @@ export function HeroExample() {
   return (
     <Hero
       title="Arte Personalizada para Casamentos"
-      subtitle="ClareArte"
+      subtitle=""
       description="Criamos convites únicos, menus personalizados e ilustrações ao vivo que transformam o seu casamento em uma experiência inesquecível."
       primaryCTA={{
         text: "Ver Portfolio",
