@@ -15,7 +15,7 @@ export function Verticals() {
               </div>
             </div>
 
-            <h2 className="text-title-2 font-display font-bold mb-4 text-center">
+            <h2 className="text-title-1 font-display font-bold mb-4 text-center">
               Colecciones de invitaciones
             </h2>
 
@@ -46,7 +46,7 @@ export function Verticals() {
               </div>
             </div>
 
-            <h2 className="text-title-2 font-display font-bold mb-4 text-center">
+            <h2 className="text-title-1 font-display font-bold mb-4 text-center">
               Invitaciones personalizadas
             </h2>
 
