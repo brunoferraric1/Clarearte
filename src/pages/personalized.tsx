@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { PersonalizedHero } from '@/components/personalized-hero'
+import { PageHero } from '@/components/page-hero'
 import { PersonalizedShowcase } from '@/components/personalized-showcase'
 import { CreationProcess } from '@/components/creation-process'
 import { PersonalizedBenefits } from '@/components/personalized-benefits'
@@ -10,7 +10,13 @@ export function PersonalizedPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <PersonalizedHero />
+      <PageHero
+        title="Invitaciones de boda personalizadas"
+        imageAlt="invitaciones personalizadas"
+        subtitle="Cada pareja tiene una historia que merece ser contada de manera única. Las invitaciones de boda personalizadas transforman momentos, recuerdos y detalles cotidianos en piezas de papelería que reflejan la esencia auténtica de los novios. Desde un viaje especial, un rincón favorito, hasta los integrantes más queridos de la familia, incluyendo mascotas, cada elemento puede formar parte del diseño, haciendo que la invitación sea completamente vuestra."
+        overlayOpacity={0.2}
+        height="medium"
+      />
       <PersonalizedShowcase />
       <CreationProcess />
       <PersonalizedBenefits />

@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { CollectionsHero } from '@/components/collections-hero'
+import { PageHero } from '@/components/page-hero'
 import { CollectionCard } from '@/components/collection-card'
 import { CollectionsContactForm } from '@/components/collections-contact-form'
 import { Button } from '@/components/ui/button'
@@ -68,7 +68,12 @@ export function CollectionsPage() {
       <Navbar />
 
       {/* Hero Banner */}
-      <CollectionsHero />
+      <PageHero
+        title="Colecciones de invitaciones de boda ilustradas en acuarela"
+        imageAlt="banner colecciones"
+        overlayOpacity={0.2}
+        height="large"
+      />
 
       {/* Introduction */}
       <section className="py-16 md:py-24 bg-background">

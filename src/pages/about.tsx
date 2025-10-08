@@ -1,13 +1,20 @@
 import { Navbar } from '@/components/navbar'
-import { AboutHero } from '@/components/about-hero'
+import { PageHero } from '@/components/page-hero'
 import { AboutContentSection } from '@/components/about-content-section'
+import paolaImage from '@/images/paola-sobre-mi.webp'
 
 export function AboutPage() {
   return (
     <>
       <Navbar />
       <div className="min-h-screen">
-        <AboutHero />
+        <PageHero
+          title="Sobre mí"
+          image={paolaImage}
+          imageAlt="Paola - Sobre mí"
+          subtitle="La creatividad siempre ha sido el hilo conductor de mi vida. Como diseñadora, he tenido el privilegio de trabajar para grandes marcas en Brasil y en España, aprendiendo a mirar cada detalle con precisión y a transformar ideas en experiencias visuales llenas de significado."
+          height="medium"
+        />
 
       {/* Mi lenguaje más auténtico */}
       <AboutContentSection

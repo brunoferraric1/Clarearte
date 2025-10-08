@@ -22,7 +22,7 @@ export function Navbar({ className }: NavbarProps) {
           {/* Logo/Brand */}
           <div className="flex items-center">
             <a href="/" className="flex items-center space-x-2 cursor-pointer">
-              <span className="text-title-2 font-display font-bold text-foreground">
+              <span className="text-title-3 font-display font-bold text-foreground">
                 ClareArte
               </span>
             </a>

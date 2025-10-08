@@ -1,4 +1,6 @@
 import { Button } from '@/components/ui/button'
+import invitacionAlbor from '@/images/invitacion-albor-3.webp'
+import invitacionPersonalizada from '@/images/invitacion-albor-2-cropped.webp'
 
 export function Verticals() {
   return (
@@ -9,10 +11,11 @@ export function Verticals() {
           {/* Colecciones de invitaciones */}
           <div className="flex flex-col">
             <div className="aspect-[4/3] bg-muted rounded-lg mb-6 overflow-hidden">
-              {/* Placeholder for image */}
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                <span className="text-label">Imagen de colecciones</span>
-              </div>
+              <img 
+                src={invitacionAlbor} 
+                alt="Colecciones de invitaciones" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <h2 className="text-title-1 font-display font-bold mb-4 text-center">
@@ -40,10 +43,11 @@ export function Verticals() {
           {/* Invitaciones personalizadas */}
           <div className="flex flex-col">
             <div className="aspect-[4/3] bg-muted rounded-lg mb-6 overflow-hidden">
-              {/* Placeholder for image */}
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                <span className="text-label">Imagen de invitaciones personalizadas</span>
-              </div>
+              <img 
+                src={invitacionPersonalizada} 
+                alt="Invitaciones personalizadas" 
+                className="w-full h-full object-cover"
+              />
             </div>
 
             <h2 className="text-title-1 font-display font-bold mb-4 text-center">
