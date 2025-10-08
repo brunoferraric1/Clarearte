@@ -18,7 +18,7 @@ export function Navbar({ className }: NavbarProps) {
   return (
     <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-white ${className}`}>
       <div className="w-full">
-        <div className="flex h-16 items-center justify-between max-w-7xl mx-auto px-4">
+        <div className="flex h-16 items-center justify-between px-8">
           {/* Logo/Brand */}
           <div className="flex items-center">
             <a href="/" className="flex items-center space-x-2 cursor-pointer">
