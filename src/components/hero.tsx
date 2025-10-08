@@ -31,7 +31,7 @@ export function Hero({
           </p>
           
           {/* Main Title */}
-          <h1 className="text-display-2 font-display font-bold text-foreground mb-6" style={{fontSize: 'clamp(2.75rem, 4vw + 2rem, 5.75rem)', lineHeight: '1.05', letterSpacing: '-0.02em'}}>
+          <h1 className="text-display-1 font-display font-bold text-foreground mb-6">
             {title}
           </h1>
           

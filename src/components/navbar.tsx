@@ -33,48 +33,35 @@ export function Navbar({ className }: NavbarProps) {
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuTrigger className="text-body font-medium cursor-pointer">
-                  Serviços
+                  Invitaciones
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-3">
+                    <li className="row-span-2">
                       <NavigationMenuLink asChild>
                         <a
                           className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md cursor-pointer hover:bg-gradient-to-b hover:from-muted/70 hover:to-muted/90 transition-all"
-                          href="/servicos"
+                          href="/colecciones"
                         >
                           <div className="text-title-3 font-semibold mb-2">
-                            Nossos Serviços
+                            Colecciones
                           </div>
                           <p className="text-body-sm text-muted-foreground leading-tight">
-                            Descubra como transformamos seu evento em arte.
+                            Diseños únicos con acuarela y acabados artesanales.
                           </p>
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/convites" title="Convites Personalizados">
-                      Convites únicos para o seu casamento especial.
-                    </ListItem>
-                    <ListItem href="/menus" title="Menus Personalizados">
-                      Menus elegantes que complementam seu evento.
-                    </ListItem>
-                    <ListItem href="/ilustracoes" title="Ilustrações ao Vivo">
-                      Arte ao vivo para momentos inesquecíveis.
+                    <ListItem href="/personalizadas" title="Invitaciones Personalizadas">
+                      Diseños exclusivos creados solo para vosotros.
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <a href="/portfolio" className="text-body font-medium cursor-pointer">
-                    Portfolio
-                  </a>
-                </NavigationMenuLink>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <a href="/sobre" className="text-body font-medium cursor-pointer">
-                    Sobre Nós
+                  <a href="/sobre-mi" className="text-body font-medium cursor-pointer">
+                    Sobre mí
                   </a>
                 </NavigationMenuLink>
               </NavigationMenuItem>
@@ -97,7 +84,7 @@ export function Navbar({ className }: NavbarProps) {
               asChild
             >
               <a href="/contacto">
-                Solicitar Orçamento
+                Solicitar presupuesto
               </a>
             </Button>
           </div>
