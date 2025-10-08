@@ -4,9 +4,10 @@ import { AboutContentSection } from '@/components/about-content-section'
 
 export function AboutPage() {
   return (
-    <div className="min-h-screen">
+    <>
       <Navbar />
-      <AboutHero />
+      <div className="min-h-screen">
+        <AboutHero />
 
       {/* Mi lenguaje más auténtico */}
       <AboutContentSection
@@ -33,6 +34,7 @@ export function AboutPage() {
         imagePlaceholder="Imagen trabajando en diseños"
         reverse={false}
       />
-    </div>
+      </div>
+    </>
   )
 }

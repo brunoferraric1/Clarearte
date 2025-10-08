@@ -185,6 +185,7 @@
 /* Typography Scale - Tailwind v4 syntax */
 @theme {
   /* Fluid Typography Scale - SEO-friendly, smooth scaling */
+  --font-size-display-3: clamp(4.5rem, 6vw + 1rem, 8.5rem);
   --font-size-display-2: clamp(3.5rem, 6vw + 1rem, 6.5rem);
   --font-size-display-1: clamp(2.75rem, 4.5vw + 1rem, 5.5rem);
   --font-size-title-1: clamp(2rem, 3vw + 0.5rem, 3.5rem);
@@ -200,6 +201,7 @@
   --font-size-label: 0.875rem;
 
 
+  --line-height-display-3: 1.02;
   --line-height-display-2: 1.02;
   --line-height-display-1: 1.05;
   --line-height-title-1: 1.1;
@@ -212,6 +214,7 @@
   --line-height-body-xs: 1.45;
   --line-height-label: 1.1;
 
+  --letter-spacing-display-3: -0.02em;
   --letter-spacing-display-2: -0.02em;
   --letter-spacing-display-1: -0.01em;
   --letter-spacing-title-1: -0.01em;
@@ -227,6 +230,12 @@
 
 /* Custom utility classes for typography */
 @layer utilities {
+  .text-display-3 {
+    font-size: var(--font-size-display-3);
+    line-height: var(--line-height-display-3);
+    letter-spacing: var(--letter-spacing-display-3);
+  }
+
   .text-display-2 {
     font-size: var(--font-size-display-2);
     line-height: var(--line-height-display-2);

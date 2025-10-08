@@ -16,7 +16,7 @@ interface NavbarProps {
 
 export function Navbar({ className }: NavbarProps) {
   return (
-    <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ${className}`}>
+    <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-white ${className}`}>
       <div className="w-full">
         <div className="flex h-16 items-center justify-between max-w-7xl mx-auto px-4">
           {/* Logo/Brand */}
