@@ -11,7 +11,7 @@ const images = [
 export function MarqueeSection() {
   return (
     <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-20 bg-background overflow-hidden">
-      <Marquee pauseOnHover className="[--duration:30s]">
+      <Marquee className="[--duration:30s]">
         {images.map((image) => (
           <div
             key={image.id}

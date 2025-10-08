@@ -1,4 +1,3 @@
-import * as React from "react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -9,6 +8,8 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import invitacionAlbor from '@/images/home-sections-coleciones.webp'
+import invitacionPersonalizada from '@/images/home-sections-invitaciones-personalisadas.webp'
 
 interface NavbarProps {
   className?: string
@@ -36,25 +37,55 @@ export function Navbar({ className }: NavbarProps) {
                   Invitaciones
                 </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                    <li className="row-span-2">
+                  <ul className="grid gap-4 p-6 md:w-[600px] lg:w-[700px] grid-cols-2">
+                    <li>
                       <NavigationMenuLink asChild>
                         <a
-                          className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md cursor-pointer hover:bg-gradient-to-b hover:from-muted/70 hover:to-muted/90 transition-all"
+                          className="group block select-none rounded-lg overflow-hidden no-underline outline-none transition-all hover:shadow-lg cursor-pointer"
                           href="/colecciones"
                         >
-                          <div className="text-title-3 font-semibold mb-2">
-                            Colecciones
+                          <div className="aspect-[4/3] overflow-hidden bg-muted">
+                            <img 
+                              src={invitacionAlbor} 
+                              alt="Colecciones de invitaciones" 
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
                           </div>
-                          <p className="text-body-sm text-muted-foreground leading-tight">
-                            Diseños únicos con acuarela y acabados artesanales.
-                          </p>
+                          <div className="p-4 bg-background border border-t-0 rounded-b-lg">
+                            <div className="text-body font-semibold mb-1">
+                              Colecciones
+                            </div>
+                            <p className="text-body-sm text-muted-foreground leading-tight">
+                              Diseños únicos con acuarela y acabados artesanales.
+                            </p>
+                          </div>
                         </a>
                       </NavigationMenuLink>
                     </li>
-                    <ListItem href="/personalizadas" title="Invitaciones Personalizadas">
-                      Diseños exclusivos creados solo para vosotros.
-                    </ListItem>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <a
+                          className="group block select-none rounded-lg overflow-hidden no-underline outline-none transition-all hover:shadow-lg cursor-pointer"
+                          href="/personalizadas"
+                        >
+                          <div className="aspect-[4/3] overflow-hidden bg-muted">
+                            <img 
+                              src={invitacionPersonalizada} 
+                              alt="Invitaciones personalizadas" 
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                          </div>
+                          <div className="p-4 bg-background border border-t-0 rounded-b-lg">
+                            <div className="text-body font-semibold mb-1">
+                              Invitaciones Personalizadas
+                            </div>
+                            <p className="text-body-sm text-muted-foreground leading-tight">
+                              Diseños exclusivos creados solo para vosotros.
+                            </p>
+                          </div>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -91,25 +122,5 @@ export function Navbar({ className }: NavbarProps) {
         </div>
       </div>
     </header>
-  )
-}
-
-function ListItem({
-  title,
-  children,
-  href,
-  ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string; title: string }) {
-  return (
-    <li {...props}>
-      <NavigationMenuLink asChild>
-        <a href={href} className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground cursor-pointer">
-          <div className="text-body-sm font-medium leading-none">{title}</div>
-          <p className="text-body-xs text-muted-foreground leading-snug mt-1">
-            {children}
-          </p>
-        </a>
-      </NavigationMenuLink>
-    </li>
   )
 }

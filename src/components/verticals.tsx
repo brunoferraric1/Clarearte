@@ -1,10 +1,10 @@
 import { Button } from '@/components/ui/button'
-import invitacionAlbor from '@/images/invitacion-albor-3.webp'
-import invitacionPersonalizada from '@/images/invitacion-albor-2-cropped.webp'
+import invitacionAlbor from '@/images/home-sections-coleciones.webp'
+import invitacionPersonalizada from '@/images/home-sections-invitaciones-personalisadas.webp'
 
 export function Verticals() {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
 

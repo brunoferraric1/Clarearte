@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import patternAlbor from '@/images/pattern-albor.webp'
 
 interface HeroProps {
   title: string
@@ -22,8 +23,26 @@ export function Hero({
   secondaryCTA 
 }: HeroProps) {
   return (
-    <section className="relative h-[700px] flex items-center justify-center bg-background">
-      <div className="container mx-auto px-4 py-16">
+    <section 
+      className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex items-center justify-center bg-background"
+      style={{
+        backgroundImage: `url(${patternAlbor})`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: '1300px'
+      }}
+    >
+      {/* Gradient overlay for readability and smooth transition */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            linear-gradient(to top, rgba(255, 255, 255, 1) 0%, transparent 35%),
+            radial-gradient(ellipse at center, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 40%, transparent 70%)
+          `
+        }}
+      />
+      
+      <div className="container mx-auto px-4 py-12 md:py-16 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
           {/* Subtitle */}
           <p className="text-label font-mono font-medium text-muted-foreground mb-4">
@@ -36,7 +55,7 @@ export function Hero({
           </h1>
           
           {/* Description */}
-          <p className="text-body-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-body-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
             {description}
           </p>
           
