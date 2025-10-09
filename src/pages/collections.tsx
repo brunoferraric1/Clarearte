@@ -3,6 +3,7 @@ import { PageHero } from '@/components/page-hero'
 import { CollectionCard } from '@/components/collection-card'
 import { CollectionsContactForm } from '@/components/collections-contact-form'
 import { Button } from '@/components/ui/button'
+import collectionsHeroImage from '@/images/home-sections-coleciones.webp'
 
 const collections = [
   {
@@ -70,6 +71,7 @@ export function CollectionsPage() {
       {/* Hero Banner */}
       <PageHero
         title="Colecciones de invitaciones de boda ilustradas en acuarela"
+        image={collectionsHeroImage}
         imageAlt="banner colecciones"
         overlayOpacity={0.2}
         height="large"

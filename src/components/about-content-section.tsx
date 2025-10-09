@@ -18,7 +18,7 @@ export function AboutContentSection({
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center space-y-6">
-            <h2 className="text-title-1 font-display font-bold text-foreground">
+            <h2 className="text-title-3 font-display font-bold text-foreground">
               {title}
             </h2>
             <p className="text-body-lg text-foreground leading-relaxed">
@@ -45,7 +45,7 @@ export function AboutContentSection({
 
           {/* Content */}
           <div className={`flex flex-col space-y-6 ${reverse ? 'md:col-start-1 md:row-start-1' : ''}`}>
-            <h2 className="text-title-1 font-display font-bold text-foreground">
+            <h2 className="text-title-2 font-display font-bold text-foreground">
               {title}
             </h2>
             <p className="text-body-lg text-foreground leading-relaxed">

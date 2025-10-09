@@ -188,9 +188,9 @@
   --font-size-display-3: clamp(4.5rem, 6vw + 1rem, 8.5rem);
   --font-size-display-2: clamp(3.5rem, 6vw + 1rem, 6.5rem);
   --font-size-display-1: clamp(2.75rem, 4.5vw + 1rem, 5.5rem);
-  --font-size-title-1: clamp(2rem, 3vw + 0.5rem, 3.5rem);
+  --font-size-title-3: clamp(2rem, 3vw + 0.5rem, 3.5rem);
   --font-size-title-2: clamp(1.625rem, 2.5vw + 0.5rem, 2.75rem);
-  --font-size-title-3: clamp(1.375rem, 2vw + 0.5rem, 2.125rem);
+  --font-size-title-1: clamp(1.375rem, 2vw + 0.5rem, 2.125rem);
   --font-size-body-xl: clamp(1.25rem, 1.5vw + 0.5rem, 1.625rem);
 
   /* Static Typography Sizes */
@@ -204,9 +204,9 @@
   --line-height-display-3: 1.02;
   --line-height-display-2: 1.02;
   --line-height-display-1: 1.05;
-  --line-height-title-1: 1.1;
+  --line-height-title-3: 1.1;
   --line-height-title-2: 1.15;
-  --line-height-title-3: 1.2;
+  --line-height-title-1: 1.2;
   --line-height-body-xl: 1.55;
   --line-height-body-lg: 1.55;
   --line-height-body: 1.6;
@@ -217,7 +217,7 @@
   --letter-spacing-display-3: -0.02em;
   --letter-spacing-display-2: -0.02em;
   --letter-spacing-display-1: -0.01em;
-  --letter-spacing-title-1: -0.01em;
+  --letter-spacing-title-3: -0.01em;
   --letter-spacing-label: 0.06em;
 
   /* Font weight utilities */
@@ -248,10 +248,10 @@
     letter-spacing: var(--letter-spacing-display-1);
   }
   
-  .text-title-1 {
-    font-size: var(--font-size-title-1);
-    line-height: var(--line-height-title-1);
-    letter-spacing: var(--letter-spacing-title-1);
+  .text-title-3 {
+    font-size: var(--font-size-title-3);
+    line-height: var(--line-height-title-3);
+    letter-spacing: var(--letter-spacing-title-3);
   }
   
   .text-title-2 {
@@ -259,9 +259,10 @@
     line-height: var(--line-height-title-2);
   }
   
-  .text-title-3 {
-    font-size: var(--font-size-title-3);
-    line-height: var(--line-height-title-3);
+  .text-title-1 {
+    font-size: var(--font-size-title-1);
+    line-height: var(--line-height-title-1);
+    letter-spacing: var(--letter-spacing-title-1);
   }
   
   .text-body-xl {

@@ -1,24 +1,25 @@
 import { Button } from '@/components/ui/button'
+import { OrganicImageMask } from '@/components/organic-image-mask'
 import invitacionAlbor from '@/images/home-sections-coleciones.webp'
 import invitacionPersonalizada from '@/images/home-sections-invitaciones-personalisadas.webp'
+import brushMask from '@/images/brush_mask-2.png'
 
 export function Verticals() {
   return (
     <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-16 max-w-[1400px] mx-auto">
 
           {/* Colecciones de invitaciones */}
           <div className="flex flex-col">
-            <div className="aspect-[4/3] bg-muted rounded-lg mb-6 overflow-hidden">
-              <img 
-                src={invitacionAlbor} 
-                alt="Colecciones de invitaciones" 
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <OrganicImageMask
+              src={invitacionAlbor}
+              alt="Colecciones de invitaciones"
+              maskSrc={brushMask}
+              className="aspect-[4/3] mb-6"
+            />
 
-            <h2 className="text-title-1 font-display font-bold mb-4 text-center">
+            <h2 className="text-title-2 font-display font-bold mb-4 text-center">
               Colecciones de invitaciones
             </h2>
 
@@ -42,15 +43,14 @@ export function Verticals() {
 
           {/* Invitaciones personalizadas */}
           <div className="flex flex-col">
-            <div className="aspect-[4/3] bg-muted rounded-lg mb-6 overflow-hidden">
-              <img 
-                src={invitacionPersonalizada} 
-                alt="Invitaciones personalizadas" 
-                className="w-full h-full object-cover"
-              />
-            </div>
+            <OrganicImageMask
+              src={invitacionPersonalizada}
+              alt="Invitaciones personalizadas"
+              maskSrc={brushMask}
+              className="aspect-[4/3] mb-6"
+            />
 
-            <h2 className="text-title-1 font-display font-bold mb-4 text-center">
+            <h2 className="text-title-2 font-display font-bold mb-4 text-center">
               Invitaciones personalizadas
             </h2>
 

@@ -47,7 +47,7 @@ export function PageHero({
 
         {/* Centered title overlay */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <h1 className="text-display-3 font-display font-bold text-white drop-shadow-lg px-4 text-center">
+          <h1 className="text-display-2 font-display font-bold text-white drop-shadow-lg px-24 text-center">
             {title}
           </h1>
         </div>
@@ -56,8 +56,8 @@ export function PageHero({
       {/* Optional subtext below image */}
       {subtitle && (
         <div className="container mx-auto px-4 max-w-6xl py-12 md:py-16">
-          <div className="max-w-3xl">
-            <p className="text-body-lg text-foreground leading-relaxed">
+          <div className="max-w-4xl mx-auto">
+            <p className="text-title-1 text-foreground leading-relaxed text-center">
               {subtitle}
             </p>
           </div>

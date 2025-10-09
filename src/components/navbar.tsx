@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -16,26 +17,37 @@ interface NavbarProps {
 }
 
 export function Navbar({ className }: NavbarProps) {
-  return (
-    <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-white ${className}`}>
-      <div className="w-full">
-        <div className="flex h-16 items-center justify-between px-8">
-          {/* Logo/Brand */}
-          <div className="flex items-center">
-            <a href="/" className="flex items-center space-x-2 cursor-pointer">
-              <span className="text-title-3 font-display font-bold text-foreground">
-                ClareArte
-              </span>
-            </a>
-          </div>
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-          {/* Navigation Menu */}
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <NavigationMenuTrigger className="text-body font-medium cursor-pointer">
-                  Invitaciones
-                </NavigationMenuTrigger>
+  return (
+    <>
+      {/* Dark Overlay */}
+      <div 
+        className={`fixed inset-0 bg-black/40 transition-all duration-200 ${
+          isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ zIndex: 40 }}
+      />
+      
+      <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-white ${className}`}>
+        <div className="w-full">
+          <div className="flex h-16 items-center justify-between px-8">
+            {/* Logo/Brand */}
+            <div className="flex items-center">
+              <a href="/" className="flex items-center space-x-2 cursor-pointer">
+                <span className="text-title-1 font-display font-bold text-foreground">
+                  ClareArte
+                </span>
+              </a>
+            </div>
+
+            {/* Navigation Menu */}
+            <NavigationMenu className="hidden md:flex" onValueChange={(value) => setIsMenuOpen(!!value)}>
+              <NavigationMenuList>
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger className="text-body font-medium cursor-pointer">
+                    Invitaciones
+                  </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid gap-4 p-6 md:w-[600px] lg:w-[700px] grid-cols-2">
                     <li>
@@ -122,5 +134,6 @@ export function Navbar({ className }: NavbarProps) {
         </div>
       </div>
     </header>
+    </>
   )
 }
