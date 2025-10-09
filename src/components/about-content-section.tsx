@@ -1,9 +1,10 @@
 interface AboutContentSectionProps {
   title: string
   content: string
-  imagePlaceholder: string
+  imagePlaceholder?: string
   reverse?: boolean
   withImage?: boolean
+  gradientType?: 'pink' | 'purple' | 'blue' | 'lavender'
 }
 
 export function AboutContentSection({
@@ -12,7 +13,14 @@ export function AboutContentSection({
   imagePlaceholder,
   reverse = false,
   withImage = true,
+  gradientType,
 }: AboutContentSectionProps) {
+  const gradientStyles = {
+    pink: 'bg-gradient-to-br from-pink-200/40 via-pink-100/30 to-rose-200/40',
+    purple: 'bg-gradient-to-br from-purple-200/40 via-lavender-100/30 to-purple-300/40',
+    blue: 'bg-gradient-to-br from-blue-200/40 via-blue-100/30 to-sky-200/40',
+    lavender: 'bg-gradient-to-br from-violet-200/40 via-pink-100/30 to-lavender-200/40',
+  }
   if (!withImage) {
     return (
       <section className="py-16 md:py-24 bg-background">
@@ -34,12 +42,16 @@ export function AboutContentSection({
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className={`grid md:grid-cols-2 gap-8 md:gap-16 items-center ${reverse ? 'md:grid-flow-dense' : ''}`}>
-          {/* Image */}
+          {/* Image or Gradient */}
           <div className={`${reverse ? 'md:col-start-2' : ''}`}>
-            <div className="aspect-[3/4] bg-muted rounded-lg overflow-hidden">
-              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-                <span className="text-label">{imagePlaceholder}</span>
-              </div>
+            <div className={`aspect-[3/4] rounded-lg overflow-hidden ${
+              gradientType ? gradientStyles[gradientType] : 'bg-muted'
+            }`}>
+              {!gradientType && (
+                <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                  <span className="text-label">{imagePlaceholder}</span>
+                </div>
+              )}
             </div>
           </div>
 

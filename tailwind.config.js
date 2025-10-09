@@ -18,7 +18,7 @@ export default {
     extend: {
       fontFamily: {
         // defined in your index.css
-        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"], // Poppins
+        sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"], // Zen Kaku Gothic New
         serif: ["var(--font-serif)", "ui-serif", "serif"], // Playfair Display
         mono: ["var(--font-mono)", "ui-monospace", "monospace"], // Roboto Mono
 
