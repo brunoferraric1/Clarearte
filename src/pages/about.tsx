@@ -1,7 +1,7 @@
 import { Navbar } from '@/components/navbar'
 import { AboutSplashHero } from '@/components/about-splash-hero'
 import { AboutContentSection } from '@/components/about-content-section'
-import paolaSplash from '@/images/paola-splash.webp'
+import paolaSobreMi from '@/images/paola-sobre-mi.webp'
 
 export function AboutPage() {
   return (
@@ -10,7 +10,7 @@ export function AboutPage() {
       <div className="min-h-screen">
         {/* Hero with splash image */}
         <AboutSplashHero
-          image={paolaSplash}
+          image={paolaSobreMi}
           imageAlt="Paola - Sobre mí"
           introText="La creatividad siempre ha sido el hilo conductor de mi vida. Como diseñadora, he tenido el privilegio de trabajar para grandes marcas en Brasil y en España, aprendiendo a mirar cada detalle con precisión y a transformar ideas en experiencias visuales llenas de significado."
         />
