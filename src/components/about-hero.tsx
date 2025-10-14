@@ -1,14 +1,16 @@
-import paolaImage from '@/images/paola-sobre-mi.webp'
+import Image from 'next/image'
 
 export function AboutHero() {
   return (
     <section className="w-full">
       {/* Large hero image with centered title */}
       <div className="relative w-screen h-[50vh] md:h-[55vh] bg-muted overflow-hidden -mx-[50vw] left-1/2 right-1/2">
-        <img 
-          src={paolaImage} 
-          alt="Paola - Sobre mí" 
-          className="w-full h-full object-cover"
+        <Image
+          src="/images/paola-sobre-mi.webp"
+          alt="Paola - Sobre mí"
+          fill
+          className="object-cover"
+          priority
         />
         {/* Centered title overlay */}
         <div className="absolute inset-0 flex items-center justify-center">

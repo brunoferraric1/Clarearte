@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import patternAlbor from '@/images/pattern-albor.webp'
 
 interface HeroProps {
   title: string
@@ -23,10 +22,10 @@ export function Hero({
   secondaryCTA 
 }: HeroProps) {
   return (
-    <section 
+    <section
       className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex items-center justify-center bg-background"
       style={{
-        backgroundImage: `url(${patternAlbor})`,
+        backgroundImage: `url(/images/pattern-albor.webp)`,
         backgroundRepeat: 'repeat',
         backgroundSize: '1300px'
       }}

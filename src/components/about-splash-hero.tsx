@@ -1,5 +1,4 @@
 import { OrganicImageMask } from '@/components/organic-image-mask'
-import brushMask from '@/images/brush_mask-2-better-fill.webp'
 
 interface AboutSplashHeroProps {
   image: string
@@ -18,7 +17,7 @@ export function AboutSplashHero({ image, imageAlt, introText }: AboutSplashHeroP
             <OrganicImageMask
               src={image}
               alt={imageAlt}
-              maskSrc={brushMask}
+              maskSrc="/images/brush_mask-2-better-fill.webp"
               className="aspect-[4/3] w-full"
             />
           </div>

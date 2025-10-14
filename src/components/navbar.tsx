@@ -1,4 +1,8 @@
+'use client'
+
 import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import {
   NavigationMenu,
@@ -9,8 +13,6 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import invitacionAlbor from '@/images/home-sections-coleciones.webp'
-import invitacionPersonalizada from '@/images/home-sections-invitaciones-personalisadas.webp'
 
 interface NavbarProps {
   className?: string
@@ -34,11 +36,11 @@ export function Navbar({ className }: NavbarProps) {
           <div className="flex h-16 items-center justify-between px-8">
             {/* Logo/Brand */}
             <div className="flex items-center">
-              <a href="/" className="flex items-center space-x-2 cursor-pointer">
+              <Link href="/" className="flex items-center space-x-2 cursor-pointer">
                 <span className="text-title-1 font-display font-bold text-foreground">
                   ClareArte
                 </span>
-              </a>
+              </Link>
             </div>
 
             {/* Navigation Menu */}
@@ -52,15 +54,16 @@ export function Navbar({ className }: NavbarProps) {
                   <ul className="grid gap-4 p-6 md:w-[600px] lg:w-[700px] grid-cols-2">
                     <li>
                       <NavigationMenuLink asChild>
-                        <a
+                        <Link
                           className="group block select-none rounded-lg overflow-hidden no-underline outline-none transition-all hover:shadow-lg cursor-pointer"
                           href="/colecciones"
                         >
-                          <div className="aspect-[4/3] overflow-hidden bg-muted">
-                            <img 
-                              src={invitacionAlbor} 
-                              alt="Colecciones de invitaciones" 
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          <div className="aspect-[4/3] overflow-hidden bg-muted relative">
+                            <Image
+                              src="/images/home-sections-coleciones.webp"
+                              alt="Colecciones de invitaciones"
+                              fill
+                              className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                           </div>
                           <div className="p-4 bg-background border border-t-0 rounded-b-lg">
@@ -71,20 +74,21 @@ export function Navbar({ className }: NavbarProps) {
                               Diseños únicos con acuarela y acabados artesanales.
                             </p>
                           </div>
-                        </a>
+                        </Link>
                       </NavigationMenuLink>
                     </li>
                     <li>
                       <NavigationMenuLink asChild>
-                        <a
+                        <Link
                           className="group block select-none rounded-lg overflow-hidden no-underline outline-none transition-all hover:shadow-lg cursor-pointer"
                           href="/personalizadas"
                         >
-                          <div className="aspect-[4/3] overflow-hidden bg-muted">
-                            <img 
-                              src={invitacionPersonalizada} 
-                              alt="Invitaciones personalizadas" 
-                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          <div className="aspect-[4/3] overflow-hidden bg-muted relative">
+                            <Image
+                              src="/images/home-sections-invitaciones-personalisadas.webp"
+                              alt="Invitaciones personalizadas"
+                              fill
+                              className="object-cover transition-transform duration-300 group-hover:scale-105"
                             />
                           </div>
                           <div className="p-4 bg-background border border-t-0 rounded-b-lg">
@@ -95,7 +99,7 @@ export function Navbar({ className }: NavbarProps) {
                               Diseños exclusivos creados solo para vosotros.
                             </p>
                           </div>
-                        </a>
+                        </Link>
                       </NavigationMenuLink>
                     </li>
                   </ul>
@@ -103,16 +107,16 @@ export function Navbar({ className }: NavbarProps) {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <a href="/sobre-mi" className="text-body font-medium cursor-pointer">
+                  <Link href="/sobre-mi" className="text-body font-medium cursor-pointer">
                     Sobre mí
-                  </a>
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <a href="/contacto" className="text-body font-medium cursor-pointer">
+                  <Link href="/contacto" className="text-body font-medium cursor-pointer">
                     Contacto
-                  </a>
+                  </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -126,9 +130,9 @@ export function Navbar({ className }: NavbarProps) {
               className="tracking-wide cursor-pointer"
               asChild
             >
-              <a href="/contacto">
+              <Link href="/contacto">
                 Solicitar presupuesto
-              </a>
+              </Link>
             </Button>
           </div>
         </div>

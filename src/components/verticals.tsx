@@ -1,8 +1,5 @@
 import { Button } from '@/components/ui/button'
 import { OrganicImageMask } from '@/components/organic-image-mask'
-import invitacionAlbor from '@/images/home-sections-coleciones.webp'
-import invitacionPersonalizada from '@/images/home-sections-invitaciones-personalisadas.webp'
-import brushMask from '@/images/brush_mask-2-better-fill.webp'
 
 export function Verticals() {
   return (
@@ -13,9 +10,9 @@ export function Verticals() {
           {/* Colecciones de invitaciones */}
           <div className="flex flex-col">
             <OrganicImageMask
-              src={invitacionAlbor}
+              src="/images/home-sections-coleciones.webp"
               alt="Colecciones de invitaciones"
-              maskSrc={brushMask}
+              maskSrc="/images/brush_mask-2-better-fill.webp"
               className="aspect-[4/3] mb-6"
             />
 
@@ -44,9 +41,9 @@ export function Verticals() {
           {/* Invitaciones personalizadas */}
           <div className="flex flex-col">
             <OrganicImageMask
-              src={invitacionPersonalizada}
+              src="/images/home-sections-invitaciones-personalisadas.webp"
               alt="Invitaciones personalizadas"
-              maskSrc={brushMask}
+              maskSrc="/images/brush_mask-2-better-fill.webp"
               className="aspect-[4/3] mb-6"
             />
 
