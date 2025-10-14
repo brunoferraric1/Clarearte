@@ -7,7 +7,7 @@ export function AboutSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
 
           {/* Left column - Text content */}
-          <div className="flex flex-col space-y-6 text-left items-start">
+          <div className="flex flex-col space-y-6">
             <h2 className="text-display-1 font-display font-bold text-foreground">
               Sobre mí
             </h2>

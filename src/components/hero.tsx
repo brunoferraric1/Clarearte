@@ -95,7 +95,7 @@ export function Hero({
 export function HeroExample() {
   return (
     <Hero
-      title="Arte Personalizada para Casamentos"
+      title="Invitaciones de boda personalizadas y exclusivas"
       subtitle=""
       description="Criamos convites únicos, menus personalizados e ilustrações ao vivo que transformam o seu casamento em uma experiência inesquecível."
       primaryCTA={{

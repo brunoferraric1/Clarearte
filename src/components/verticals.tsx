@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button'
 import { OrganicImageMask } from '@/components/organic-image-mask'
 import invitacionAlbor from '@/images/home-sections-coleciones.webp'
 import invitacionPersonalizada from '@/images/home-sections-invitaciones-personalisadas.webp'
-import brushMask from '@/images/brush_mask-2.png'
+import brushMask from '@/images/brush_mask-2-better-fill.webp'
 
 export function Verticals() {
   return (

@@ -1,5 +1,5 @@
 import { OrganicImageMask } from '@/components/organic-image-mask'
-import brushMask from '@/images/brush_mask-2.png'
+import brushMask from '@/images/brush_mask-2-better-fill.webp'
 
 interface AboutSplashHeroProps {
   image: string
@@ -10,11 +10,11 @@ interface AboutSplashHeroProps {
 export function AboutSplashHero({ image, imageAlt, introText }: AboutSplashHeroProps) {
   return (
     <section className="bg-background">
-      <div className="container mx-auto max-w-4xl">
+      <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col items-center space-y-8">
 
           {/* Splash Image with Organic Mask */}
-          <div className="w-full max-w-4xl min-w-[500px]">
+          <div className="w-full min-w-[500px]">
             <OrganicImageMask
               src={image}
               alt={imageAlt}
