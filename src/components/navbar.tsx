@@ -16,9 +16,10 @@ import {
 
 interface NavbarProps {
   className?: string
+  lang?: string
 }
 
-export function Navbar({ className }: NavbarProps) {
+export function Navbar({ className, lang = 'es' }: NavbarProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   return (
@@ -36,7 +37,7 @@ export function Navbar({ className }: NavbarProps) {
           <div className="flex h-16 items-center justify-between px-8">
             {/* Logo/Brand */}
             <div className="flex items-center">
-              <Link href="/" className="flex items-center space-x-2 cursor-pointer">
+              <Link href={`/${lang}`} className="flex items-center space-x-2 cursor-pointer">
                 <span className="text-title-1 font-display font-bold text-foreground">
                   ClareArte
                 </span>
@@ -56,7 +57,7 @@ export function Navbar({ className }: NavbarProps) {
                       <NavigationMenuLink asChild>
                         <Link
                           className="group block select-none rounded-lg overflow-hidden no-underline outline-none transition-all hover:shadow-lg cursor-pointer"
-                          href="/colecciones"
+                          href={`/${lang}/colecciones`}
                         >
                           <div className="aspect-[4/3] overflow-hidden bg-muted relative">
                             <Image
@@ -81,7 +82,7 @@ export function Navbar({ className }: NavbarProps) {
                       <NavigationMenuLink asChild>
                         <Link
                           className="group block select-none rounded-lg overflow-hidden no-underline outline-none transition-all hover:shadow-lg cursor-pointer"
-                          href="/personalizadas"
+                          href={`/${lang}/personalizadas`}
                         >
                           <div className="aspect-[4/3] overflow-hidden bg-muted relative">
                             <Image
@@ -107,14 +108,14 @@ export function Navbar({ className }: NavbarProps) {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href="/sobre-mi" className="text-body font-medium cursor-pointer">
+                  <Link href={`/${lang}/sobre-mi`} className="text-body font-medium cursor-pointer">
                     Sobre mí
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-                  <Link href="/contacto" className="text-body font-medium cursor-pointer">
+                  <Link href={`/${lang}/contacto`} className="text-body font-medium cursor-pointer">
                     Contacto
                   </Link>
                 </NavigationMenuLink>
@@ -130,7 +131,7 @@ export function Navbar({ className }: NavbarProps) {
               className="tracking-wide cursor-pointer"
               asChild
             >
-              <Link href="/contacto">
+              <Link href={`/${lang}/contacto`}>
                 Solicitar presupuesto
               </Link>
             </Button>

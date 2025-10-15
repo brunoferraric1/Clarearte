@@ -11,7 +11,7 @@ export function PersonalizedCTA() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button
-              variant="default"
+              variant="primary"
               size="lg"
               className="tracking-wide cursor-pointer w-full sm:w-auto"
               asChild

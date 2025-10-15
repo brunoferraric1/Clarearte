@@ -195,7 +195,7 @@ export function CollectionsContactForm() {
             <div className="pt-4">
               <Button
                 type="submit"
-                variant="default"
+                variant="primary"
                 size="lg"
                 className="w-full tracking-wide"
               >
