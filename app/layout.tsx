@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'ClareArte - Arte Personalizada para Casamentos',
@@ -20,6 +21,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
+        <Toaster />
       </body>
     </html>
   )
