@@ -163,6 +163,15 @@ function Calendar({
             </td>
           )
         },
+        Weekday: ({ children, ...props }) => {
+          return (
+            <th {...props} className="w-[--cell-size]">
+              <div className="flex size-[--cell-size] items-center justify-center text-center text-muted-foreground text-[0.8rem] font-normal">
+                {children}
+              </div>
+            </th>
+          )
+        },
         ...components,
       }}
       {...props}
