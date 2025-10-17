@@ -23,7 +23,7 @@ export function Hero({
 }: HeroProps) {
   return (
     <section
-      className="relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] flex items-center justify-center bg-background"
+      className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-background"
       style={{
         backgroundImage: `url(/images/pattern-albor.webp)`,
         backgroundRepeat: 'repeat',
