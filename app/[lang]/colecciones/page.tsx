@@ -18,7 +18,11 @@ const collections = [
       'Albor está pensada para parejas que sueñan con bodas al aire libre, románticas y llenas de delicadeza. Sus ilustraciones en acuarela con flores, ramas sueltas y pétalos flotando, junto a una paleta suave, transmiten emoción y armonía. Opciones como sobreposición de vellum, forro floral en los sobres o un delicado lacre permiten que cada invitación de la colección adquiera un toque único y personalizado, adaptándose a la visión de cada pareja.',
     ctaText: 'Explorar Colección Albor',
     ctaLink: '/colecciones/albor',
-    imagePlaceholder: 'Imagen Set Colección Albor',
+    images: [
+      '/images/colections/coleccion-albor-invitacion-boda-clarearte.webp',
+      '/images/colections/coleccion-albor-set-completo-clarearte.webp',
+      '/images/colections/coleccion-albor-seating-plan-clarearte.webp',
+    ],
   },
   {
     title: 'Colección Raíces',
@@ -27,7 +31,11 @@ const collections = [
       'Raíces se inspira en bodas boho y mediterráneas, con materiales orgánicos y tonos tierra que transmiten calidez y cercanía. Las ilustraciones botánicas hechas a mano y las texturas naturales aportan un aire rústico chic y acogedor. Detalles como cordeles de yute, cintas de lino o etiquetas en madera permiten añadir un matiz personal a las invitaciones, haciendo que cada pieza cuente una historia propia dentro del estilo de la colección.',
     ctaText: 'Descubrir Colección Raíces',
     ctaLink: '/colecciones/raices',
-    imagePlaceholder: 'Imagen Set Colección Raíces',
+    images: [
+      '/images/colections/coleccion-raices-invitacion-boda-clarearte.webp',
+      '/images/colections/coleccion-raices-seating-plan-clarearte.webp',
+      '/images/colections/coleccion-raices-cartel-bienvenido-clarearte.webp',
+    ],
   },
   {
     title: 'Colección Luz & Línea',
@@ -36,7 +44,10 @@ const collections = [
       'Luz & Línea está pensada principalmente para bodas urbanas y celebraciones sofisticadas, con tipografía refinada, espacios amplios y paleta de color reducida. Su estética minimalista combina serenidad y estilo atemporal. Elementos como sobre con forro liso, caligrafía en los sobres o acabados en pan de oro ofrecen la posibilidad de añadir detalles exclusivos que elevan la experiencia de la papelería, incluso dentro de la estructura de la colección.',
     ctaText: 'Explorar Colección Luz & Línea',
     ctaLink: '/colecciones/luz-linea',
-    imagePlaceholder: 'Imagen Set Colección Luz & Línea',
+    images: [
+      '/images/colections/coleccion-luz_linea-invitacion-boda-clarearte.webp',
+      '/images/colections/coleccion-luz_linea-set-completo-clarearte.webp',
+    ],
   },
 ]
 
