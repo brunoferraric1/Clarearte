@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { PageHero } from '@/components/page-hero'
+import { Hero } from '@/components/hero'
 import { PersonalizedShowcase } from '@/components/personalized-showcase'
 import { CreationProcess } from '@/components/creation-process'
 import { PersonalizedBenefits } from '@/components/personalized-benefits'
@@ -22,13 +22,18 @@ export default async function PersonalizedPage({
   return (
     <div className="min-h-screen">
       <Navbar lang={lang} />
-      <PageHero
-        title="Invitaciones de boda personalizadas"
-        image="/images/home-sections-invitaciones-personalisadas.webp"
-        imageAlt="invitaciones personalizadas"
-        subtitle="Cada pareja tiene una historia que merece ser contada de manera única. Las invitaciones de boda personalizadas transforman momentos, recuerdos y detalles cotidianos en piezas de papelería que reflejan la esencia auténtica de los novios. Desde un viaje especial, un rincón favorito, hasta los integrantes más queridos de la familia, incluyendo mascotas, cada elemento puede formar parte del diseño, haciendo que la invitación sea completamente vuestra."
-        overlayOpacity={0.2}
-        height="medium"
+      <Hero
+        title="Invitaciones de boda personalizadas y exclusivas"
+        subtitle=""
+        description="Cada pareja tiene una historia que merece ser contada de manera única. Las invitaciones personalizadas transforman momentos, recuerdos y detalles cotidianos en piezas de papelería que reflejan vuestra esencia auténtica. Desde un viaje especial hasta vuestras mascotas, cada elemento forma parte del diseño."
+        primaryCTA={{
+          text: "Ver Portfolio",
+          href: "#portfolio"
+        }}
+        secondaryCTA={{
+          text: "Solicitar Presupuesto",
+          href: "/contacto"
+        }}
       />
       <PersonalizedShowcase />
       <CreationProcess />

@@ -1,8 +1,9 @@
 import { Navbar } from '@/components/navbar'
-import { PageHero } from '@/components/page-hero'
+import { Hero } from '@/components/hero'
 import { CollectionCard } from '@/components/collection-card'
 import { ContactForm } from '@/components/contact-form'
 import { Button } from '@/components/ui/button'
+import { Palette, CircleDollarSign, Wrench, Clock, Sparkles } from 'lucide-react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -53,26 +54,31 @@ const collections = [
 
 const benefits = [
   {
+    icon: Palette,
     title: 'Diseños cuidadosamente creados',
     description:
       'Cada colección ha sido pensada con un estilo único (romántico, boho, minimalista) siguiendo las últimas tendencias de bodas en España y Europa.',
   },
   {
+    icon: CircleDollarSign,
     title: 'Accesibles sin perder elegancia',
     description:
       'Al tratarse de diseños ya desarrollados, las invitaciones de colección resultan más económicas que las personalizadas, sin renunciar a la calidad premium de los materiales y acabados.',
   },
   {
+    icon: Wrench,
     title: 'Flexibilidad en los detalles',
     description:
       'Aunque pertenecen a una colección, pueden personalizarse con toques como el color del sobre, forros ilustrados, lacres, caligrafía o texturas artesanales, aportando carácter propio a cada pieza.',
   },
   {
+    icon: Clock,
     title: 'Rapidez en la entrega',
     description:
       'Al contar con una base de diseño ya definida, los tiempos de producción se reducen, facilitando que los novios tengan su papelería lista con mayor agilidad.',
   },
   {
+    icon: Sparkles,
     title: 'Estilo probado y versátil',
     description:
       'Son opciones que se adaptan a distintos tipos de ceremonias, desde bodas íntimas al aire libre hasta celebraciones elegantes en espacios urbanos, asegurando siempre un resultado armónico y sofisticado.',
@@ -91,29 +97,19 @@ export default async function CollectionsPage({
       <Navbar lang={lang} />
 
       {/* Hero Banner */}
-      <PageHero
+      <Hero
         title="Colecciones de invitaciones de boda ilustradas en acuarela"
-        image="/images/home-sections-coleciones.webp"
-        imageAlt="banner colecciones"
-        overlayOpacity={0.2}
-        height="large"
+        subtitle=""
+        description="Cada boda tiene un estilo, y cada pareja una manera única de contar su historia. Las colecciones reúnen ilustraciones en acuarela, tipografía cuidada y acabados artesanales, para que el primer detalle de vuestra celebración transmita emoción, belleza y autenticidad."
+        primaryCTA={{
+          text: "Ver Colecciones",
+          href: "#colecciones"
+        }}
+        secondaryCTA={{
+          text: "Contactar",
+          href: "/contacto"
+        }}
       />
-
-      {/* Introduction */}
-      <section className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center space-y-6">
-            <h2 className="text-title-1 font-display font-bold text-foreground">
-              Cada boda tiene un estilo, y cada pareja una manera única de contar su historia
-            </h2>
-            <p className="text-body-lg text-foreground leading-relaxed">
-              Las colecciones de invitaciones de boda reúnen ilustraciones en acuarela,
-              tipografía cuidada y acabados artesanales, para que el primer detalle de
-              vuestra celebración transmita emoción, belleza y autenticidad.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* Collections Info */}
       <section className="py-12 md:py-16 bg-muted/20">
@@ -130,7 +126,7 @@ export default async function CollectionsPage({
       </section>
 
       {/* Collection Cards */}
-      <section className="py-16 md:py-24 bg-background">
+      <section id="colecciones" className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-6xl space-y-20 md:space-y-32">
           {collections.map((collection, index) => (
             <CollectionCard
@@ -164,21 +160,31 @@ export default async function CollectionsPage({
       {/* Why Choose Collection Invitations */}
       <section className="py-16 md:py-24 bg-background">
         <div className="container mx-auto px-4 max-w-5xl">
-          <h2 className="text-title-1 font-display font-bold text-foreground text-center mb-12 md:mb-16">
+          <h2 className="text-title-2 font-display font-bold text-foreground text-center mb-12 md:mb-16">
             Por qué elegir invitaciones de colección
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="space-y-3">
-                <h3 className="text-title-3 font-sans font-semibold text-foreground">
-                  {benefit.title}
-                </h3>
-                <p className="text-body text-muted-foreground leading-relaxed">
-                  {benefit.description}
-                </p>
-              </div>
-            ))}
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+            {benefits.map((benefit) => {
+              const Icon = benefit.icon
+              return (
+                <div key={benefit.title} className="flex gap-4 md:gap-5">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-primary/10 flex items-center justify-center">
+                      <Icon className="w-6 h-6 md:w-7 md:h-7 text-primary" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <div className="space-y-2 flex-1">
+                    <h3 className="text-body-lg md:text-title-3 font-sans font-semibold text-foreground">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-body-sm md:text-body text-muted-foreground leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
