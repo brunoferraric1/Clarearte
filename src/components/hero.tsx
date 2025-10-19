@@ -54,7 +54,7 @@ export function Hero({
           </h1>
           
           {/* Description */}
-          <p className="text-body-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-body-lg text-muted-foreground mb-8 mx-auto">
             {description}
           </p>
           
