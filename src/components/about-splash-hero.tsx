@@ -8,17 +8,17 @@ interface AboutSplashHeroProps {
 
 export function AboutSplashHero({ image, imageAlt, introText }: AboutSplashHeroProps) {
   return (
-    <section className="bg-background">
+    <section className="bg-background pt-8">
       <div className="container mx-auto max-w-7xl">
         <div className="flex flex-col items-center space-y-8">
 
           {/* Splash Image with Organic Mask */}
-          <div className="w-full min-w-[500px]">
+          <div className="w-full max-w-3xl">
             <OrganicImageMask
               src={image}
               alt={imageAlt}
-              maskSrc="/images/brush_mask-2-better-fill.webp"
-              className="aspect-[4/3] w-full"
+              maskSrc="/images/brush_mask-2-cropped.webp"
+              className="aspect-[16/9] w-full"
             />
           </div>
 
