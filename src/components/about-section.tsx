@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import { OrganicImageMask } from '@/components/organic-image-mask'
 
 export function AboutSection() {
   return (
@@ -33,11 +34,14 @@ export function AboutSection() {
             </div>
           </div>
 
-          {/* Right column - Image placeholder */}
-          <div className="aspect-[4/3] bg-muted rounded-lg overflow-hidden">
-            <div className="w-full h-full flex items-center justify-center text-muted-foreground">
-              <span className="text-label">Imagen sobre mí</span>
-            </div>
+          {/* Right column - Image with organic mask */}
+          <div className="aspect-[4/3]">
+            <OrganicImageMask
+              src="/images/paola-sobre-mi.webp"
+              alt="Paola - Sobre mí"
+              maskSrc="/images/brush_mask-2-better-fill.webp"
+              className="w-full h-full"
+            />
           </div>
 
         </div>

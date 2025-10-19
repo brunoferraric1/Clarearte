@@ -1,7 +1,7 @@
 import { Navbar } from '@/components/navbar'
 import { PageHero } from '@/components/page-hero'
 import { CollectionCard } from '@/components/collection-card'
-import { CollectionsContactForm } from '@/components/collections-contact-form'
+import { ContactForm } from '@/components/contact-form'
 import { Button } from '@/components/ui/button'
 import type { Metadata } from 'next'
 
@@ -184,7 +184,7 @@ export default async function CollectionsPage({
       </section>
 
       {/* Contact Form */}
-      <CollectionsContactForm />
+      <ContactForm />
     </div>
   )
 }

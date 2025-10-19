@@ -4,7 +4,7 @@ import { Verticals } from '@/components/verticals'
 import { MarqueeSection } from '@/components/marquee-section'
 import { DetailsSection } from '@/components/details-section'
 import { AboutSection } from '@/components/about-section'
-import ContactSection from '@/components/contact-section'
+import { ContactForm } from '@/components/contact-form'
 
 export default async function HomePage({
   params,
@@ -21,7 +21,7 @@ export default async function HomePage({
       <MarqueeSection />
       <DetailsSection />
       <AboutSection />
-      <ContactSection />
+      <ContactForm />
     </div>
   )
 }

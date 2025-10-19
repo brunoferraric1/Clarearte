@@ -3,7 +3,7 @@ import { Navbar } from '@/components/navbar'
 import { Verticals } from '@/components/verticals'
 import { MarqueeSection } from '@/components/marquee-section'
 import { DetailsSection } from '@/components/details-section'
-import { AboutSection } from '@/components/about-section'
+import { ContactForm } from '@/components/contact-form'
 
 export default function HomePage() {
   return (
@@ -13,7 +13,7 @@ export default function HomePage() {
       <Verticals />
       <MarqueeSection />
       <DetailsSection />
-      <AboutSection />
+      <ContactForm />
     </div>
   )
 }
