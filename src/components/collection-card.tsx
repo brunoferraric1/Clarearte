@@ -29,7 +29,7 @@ export function CollectionCard({
           {/* Main large image */}
           {images[0] && (
             <div className="w-full overflow-hidden rounded-lg">
-              <div className="relative aspect-[3/4] md:aspect-[2/3] w-full">
+              <div className="relative aspect-[4/3] md:aspect-[3/2] w-full">
                 <Image
                   src={images[0]}
                   alt={`${title} - Imagen principal`}
