@@ -4,7 +4,7 @@ interface HeroProps {
   title: string
   subtitle: string
   description: string
-  primaryCTA: {
+  primaryCTA?: {
     text: string
     href: string
   }
@@ -57,33 +57,37 @@ export function Hero({
           <p className="text-body-lg text-muted-foreground mb-8 mx-auto">
             {description}
           </p>
-          
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button
-              variant="primary"
-              size="md"
-              className="tracking-wide cursor-pointer"
-              asChild
-            >
-              <a href={primaryCTA.href}>
-                {primaryCTA.text}
-              </a>
-            </Button>
 
-            {secondaryCTA && (
-              <Button
-                variant="primary-outline"
-                size="md"
-                className="tracking-wide cursor-pointer"
-                asChild
-              >
-                <a href={secondaryCTA.href}>
-                  {secondaryCTA.text}
-                </a>
-              </Button>
-            )}
-          </div>
+          {/* CTA Buttons */}
+          {(primaryCTA || secondaryCTA) && (
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              {primaryCTA && (
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="tracking-wide cursor-pointer"
+                  asChild
+                >
+                  <a href={primaryCTA.href}>
+                    {primaryCTA.text}
+                  </a>
+                </Button>
+              )}
+
+              {secondaryCTA && (
+                <Button
+                  variant="primary-outline"
+                  size="md"
+                  className="tracking-wide cursor-pointer"
+                  asChild
+                >
+                  <a href={secondaryCTA.href}>
+                    {secondaryCTA.text}
+                  </a>
+                </Button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

@@ -26,14 +26,6 @@ export default async function PersonalizedPage({
         title="Invitaciones de boda personalizadas y exclusivas"
         subtitle=""
         description="Cada pareja tiene una historia que merece ser contada de manera única. Las invitaciones personalizadas transforman momentos, recuerdos y detalles cotidianos en piezas de papelería que reflejan vuestra esencia auténtica. Desde un viaje especial hasta vuestras mascotas, cada elemento forma parte del diseño."
-        primaryCTA={{
-          text: "Ver Portfolio",
-          href: "#portfolio"
-        }}
-        secondaryCTA={{
-          text: "Solicitar Presupuesto",
-          href: "/contacto"
-        }}
       />
       <PersonalizedShowcase />
       <CreationProcess />
