@@ -120,6 +120,16 @@ export function Navbar({ className, lang = 'es' }: NavbarProps) {
                   </Link>
                 </NavigationMenuLink>
               </NavigationMenuItem>
+              {/* Development only - Design System link */}
+              {process.env.NODE_ENV === 'development' && (
+                <NavigationMenuItem>
+                  <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                    <Link href={`/${lang}/design-system`} className="text-body font-medium cursor-pointer text-muted-foreground">
+                      Design System
+                    </Link>
+                  </NavigationMenuLink>
+                </NavigationMenuItem>
+              )}
             </NavigationMenuList>
           </NavigationMenu>
 
