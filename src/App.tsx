@@ -3,6 +3,8 @@ import { HomePage } from './pages/home'
 import { CollectionsPage } from './pages/collections'
 import { PersonalizedPage } from './pages/personalized'
 import { AboutPage } from './pages/about'
+import { BlogPage } from './pages/blog'
+import BlogPost from './pages/blog-post'
 import './App.css'
 
 function App() {
@@ -13,6 +15,8 @@ function App() {
         <Route path="/colecciones" element={<CollectionsPage />} />
         <Route path="/personalizadas" element={<PersonalizedPage />} />
         <Route path="/sobre-mi" element={<AboutPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
       </Routes>
     </Router>
   )
