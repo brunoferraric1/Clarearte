@@ -115,6 +115,13 @@ export function Navbar({ className, lang = 'es' }: NavbarProps) {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                  <Link href={`/${lang}/blog`} className="text-body font-medium cursor-pointer">
+                    Blog
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
                   <Link href={`/${lang}/contacto`} className="text-body font-medium cursor-pointer">
                     Contacto
                   </Link>

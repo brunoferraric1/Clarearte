@@ -96,6 +96,31 @@ export function Hero({
   )
 }
 
+// Simplified hero for internal pages (no CTAs, no background pattern)
+interface InternalPageHeroProps {
+  title: string
+  description?: string
+}
+
+export function InternalPageHero({ title, description }: InternalPageHeroProps) {
+  return (
+    <section className="relative bg-muted/20 border-b border-border">
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-display-1 font-serif text-foreground mb-4">
+            {title}
+          </h1>
+          {description && (
+            <p className="text-body-xl text-muted-foreground leading-relaxed">
+              {description}
+            </p>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 // Example usage component for testing
 export function HeroExample() {
   return (
