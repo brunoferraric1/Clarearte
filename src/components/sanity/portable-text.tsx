@@ -1,10 +1,40 @@
+'use client'
+
 import { PortableText as PortableTextComponent } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
 import Image from 'next/image'
+import Link from 'next/link'
 import { urlForImage } from '@/sanity/lib/image'
+import { Button } from '@/components/ui/button'
+import {
+  AlertCircle,
+  AlertTriangle,
+  CheckCircle2,
+  Lightbulb,
+} from 'lucide-react'
 
 interface PortableTextProps {
   value: PortableTextBlock[]
+}
+
+// Helper function to extract video ID from URL
+function getVideoId(url: string): { type: string; id: string } | null {
+  // YouTube
+  const youtubeRegex =
+    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+  const youtubeMatch = url.match(youtubeRegex)
+  if (youtubeMatch) {
+    return { type: 'youtube', id: youtubeMatch[1] }
+  }
+
+  // Vimeo
+  const vimeoRegex = /vimeo\.com\/(?:video\/)?(\d+)/
+  const vimeoMatch = url.match(vimeoRegex)
+  if (vimeoMatch) {
+    return { type: 'vimeo', id: vimeoMatch[1] }
+  }
+
+  return null
 }
 
 export function PortableText({ value }: PortableTextProps) {
@@ -87,7 +117,8 @@ export function PortableText({ value }: PortableTextProps) {
           },
         },
         types: {
-          image: ({ value }) => {
+          // Single Image
+          imageWithAlt: ({ value }) => {
             if (!value?.asset?._ref) {
               return null
             }
@@ -99,7 +130,7 @@ export function PortableText({ value }: PortableTextProps) {
                 <div className="relative w-full aspect-video overflow-hidden rounded-lg">
                   <Image
                     src={imageUrl}
-                    alt={value.alt || 'Blog image'}
+                    alt={value.alt?.pt || value.alt?.es || value.alt?.en || 'Blog image'}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
@@ -107,11 +138,220 @@ export function PortableText({ value }: PortableTextProps) {
                 </div>
                 {value.caption && (
                   <figcaption className="text-body-sm text-muted-foreground text-center mt-4 italic">
-                    {value.caption}
+                    {value.caption.pt || value.caption.es || value.caption.en}
                   </figcaption>
                 )}
               </figure>
             )
+          },
+
+          // Image Gallery
+          imageGallery: ({ value }) => {
+            if (!value?.images || value.images.length === 0) {
+              return null
+            }
+
+            const gridClasses = {
+              'grid-2': 'grid-cols-1 md:grid-cols-2',
+              'grid-3': 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
+              masonry: 'columns-1 md:columns-2 lg:columns-3',
+            }
+
+            const layout = value.layout || 'grid-2'
+            const isMasonry = layout === 'masonry'
+
+            return (
+              <figure className="my-16">
+                <div
+                  className={
+                    isMasonry
+                      ? `${gridClasses[layout]} gap-4`
+                      : `grid ${gridClasses[layout]} gap-4`
+                  }
+                >
+                  {value.images.map((image: any, index: number) => (
+                    <div
+                      key={index}
+                      className={isMasonry ? 'break-inside-avoid mb-4' : ''}
+                    >
+                      <div className="relative w-full aspect-square overflow-hidden rounded-lg">
+                        <Image
+                          src={urlForImage(image).width(800).url()}
+                          alt={image.alt?.pt || image.alt?.es || image.alt?.en || `Gallery image ${index + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {value.caption && (
+                  <figcaption className="text-body-sm text-muted-foreground text-center mt-6 italic">
+                    {value.caption.pt || value.caption.es || value.caption.en}
+                  </figcaption>
+                )}
+              </figure>
+            )
+          },
+
+          // Callout
+          callout: ({ value }) => {
+            const icons = {
+              info: AlertCircle,
+              warning: AlertTriangle,
+              success: CheckCircle2,
+              tip: Lightbulb,
+            }
+
+            const styles = {
+              info: 'bg-blue-50 border-blue-200 text-blue-900 dark:bg-blue-950 dark:border-blue-800 dark:text-blue-100',
+              warning:
+                'bg-yellow-50 border-yellow-200 text-yellow-900 dark:bg-yellow-950 dark:border-yellow-800 dark:text-yellow-100',
+              success:
+                'bg-green-50 border-green-200 text-green-900 dark:bg-green-950 dark:border-green-800 dark:text-green-100',
+              tip: 'bg-purple-50 border-purple-200 text-purple-900 dark:bg-purple-950 dark:border-purple-800 dark:text-purple-100',
+            }
+
+            const Icon = icons[value.variant as keyof typeof icons] || AlertCircle
+            const style = styles[value.variant as keyof typeof styles] || styles.info
+
+            return (
+              <div
+                className={`my-8 p-6 border-2 rounded-lg ${style}`}
+              >
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <div className="flex-1">
+                    {value.title && (
+                      <h4 className="font-semibold text-body-xl mb-2">
+                        {value.title.pt || value.title.es || value.title.en}
+                      </h4>
+                    )}
+                    <p className="text-body leading-relaxed">
+                      {value.content.pt || value.content.es || value.content.en}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )
+          },
+
+          // Video Embed
+          videoEmbed: ({ value }) => {
+            if (!value?.url) {
+              return null
+            }
+
+            const videoData = getVideoId(value.url)
+
+            if (!videoData) {
+              return null
+            }
+
+            const embedUrl =
+              videoData.type === 'youtube'
+                ? `https://www.youtube.com/embed/${videoData.id}`
+                : `https://player.vimeo.com/video/${videoData.id}`
+
+            const aspectRatio = value.aspectRatio || '16/9'
+
+            return (
+              <figure className="my-12">
+                <div
+                  className="relative w-full overflow-hidden rounded-lg"
+                  style={{ aspectRatio }}
+                >
+                  <iframe
+                    src={embedUrl}
+                    className="absolute inset-0 w-full h-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                </div>
+                {value.caption && (
+                  <figcaption className="text-body-sm text-muted-foreground text-center mt-4 italic">
+                    {value.caption.pt || value.caption.es || value.caption.en}
+                  </figcaption>
+                )}
+              </figure>
+            )
+          },
+
+          // Call to Action
+          cta: ({ value }) => {
+            if (!value?.text || !value?.url) {
+              return null
+            }
+
+            const text = value.text.pt || value.text.es || value.text.en
+            const url = value.url.pt || value.url.es || value.url.en
+
+            const variantMap = {
+              primary: 'default',
+              secondary: 'secondary',
+              outline: 'outline',
+            }
+
+            const variant = variantMap[value.variant as keyof typeof variantMap] || 'default'
+
+            const Wrapper = url.startsWith('http') ? 'a' : Link
+
+            return (
+              <div className="my-12 flex justify-center">
+                <Wrapper
+                  href={url}
+                  target={value.openInNewTab ? '_blank' : undefined}
+                  rel={value.openInNewTab ? 'noopener noreferrer' : undefined}
+                >
+                  <Button size="lg" variant={variant as any}>
+                    {text}
+                  </Button>
+                </Wrapper>
+              </div>
+            )
+          },
+
+          // Divider
+          divider: ({ value }) => {
+            const spacingClasses = {
+              small: 'my-8',
+              medium: 'my-12',
+              large: 'my-16',
+            }
+
+            const spacing =
+              spacingClasses[value.spacing as keyof typeof spacingClasses] ||
+              spacingClasses.medium
+
+            if (value.style === 'decorative') {
+              return (
+                <div className={`flex justify-center ${spacing}`}>
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-px bg-primary" />
+                    <div className="w-2 h-2 rounded-full bg-primary" />
+                    <div className="w-12 h-px bg-primary" />
+                  </div>
+                </div>
+              )
+            }
+
+            if (value.style === 'dots') {
+              return (
+                <div className={`flex justify-center ${spacing}`}>
+                  <div className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-muted-foreground" />
+                  </div>
+                </div>
+              )
+            }
+
+            // Simple line
+            return <hr className={`border-muted ${spacing}`} />
           },
         },
       }}
