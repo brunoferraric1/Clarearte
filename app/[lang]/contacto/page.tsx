@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { PageHero } from '@/components/page-hero'
+import { Hero } from '@/components/hero'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -22,30 +22,19 @@ export default async function ContactPage({
       <Navbar lang={lang} />
 
       {/* Hero Banner */}
-      <PageHero
+      <Hero
         title="Ponte en Contacto"
-        image="/images/home-sections-coleciones.webp"
-        imageAlt="Contacto"
-        overlayOpacity={0.2}
-        height="medium"
+        subtitle=""
+        description="Me encantaría saber más sobre tu proyecto. Completa el formulario y me pondré en contacto contigo lo antes posible para crear la papelería perfecta para tu boda."
+        noBottomPadding={true}
       />
 
       {/* Contact Section */}
-      <section className="py-16 md:py-24 bg-background">
+      <section className="pb-16 md:pb-24 bg-background">
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="space-y-8">
-            {/* Introduction */}
-            <div className="text-center space-y-4">
-              <h2 className="text-title-1 font-display font-bold text-foreground">
-                ¿Tienes alguna pregunta?
-              </h2>
-              <p className="text-body-lg text-foreground leading-relaxed">
-                Me encantaría saber más sobre tu proyecto. Completa el formulario y me pondré en contacto contigo lo antes posible para discutir tus necesidades y ayudarte a crear la papelería perfecta para tu boda.
-              </p>
-            </div>
-
             {/* Contact Form */}
-            <form className="space-y-6 mt-12">
+            <form className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="name" className="text-body-sm font-medium text-foreground">
@@ -137,36 +126,34 @@ export default async function ContactPage({
 
           <div className="grid md:grid-cols-3 gap-8">
             <div className="text-center space-y-3">
-              <div className="text-title-3 font-display font-bold text-primary">
+              <div className="text-title-1 font-display font-bold text-primary">
                 Email
               </div>
               <p className="text-body text-foreground">
-                <a href="mailto:hello@clarearte.com" className="hover:text-primary transition-colors">
-                  hello@clarearte.com
+                <a href="mailto:clarearte.boda@gmail.com" className="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                  clarearte.boda@gmail.com
                 </a>
               </p>
             </div>
 
             <div className="text-center space-y-3">
-              <div className="text-title-3 font-display font-bold text-primary">
-                Ubicación
+              <div className="text-title-1 font-display font-bold text-primary">
+                WhatsApp
               </div>
               <p className="text-body text-foreground">
-                España & Portugal
+                <a href="http://wa.me/34611361677" className="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                  +34 611 361 677
+                </a>
               </p>
             </div>
 
             <div className="text-center space-y-3">
-              <div className="text-title-3 font-display font-bold text-primary">
-                Redes Sociales
+              <div className="text-title-1 font-display font-bold text-primary">
+                Instagram
               </div>
               <p className="text-body text-foreground">
-                <a href="#" className="hover:text-primary transition-colors">
-                  Instagram
-                </a>
-                {' '}/{' '}
-                <a href="#" className="hover:text-primary transition-colors">
-                  Pinterest
+                <a href="https://www.instagram.com/clareartestudio/" className="hover:text-primary transition-colors" target="_blank" rel="noopener noreferrer">
+                  @clareartestudio
                 </a>
               </p>
             </div>

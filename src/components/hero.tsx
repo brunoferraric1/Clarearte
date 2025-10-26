@@ -12,6 +12,7 @@ interface HeroProps {
     text: string
     href: string
   }
+  noBottomPadding?: boolean
 }
 
 export function Hero({ 
@@ -19,7 +20,8 @@ export function Hero({
   subtitle, 
   description, 
   primaryCTA, 
-  secondaryCTA 
+  secondaryCTA,
+  noBottomPadding = false
 }: HeroProps) {
   return (
     <section
@@ -41,7 +43,7 @@ export function Hero({
         }}
       />
       
-      <div className="container mx-auto px-4 py-12 md:py-16 relative z-10">
+      <div className={`container mx-auto px-4 ${noBottomPadding ? 'pt-12 md:pt-16' : 'py-12 md:py-16'} relative z-10`}>
         <div className="max-w-6xl mx-auto text-center">
           {/* Subtitle */}
           <p className="text-label font-mono font-medium text-muted-foreground mb-4">
