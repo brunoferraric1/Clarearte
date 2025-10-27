@@ -44,3 +44,17 @@ export const allPostSlugsQuery = groq`
     }
   }
 `
+
+// Fetch other blog posts (excluding current post) for "related posts"
+export const relatedPostsQuery = groq`
+  *[_type == "post" && _id != $currentId && !(_id in path("drafts.**"))] | order(publishedAt desc) [0...3] {
+    _id,
+    contentId,
+    "slug": slug[$lang].current,
+    "title": title[$lang],
+    "excerpt": excerpt[$lang],
+    mainImage,
+    author,
+    publishedAt
+  }
+`
