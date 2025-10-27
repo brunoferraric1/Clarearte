@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { OrganicImageMask } from '@/components/organic-image-mask'
 
 export function Verticals() {
   return (
@@ -9,12 +8,13 @@ export function Verticals() {
 
           {/* Colecciones de invitaciones */}
           <div className="flex flex-col">
-            <OrganicImageMask
-              src="/images/home-sections-coleciones.webp"
-              alt="Colecciones de invitaciones"
-              maskSrc="/images/brush_mask-2-better-fill.webp"
-              className="aspect-[4/3] mb-6"
-            />
+            <div className="aspect-[4/3] mb-6 rounded-lg overflow-hidden">
+              <img
+                src="/images/home-sections-coleciones.webp"
+                alt="Colecciones de invitaciones"
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             <h2 className="text-title-2 font-display font-bold mb-4 text-center">
               Colecciones de invitaciones
@@ -40,12 +40,13 @@ export function Verticals() {
 
           {/* Invitaciones personalizadas */}
           <div className="flex flex-col">
-            <OrganicImageMask
-              src="/images/home-sections-invitaciones-personalisadas.webp"
-              alt="Invitaciones personalizadas"
-              maskSrc="/images/brush_mask-2-better-fill.webp"
-              className="aspect-[4/3] mb-6"
-            />
+            <div className="aspect-[4/3] mb-6 rounded-lg overflow-hidden">
+              <img
+                src="/images/home-sections-invitaciones-personalisadas.webp"
+                alt="Invitaciones personalizadas"
+                className="w-full h-full object-cover"
+              />
+            </div>
 
             <h2 className="text-title-2 font-display font-bold mb-4 text-center">
               Invitaciones personalizadas

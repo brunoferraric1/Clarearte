@@ -5,6 +5,7 @@ import { CreationProcess } from '@/components/creation-process'
 import { PersonalizedBenefits } from '@/components/personalized-benefits'
 import { PersonalizedInspiration } from '@/components/personalized-inspiration'
 import { PersonalizedCTA } from '@/components/personalized-cta'
+import { ContactFormSection } from '../contacto/contact-form-section'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -32,6 +33,7 @@ export default async function PersonalizedPage({
       <PersonalizedBenefits />
       <PersonalizedInspiration />
       <PersonalizedCTA />
+      <ContactFormSection />
     </div>
   )
 }

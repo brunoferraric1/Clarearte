@@ -1,7 +1,7 @@
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { CollectionCard } from '@/components/collection-card'
-import { ContactForm } from '@/components/contact-form'
+import { ContactFormSection } from '../contacto/contact-form-section'
 import { Button } from '@/components/ui/button'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { Palette, CircleDollarSign, Wrench, Clock, Sparkles } from 'lucide-react'
@@ -192,7 +192,7 @@ export default async function CollectionsPage({
       </section>
 
       {/* Contact Form */}
-      <ContactForm />
+      <ContactFormSection />
     </div>
   )
 }
