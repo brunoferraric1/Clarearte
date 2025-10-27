@@ -1,8 +1,6 @@
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { ContactFormFields } from './contact-form-fields'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -35,85 +33,7 @@ export default async function ContactPage({
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="space-y-8">
             {/* Contact Form */}
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-body-sm font-medium text-foreground">
-                    Nombre completo *
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    required
-                    className="text-body"
-                    placeholder="Tu nombre"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-body-sm font-medium text-foreground">
-                    Correo electrónico *
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    className="text-body"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-body-sm font-medium text-foreground">
-                    Teléfono (opcional)
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    className="text-body"
-                    placeholder="+34 000 00 00 00"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="event-date" className="text-body-sm font-medium text-foreground">
-                    Fecha de la boda (opcional)
-                  </label>
-                  <Input
-                    id="event-date"
-                    name="event-date"
-                    type="date"
-                    className="text-body"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-body-sm font-medium text-foreground">
-                  Mensaje *
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="text-body min-h-[150px]"
-                  placeholder="Cuéntame sobre tu proyecto, tipo de invitación que buscas, estilo preferido, etc."
-                />
-              </div>
-
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                className="tracking-wide w-full cursor-pointer"
-              >
-                Enviar Solicitud
-              </Button>
-            </form>
+            <ContactFormFields />
           </div>
         </div>
       </section>
