@@ -123,7 +123,7 @@ export function PortableText({ value }: PortableTextProps) {
               return null
             }
 
-            const imageUrl = urlForImage(value).width(1200).url()
+            const imageUrl = urlForImage(value).width(2000).url()
             const aspectRatio = value.aspectRatio || 'auto'
             const fit = value.fit || 'contain'
 
@@ -137,9 +137,9 @@ export function PortableText({ value }: PortableTextProps) {
                     <Image
                       src={imageUrl}
                       alt={value.alt?.pt || value.alt?.es || value.alt?.en || 'Blog image'}
-                      width={1200}
-                      height={800}
-                      sizes="(max-width: 768px) 100vw, 1200px"
+                      width={2000}
+                      height={1333}
+                      sizes="(max-width: 768px) 100vw, 2000px"
                       className={fit === 'cover' ? 'w-full h-auto object-cover' : 'w-full h-auto object-contain'}
                     />
                   ) : (
@@ -147,7 +147,7 @@ export function PortableText({ value }: PortableTextProps) {
                       src={imageUrl}
                       alt={value.alt?.pt || value.alt?.es || value.alt?.en || 'Blog image'}
                       fill
-                      sizes="(max-width: 768px) 100vw, 1200px"
+                      sizes="(max-width: 768px) 100vw, 2000px"
                       className={fit === 'cover' ? 'object-cover' : 'object-contain'}
                     />
                   )}
@@ -196,7 +196,7 @@ export function PortableText({ value }: PortableTextProps) {
                       >
                         {image.aspectRatio && image.aspectRatio !== 'auto' ? (
                           <Image
-                            src={urlForImage(image).width(800).url()}
+                            src={urlForImage(image).width(1400).url()}
                             alt={image.alt?.pt || image.alt?.es || image.alt?.en || `Gallery image ${index + 1}`}
                             fill
                             sizes="(max-width: 768px) 100vw, 50vw"
@@ -204,10 +204,10 @@ export function PortableText({ value }: PortableTextProps) {
                           />
                         ) : (
                           <Image
-                            src={urlForImage(image).width(800).url()}
+                            src={urlForImage(image).width(1400).url()}
                             alt={image.alt?.pt || image.alt?.es || image.alt?.en || `Gallery image ${index + 1}`}
-                            width={800}
-                            height={600}
+                            width={1400}
+                            height={1050}
                             sizes="(max-width: 768px) 100vw, 50vw"
                             className={(image.fit || 'contain') === 'cover' ? 'w-full h-auto object-cover' : 'w-full h-auto object-contain'}
                           />

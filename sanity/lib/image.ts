@@ -15,7 +15,8 @@ export const urlForImage = (source: Image | undefined) => {
       .image({ asset: { _ref: '' } } as Image)
       .auto('format')
       .fit('max')
+      .quality(90)
   }
 
-  return imageBuilder.image(source).auto('format').fit('max')
+  return imageBuilder.image(source).auto('format').fit('max').quality(90)
 }
