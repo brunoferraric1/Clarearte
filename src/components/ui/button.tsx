@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_a]:text-inherit leading-none",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 [&_a]:text-inherit !leading-none pb-[calc(0.5em+2.5px)] pt-[calc(0.5em-2.5px)]",
   {
     variants: {
       variant: {
@@ -24,12 +24,12 @@ const buttonVariants = cva(
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
-        sm: "h-7 px-4 text-body-sm",
-        md: "h-10 px-6 text-body-md",
-        lg: "h-11 px-8 text-body-lg",
-        icon: "h-10 w-10 text-body",
-        "icon-sm": "h-8 w-8 text-body-sm",
-        "icon-lg": "h-11 w-11 text-body-lg",
+        sm: "h-7 px-4 text-body-sm gap-2",
+        md: "h-10 px-6 text-body gap-2",
+        lg: "h-11 px-8 text-body-lg gap-2",
+        icon: "h-10 w-10 text-body !p-0",
+        "icon-sm": "h-8 w-8 text-body-sm !p-0",
+        "icon-lg": "h-11 w-11 text-body-lg !p-0",
       },
     },
     defaultVariants: {
@@ -46,20 +46,8 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, children, ...props }, ref) => {
+  ({ className, variant, size = "md", asChild = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "button"
-
-    if (asChild) {
-      return (
-        <Comp
-          className={cn(buttonVariants({ variant, size, className }))}
-          ref={ref}
-          {...props}
-        >
-          {children}
-        </Comp>
-      )
-    }
 
     return (
       <Comp
@@ -67,9 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <span className="relative top-[-0.5px]">
-          {children}
-        </span>
+        {children}
       </Comp>
     )
   }

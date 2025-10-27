@@ -145,7 +145,7 @@ export function Navbar({ className, lang = 'es' }: NavbarProps) {
             <Button
               variant="primary"
               size="sm"
-              className="tracking-wide cursor-pointer"
+              className="cursor-pointer"
               asChild
             >
               <Link href={`/${lang}/contacto`}>
