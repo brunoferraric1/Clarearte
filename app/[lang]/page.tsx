@@ -1,4 +1,4 @@
-import { HeroExample } from '@/components/hero'
+import { HeroVideo } from '@/components/heroVideo'
 import { Navbar } from '@/components/navbar'
 import { Verticals } from '@/components/verticals'
 import { MarqueeSection } from '@/components/marquee-section'
@@ -16,7 +16,22 @@ export default async function HomePage({
   return (
     <div className="min-h-screen">
       <Navbar lang={lang} />
-      <HeroExample />
+      <HeroVideo
+        title="Invitaciones de boda personalizadas y exclusivas"
+        subtitle="Creaciones Únicas"
+        description="Creamos convites únicos, menús personalizados e ilustraciones que transforman tu boda en una experiencia inolvidable."
+        videoSrc="/hero-video.mp4"
+        primaryCTA={{
+          text: "Ver Colecciones",
+          href: `/${lang}/colecciones`
+        }}
+        secondaryCTA={{
+          text: "Contacta Conmigo",
+          href: `/${lang}/contacto`
+        }}
+        dimOpacity={0.5}
+        height="large"
+      />
       <Verticals />
       <MarqueeSection />
       <DetailsSection />
