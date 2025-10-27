@@ -58,3 +58,54 @@ export const relatedPostsQuery = groq`
     publishedAt
   }
 `
+
+// Fetch all published collections ordered by display order
+export const collectionsQuery = groq`
+  *[_type == "collection" && !(_id in path("drafts.**"))] | order(order asc) {
+    _id,
+    contentId,
+    "slug": slug[$lang].current,
+    "title": title[$lang],
+    "subtitle": subtitle[$lang],
+    "description": description[$lang],
+    heroImage,
+    gallery,
+    "ctaText": ctaText[$lang],
+    order,
+    publishedAt
+  }
+`
+
+// Fetch single collection by slug and language
+export const collectionBySlugQuery = groq`
+  *[_type == "collection" && slug[$lang].current == $slug && !(_id in path("drafts.**"))][0] {
+    _id,
+    contentId,
+    "slug": {
+      "pt": slug.pt.current,
+      "es": slug.es.current,
+      "en": slug.en.current,
+    },
+    "title": title[$lang],
+    "subtitle": subtitle[$lang],
+    "description": description[$lang],
+    "content": content[$lang],
+    heroImage,
+    gallery,
+    "ctaText": ctaText[$lang],
+    order,
+    publishedAt,
+    "seo": seo[$lang]
+  }
+`
+
+// Fetch all collection slugs for all languages (for generateStaticParams)
+export const allCollectionSlugsQuery = groq`
+  *[_type == "collection" && !(_id in path("drafts.**"))] {
+    "slugs": {
+      "pt": slug.pt.current,
+      "es": slug.es.current,
+      "en": slug.en.current,
+    }
+  }
+`

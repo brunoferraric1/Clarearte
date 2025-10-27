@@ -28,17 +28,15 @@ export function CollectionCard({
         <div className="space-y-6">
           {/* Main large image */}
           {images[0] && (
-            <div className="w-full overflow-hidden rounded-lg">
-              <div className="relative aspect-[4/3] md:aspect-[3/2] w-full">
-                <Image
-                  src={images[0]}
-                  alt={`${title} - Imagen principal`}
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-700"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                />
-              </div>
+            <div className="relative w-full overflow-hidden rounded-lg aspect-[4/3] md:aspect-[3/2]">
+              <Image
+                src={images[0]}
+                alt={`${title} - Imagen principal`}
+                fill
+                className="object-cover hover:scale-105 transition-transform duration-700"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                priority
+              />
             </div>
           )}
 
@@ -47,16 +45,14 @@ export function CollectionCard({
             <div className="grid grid-cols-2 gap-4">
               {images.slice(1).map((image, idx) => (
                 <ScrollReveal key={idx} delay={200 * (idx + 1)}>
-                  <div className="w-full overflow-hidden rounded-lg">
-                    <div className="relative aspect-[3/4] w-full">
-                      <Image
-                        src={image}
-                        alt={`${title} - Detalle ${idx + 2}`}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 768px) 50vw, 25vw"
-                      />
-                    </div>
+                  <div className="relative w-full overflow-hidden rounded-lg aspect-[3/4]">
+                    <Image
+                      src={image}
+                      alt={`${title} - Detalle ${idx + 2}`}
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
                   </div>
                 </ScrollReveal>
               ))}

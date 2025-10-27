@@ -6,13 +6,51 @@ import { Button } from '@/components/ui/button'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { Palette, CircleDollarSign, Wrench, Clock, Sparkles } from 'lucide-react'
 import type { Metadata } from 'next'
+import type { Image } from 'sanity'
+import { client } from '@/sanity/lib/client'
+import { collectionsQuery } from '@/sanity/lib/queries'
+import { urlForImage } from '@/sanity/lib/image'
 
 export const metadata: Metadata = {
   title: 'Colecciones de Invitaciones | ClareArte',
   description: 'Descubre nuestras colecciones de invitaciones de boda ilustradas en acuarela: Albor, Raíces y Luz & Línea. Diseños elegantes y accesibles para tu gran día.',
 }
 
-const collections = [
+const benefits = [
+  {
+    icon: Palette,
+    title: 'Diseños cuidadosamente creados',
+    description:
+      'Cada colección ha sido pensada con un estilo único (romántico, boho, minimalista) siguiendo las últimas tendencias de bodas en España y Europa.',
+  },
+  {
+    icon: CircleDollarSign,
+    title: 'Accesibles sin perder elegancia',
+    description:
+      'Al tratarse de diseños ya desarrollados, las invitaciones de colección resultan más económicas que las personalizadas, sin renunciar a la calidad premium de los materiales y acabados.',
+  },
+  {
+    icon: Wrench,
+    title: 'Flexibilidad en los detalles',
+    description:
+      'Aunque pertenecen a una colección, pueden personalizarse con toques como el color del sobre, forros ilustrados, lacres, caligrafía o texturas artesanales, aportando carácter propio a cada pieza.',
+  },
+  {
+    icon: Clock,
+    title: 'Rapidez en la entrega',
+    description:
+      'Al contar con una base de diseño ya definida, los tiempos de producción se reducen, facilitando que los novios tengan su papelería lista con mayor agilidad.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Estilo probado y versátil',
+    description:
+      'Son opciones que se adaptan a distintos tipos de ceremonias, desde bodas íntimas al aire libre hasta celebraciones elegantes en espacios urbanos, asegurando siempre un resultado armónico y sofisticado.',
+  },
+]
+
+// Fallback data when Sanity is not yet populated
+const fallbackCollections = [
   {
     title: 'Colección Albor',
     subtitle: 'romántica y botánica',
@@ -53,45 +91,54 @@ const collections = [
   },
 ]
 
-const benefits = [
-  {
-    icon: Palette,
-    title: 'Diseños cuidadosamente creados',
-    description:
-      'Cada colección ha sido pensada con un estilo único (romántico, boho, minimalista) siguiendo las últimas tendencias de bodas en España y Europa.',
-  },
-  {
-    icon: CircleDollarSign,
-    title: 'Accesibles sin perder elegancia',
-    description:
-      'Al tratarse de diseños ya desarrollados, las invitaciones de colección resultan más económicas que las personalizadas, sin renunciar a la calidad premium de los materiales y acabados.',
-  },
-  {
-    icon: Wrench,
-    title: 'Flexibilidad en los detalles',
-    description:
-      'Aunque pertenecen a una colección, pueden personalizarse con toques como el color del sobre, forros ilustrados, lacres, caligrafía o texturas artesanales, aportando carácter propio a cada pieza.',
-  },
-  {
-    icon: Clock,
-    title: 'Rapidez en la entrega',
-    description:
-      'Al contar con una base de diseño ya definida, los tiempos de producción se reducen, facilitando que los novios tengan su papelería lista con mayor agilidad.',
-  },
-  {
-    icon: Sparkles,
-    title: 'Estilo probado y versátil',
-    description:
-      'Son opciones que se adaptan a distintos tipos de ceremonias, desde bodas íntimas al aire libre hasta celebraciones elegantes en espacios urbanos, asegurando siempre un resultado armónico y sofisticado.',
-  },
-]
-
 export default async function CollectionsPage({
   params,
 }: {
   params: Promise<{ lang: string }>
 }) {
   const { lang } = await params
+
+  let collections = fallbackCollections
+
+  try {
+    // Try to fetch collections from Sanity
+    const collectionsData = await client.fetch(collectionsQuery, { lang })
+
+    // If we have Sanity data, use it instead of fallback
+    if (collectionsData && collectionsData.length > 0) {
+      collections = collectionsData.map((collection: {
+        heroImage?: Image
+        gallery?: Image[]
+        title: string
+        subtitle?: string
+        description: string
+        ctaText?: string
+        slug: string
+      }) => {
+        // Prepare images array (hero + gallery)
+        const images = [
+          collection.heroImage
+            ? urlForImage(collection.heroImage).width(1000).url()
+            : '',
+          ...(collection.gallery || []).map((img) =>
+            urlForImage(img).width(800).url()
+          ),
+        ].filter(Boolean)
+
+        return {
+          title: collection.title,
+          subtitle: collection.subtitle || '',
+          description: collection.description,
+          ctaText: collection.ctaText || `Explorar ${collection.title}`,
+          ctaLink: `/${lang}/colecciones/${collection.slug}`,
+          images,
+        }
+      })
+    }
+  } catch (error) {
+    console.error('Error fetching collections from Sanity:', error)
+    // Fall back to hardcoded collections
+  }
 
   return (
     <div className="min-h-screen">
@@ -104,12 +151,12 @@ export default async function CollectionsPage({
         subtitle=""
         description="Cada boda tiene un estilo, y cada pareja una manera única de contar su historia. Las colecciones reúnen ilustraciones en acuarela, tipografía cuidada y acabados artesanales, para que el primer detalle de vuestra celebración transmita emoción, belleza y autenticidad."
         primaryCTA={{
-          text: "Ver Colecciones",
-          href: "#colecciones"
+          text: 'Ver Colecciones',
+          href: '#colecciones',
         }}
         secondaryCTA={{
-          text: "Contactar",
-          href: "/contacto"
+          text: 'Contactar',
+          href: `/${lang}/contacto`,
         }}
       />
 
@@ -117,12 +164,13 @@ export default async function CollectionsPage({
       <section className="py-12 md:py-16 bg-muted/20">
         <div className="container mx-auto px-4 max-w-4xl">
           <p className="text-body text-foreground leading-relaxed text-center">
-            Elegir una invitación de colección es la forma perfecta de combinar belleza y
-            practicidad. Estas invitaciones ofrecen diseños cuidadosamente elaborados a un
-            precio más accesible, lo que permite dedicar recursos a detalles adicionales que
-            personalizan cada pieza. Opciones como forros de sobre, lacres delicados o acabados
-            especiales aportan un toque único, haciendo que incluso una invitación de colección
-            se sienta completamente personalizada y llena de encanto.
+            Elegir una invitación de colección es la forma perfecta de combinar
+            belleza y practicidad. Estas invitaciones ofrecen diseños
+            cuidadosamente elaborados a un precio más accesible, lo que permite
+            dedicar recursos a detalles adicionales que personalizan cada pieza.
+            Opciones como forros de sobre, lacres delicados o acabados especiales
+            aportan un toque único, haciendo que incluso una invitación de
+            colección se sienta completamente personalizada y llena de encanto.
           </p>
         </div>
       </section>
@@ -152,7 +200,7 @@ export default async function CollectionsPage({
             className="tracking-wide cursor-pointer"
             asChild
           >
-            <a href="/personalizadas">
+            <a href={`/${lang}/personalizadas`}>
               Descubre las opciones personalizadas →
             </a>
           </Button>

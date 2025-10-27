@@ -17,6 +17,7 @@ import divider from './objects/divider'
 
 // Documents
 import post from './documents/post'
+import collection from './documents/collection'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -35,5 +36,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     divider,
     // Documents
     post,
+    collection,
   ],
 }
