@@ -3,6 +3,7 @@ import { Hero } from '@/components/hero'
 import { CollectionCard } from '@/components/collection-card'
 import { ContactForm } from '@/components/contact-form'
 import { Button } from '@/components/ui/button'
+import { SmoothScroll } from '@/components/smooth-scroll'
 import { Palette, CircleDollarSign, Wrench, Clock, Sparkles } from 'lucide-react'
 import type { Metadata } from 'next'
 
@@ -94,6 +95,7 @@ export default async function CollectionsPage({
 
   return (
     <div className="min-h-screen">
+      <SmoothScroll />
       <Navbar lang={lang} />
 
       {/* Hero Banner */}
