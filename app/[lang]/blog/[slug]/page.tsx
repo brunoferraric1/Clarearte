@@ -109,52 +109,66 @@ export default async function BlogPostPage({
     <div className="min-h-screen">
       <Navbar lang={lang} />
 
-      {/* Hero Section with Image */}
-      <section className="relative w-full h-[60vh] min-h-[400px] max-h-[600px] overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={urlForImage(post.mainImage).width(1920).url()}
-            alt={post.mainImage.alt?.[lang] || post.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/70 to-background" />
-        </div>
+      {/* Blog Header Section */}
+      <section className="bg-background">
+        <div className="container mx-auto px-4 max-w-4xl py-16 md:py-24">
+          {/* Back Button */}
+          <Link
+            href={`/${lang}/blog`}
+            className="inline-block text-body text-muted-foreground hover:text-primary transition-colors mb-8"
+          >
+            {backText[lang as keyof typeof backText]}
+          </Link>
 
-        {/* Hero Content */}
-        <div className="relative h-full flex flex-col justify-end">
-          <div className="container mx-auto px-4 max-w-4xl pb-12 md:pb-16">
-            <h1 className="text-display-1 font-serif text-foreground mb-4">
-              {post.title}
-            </h1>
-            {post.excerpt && (
-              <p className="text-title-3 text-foreground/80 mb-6">
-                {post.excerpt}
-              </p>
-            )}
-            <div className="flex items-center gap-4 text-body text-muted-foreground">
-              <span>{post.author}</span>
-              <span>•</span>
-              <time dateTime={post.publishedAt}>
-                {format(new Date(post.publishedAt), 'dd MMMM, yyyy', {
-                  locale: locales[lang as keyof typeof locales],
-                })}
-              </time>
-            </div>
+          {/* Title */}
+          <h1 className="text-display-1 font-serif text-foreground mb-6">
+            {post.title}
+          </h1>
+
+          {/* Excerpt */}
+          {post.excerpt && (
+            <p className="text-title-3 text-foreground/80 mb-6 max-w-3xl">
+              {post.excerpt}
+            </p>
+          )}
+
+          {/* Author and Date */}
+          <div className="flex items-center gap-4 text-body text-muted-foreground">
+            <span>{post.author}</span>
+            <span>•</span>
+            <time dateTime={post.publishedAt}>
+              {format(new Date(post.publishedAt), 'dd MMMM, yyyy', {
+                locale: locales[lang as keyof typeof locales],
+              })}
+            </time>
           </div>
         </div>
       </section>
 
+      {/* Main Image */}
+      {post.mainImage && (
+        <section className="bg-background pb-16 md:pb-24">
+          <div className="container mx-auto px-4 max-w-5xl">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
+              <Image
+                src={urlForImage(post.mainImage).width(1600).url()}
+                alt={post.mainImage.alt?.[lang] || post.title}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 90vw"
+              />
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Article Content */}
-      <article className="py-16 md:py-24">
+      <article className="pb-16 md:pb-24">
         <div className="container mx-auto px-4 max-w-4xl">
           <PortableText value={post.content} />
 
-          {/* Back Button */}
+          {/* Back Button at Bottom */}
           <div className="mt-16 pt-8 border-t border-muted">
             <Link
               href={`/${lang}/blog`}
