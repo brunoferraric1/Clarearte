@@ -27,6 +27,7 @@ export default async function ContactPage({
         subtitle=""
         description="Me encantaría saber más sobre tu proyecto. Completa el formulario y me pondré en contacto contigo lo antes posible para crear la papelería perfecta para tu boda."
         noBottomPadding={true}
+        compact={true}
       />
 
       {/* Contact Section */}

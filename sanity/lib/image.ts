@@ -10,7 +10,11 @@ const imageBuilder = createImageUrlBuilder({
 
 export const urlForImage = (source: Image | undefined) => {
   if (!source) {
-    return ''
+    // Return a builder with a placeholder to maintain type consistency
+    return imageBuilder
+      .image({ asset: { _ref: '' } } as Image)
+      .auto('format')
+      .fit('max')
   }
 
   return imageBuilder.image(source).auto('format').fit('max')

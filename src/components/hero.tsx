@@ -13,6 +13,7 @@ interface HeroProps {
     href: string
   }
   noBottomPadding?: boolean
+  compact?: boolean
 }
 
 export function Hero({ 
@@ -21,11 +22,16 @@ export function Hero({
   description, 
   primaryCTA, 
   secondaryCTA,
-  noBottomPadding = false
+  noBottomPadding = false,
+  compact = false
 }: HeroProps) {
+  const heightClass = compact 
+    ? "min-h-[350px] md:min-h-[400px] lg:min-h-[450px]"
+    : "min-h-[500px] md:min-h-[600px] lg:min-h-[700px]"
+  
   return (
     <section
-      className="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center bg-background"
+      className={`relative ${heightClass} flex items-center justify-center bg-background`}
       style={{
         backgroundImage: `url(/images/pattern-albor.webp)`,
         backgroundRepeat: 'repeat',
@@ -43,7 +49,7 @@ export function Hero({
         }}
       />
       
-      <div className={`container mx-auto px-4 ${noBottomPadding ? 'pt-12 md:pt-16' : 'py-12 md:py-16'} relative z-10`}>
+      <div className={`container mx-auto px-4 ${compact ? '' : noBottomPadding ? 'pt-12 md:pt-16' : 'py-12 md:py-16'} relative z-10`}>
         <div className="max-w-6xl mx-auto text-center">
           {/* Subtitle */}
           <p className="text-label font-mono font-medium text-muted-foreground mb-4">

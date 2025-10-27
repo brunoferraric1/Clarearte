@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Navbar } from '@/components/navbar'
-import { InternalPageHero } from '@/components/hero'
+import { Hero } from '@/components/hero'
 import { client } from '@/sanity/lib/client'
 import { postsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
@@ -65,9 +65,15 @@ export default async function BlogPage({
   return (
     <div className="min-h-screen">
       <Navbar lang={lang} />
-      <InternalPageHero title={content.title} description={content.subtitle} />
+      <Hero
+        title={content.title}
+        subtitle=""
+        description={content.subtitle}
+        noBottomPadding={true}
+        compact={true}
+      />
 
-      <section className="py-16 md:py-24">
+      <section className="pb-16 md:pb-24">
         <div className="container mx-auto px-4 max-w-6xl">
           {posts.length === 0 ? (
             <div className="text-center py-12">
@@ -90,13 +96,15 @@ export default async function BlogPage({
                     className="block overflow-hidden rounded-lg"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
-                      <Image
-                        src={urlForImage(post.mainImage).width(800).url()}
-                        alt={post.mainImage.alt?.[lang] || post.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
+                      {post.mainImage && (
+                        <Image
+                          src={urlForImage(post.mainImage).width(800).url()}
+                          alt={post.mainImage.alt?.[lang] || post.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      )}
                     </div>
                   </Link>
 
