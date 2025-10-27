@@ -178,16 +178,38 @@ export default async function BlogPostPage({
       {post.mainImage && (
         <section className="bg-background pb-16 md:pb-24">
           <div className="container mx-auto px-4 max-w-5xl">
-            <div className="relative aspect-[16/9] overflow-hidden rounded-2xl">
-              <Image
-                src={urlForImage(post.mainImage).width(1600).url()}
-                alt={post.mainImage.alt?.[lang] || post.title}
-                fill
-                className="object-cover"
-                priority
-                sizes="(max-width: 768px) 100vw, 90vw"
-              />
-            </div>
+            <figure className="my-8">
+              <div
+                className="relative w-full max-h-[80vh] overflow-hidden rounded-2xl"
+                style={post.mainImage.aspectRatio && post.mainImage.aspectRatio !== 'auto' ? { aspectRatio: post.mainImage.aspectRatio } : undefined}
+              >
+                {post.mainImage.aspectRatio && post.mainImage.aspectRatio !== 'auto' ? (
+                  <Image
+                    src={urlForImage(post.mainImage).width(1600).url()}
+                    alt={post.mainImage.alt?.[lang] || post.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 90vw"
+                    className={(post.mainImage.fit || 'contain') === 'cover' ? 'object-cover' : 'object-contain'}
+                    priority
+                  />
+                ) : (
+                  <Image
+                    src={urlForImage(post.mainImage).width(1600).url()}
+                    alt={post.mainImage.alt?.[lang] || post.title}
+                    width={1600}
+                    height={1000}
+                    sizes="(max-width: 768px) 100vw, 90vw"
+                    className={(post.mainImage.fit || 'contain') === 'cover' ? 'w-full h-auto object-cover' : 'w-full h-auto object-contain'}
+                    priority
+                  />
+                )}
+              </div>
+              {post.mainImage.alt?.[lang] && (
+                <figcaption className="text-body-sm text-muted-foreground text-center mt-4 italic">
+                  {post.mainImage.alt[lang]}
+                </figcaption>
+              )}
+            </figure>
           </div>
         </section>
       )}

@@ -2,9 +2,9 @@
 
 import { PortableText as PortableTextComponent } from '@portabletext/react'
 import type { PortableTextBlock } from '@portabletext/types'
-import Image from 'next/image'
 import Link from 'next/link'
 import { urlForImage } from '@/sanity/lib/image'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import {
   AlertCircle,
@@ -124,17 +124,33 @@ export function PortableText({ value }: PortableTextProps) {
             }
 
             const imageUrl = urlForImage(value).width(1200).url()
+            const aspectRatio = value.aspectRatio || 'auto'
+            const fit = value.fit || 'contain'
 
             return (
               <figure className="my-12">
-                <div className="relative w-full aspect-video overflow-hidden rounded-lg">
-                  <Image
-                    src={imageUrl}
-                    alt={value.alt?.pt || value.alt?.es || value.alt?.en || 'Blog image'}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
-                  />
+                <div
+                  className="relative w-full overflow-hidden rounded-lg"
+                  style={aspectRatio !== 'auto' ? { aspectRatio } : undefined}
+                >
+                  {aspectRatio === 'auto' ? (
+                    <Image
+                      src={imageUrl}
+                      alt={value.alt?.pt || value.alt?.es || value.alt?.en || 'Blog image'}
+                      width={1200}
+                      height={800}
+                      sizes="(max-width: 768px) 100vw, 1200px"
+                      className={fit === 'cover' ? 'w-full h-auto object-cover' : 'w-full h-auto object-contain'}
+                    />
+                  ) : (
+                    <Image
+                      src={imageUrl}
+                      alt={value.alt?.pt || value.alt?.es || value.alt?.en || 'Blog image'}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 1200px"
+                      className={fit === 'cover' ? 'object-cover' : 'object-contain'}
+                    />
+                  )}
                 </div>
                 {value.caption && (
                   <figcaption className="text-body-sm text-muted-foreground text-center mt-4 italic">
@@ -174,14 +190,28 @@ export function PortableText({ value }: PortableTextProps) {
                       key={index}
                       className={isMasonry ? 'break-inside-avoid mb-4' : ''}
                     >
-                      <div className="relative w-full aspect-square overflow-hidden rounded-lg">
-                        <Image
-                          src={urlForImage(image).width(800).url()}
-                          alt={image.alt?.pt || image.alt?.es || image.alt?.en || `Gallery image ${index + 1}`}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
+                      <div
+                        className="relative w-full overflow-hidden rounded-lg"
+                        style={image.aspectRatio && image.aspectRatio !== 'auto' ? { aspectRatio: image.aspectRatio } : undefined}
+                      >
+                        {image.aspectRatio && image.aspectRatio !== 'auto' ? (
+                          <Image
+                            src={urlForImage(image).width(800).url()}
+                            alt={image.alt?.pt || image.alt?.es || image.alt?.en || `Gallery image ${index + 1}`}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className={(image.fit || 'contain') === 'cover' ? 'object-cover' : 'object-contain'}
+                          />
+                        ) : (
+                          <Image
+                            src={urlForImage(image).width(800).url()}
+                            alt={image.alt?.pt || image.alt?.es || image.alt?.en || `Gallery image ${index + 1}`}
+                            width={800}
+                            height={600}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className={(image.fit || 'contain') === 'cover' ? 'w-full h-auto object-cover' : 'w-full h-auto object-contain'}
+                          />
+                        )}
                       </div>
                     </div>
                   ))}
@@ -290,26 +320,26 @@ export function PortableText({ value }: PortableTextProps) {
             const url = value.url.pt || value.url.es || value.url.en
 
             const variantMap = {
-              primary: 'default',
+              primary: 'primary',
               secondary: 'secondary',
-              outline: 'outline',
+              outline: 'primary-outline',
             }
 
-            const variant = variantMap[value.variant as keyof typeof variantMap] || 'default'
+            const variant = variantMap[value.variant as keyof typeof variantMap] || 'primary'
 
             const Wrapper = url.startsWith('http') ? 'a' : Link
 
             return (
               <div className="my-12 flex justify-center">
-                <Wrapper
-                  href={url}
-                  target={value.openInNewTab ? '_blank' : undefined}
-                  rel={value.openInNewTab ? 'noopener noreferrer' : undefined}
-                >
-                  <Button size="lg" variant={variant as any}>
+                <Button size="lg" variant={variant as any} asChild>
+                  <Wrapper
+                    href={url}
+                    target={value.openInNewTab ? '_blank' : undefined}
+                    rel={value.openInNewTab ? 'noopener noreferrer' : undefined}
+                  >
                     {text}
-                  </Button>
-                </Wrapper>
+                  </Wrapper>
+                </Button>
               </div>
             )
           },
