@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import { motion } from "motion/react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
@@ -32,7 +33,12 @@ export function Navbar({ className, lang = 'es' }: NavbarProps) {
         style={{ zIndex: 40 }}
       />
       
-      <header className={`sticky top-0 z-50 w-full border-b border-border/40 bg-white ${className}`}>
+      <motion.header 
+        className={`sticky top-0 z-50 w-full border-b border-border/40 bg-white ${className}`}
+        initial={{ y: 0, opacity: 0, backgroundColor: 'rgba(255, 255, 255, 0)' }}
+        animate={{ y: 0, opacity: 1, backgroundColor: 'rgba(255, 255, 255, 1)' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+      >
         <div className="w-full">
           <div className="flex h-16 items-center justify-between px-8">
             {/* Logo/Brand */}
@@ -138,7 +144,7 @@ export function Navbar({ className, lang = 'es' }: NavbarProps) {
           </div>
         </div>
       </div>
-    </header>
+    </motion.header>
     </>
   )
 }

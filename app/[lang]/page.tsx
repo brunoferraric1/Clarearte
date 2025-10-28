@@ -16,15 +16,11 @@ export default async function HomePage({
   const { lang } = await params
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <SmoothScroll />
       <Navbar lang={lang} />
       <HeroVideo
-        title={
-          <>
-            Invitaciones de boda personalizadas y exclusivas
-          </>
-        }
+        title="Invitaciones de boda personalizadas y exclusivas"
         subtitle={
           <>
             <Highlighter action="underline" color="#F6EBE2" strokeWidth={1.5} padding={8}>Creaciones únicas</Highlighter>

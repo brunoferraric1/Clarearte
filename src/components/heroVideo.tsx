@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { motion } from 'motion/react'
 import { Button } from '@/components/ui/button'
+import { TextEffect } from '@/components/motion-primitives/text-effect'
 
 interface HeroVideoProps {
   title: React.ReactNode
@@ -43,7 +45,12 @@ export function HeroVideo({
   }, [])
 
   return (
-    <section className={`relative w-full ${heightClasses[height]} overflow-hidden`}>
+    <motion.section 
+      className={`relative w-full ${heightClasses[height]} overflow-hidden`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+    >
       {/* Video Background */}
       <video
         ref={videoRef}
@@ -69,26 +76,69 @@ export function HeroVideo({
           <div className="max-w-4xl mx-auto text-center space-y-6">
             {/* Subtitle */}
             {subtitle && (
-              <p className="text-label font-mono font-medium text-white/90 tracking-wide uppercase">
-                {subtitle}
-              </p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <p className="text-label font-mono font-medium text-white/90 tracking-wide uppercase">
+                  {subtitle}
+                </p>
+              </motion.div>
             )}
 
-            {/* Main Title */}
-            <h1 className="text-display-1 font-display font-bold text-white drop-shadow-2xl">
-              {title}
-            </h1>
+            {/* Main Title - using TextEffect for word-by-word animation */}
+            <motion.h1 
+              className="text-display-1 font-display font-bold text-white drop-shadow-2xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.01 }}
+            >
+              {typeof title === 'string' ? (
+                <TextEffect
+                  per="word"
+                  preset="slide"
+                  className="text-display-1 font-display font-bold text-white drop-shadow-2xl"
+                  segmentTransition={{
+                    duration: 0.6,
+                    ease: [0.16, 1, 0.3, 1]
+                  }}
+                  speedReveal={0.8}
+                >
+                  {title}
+                </TextEffect>
+              ) : (
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                >
+                  {title}
+                </motion.div>
+              )}
+            </motion.h1>
 
             {/* Description */}
             {description && (
-              <p className="text-body-lg text-white/90 leading-relaxed max-w-2xl mx-auto">
-                {description}
-              </p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              >
+                <p className="text-body-lg text-white/90 leading-relaxed max-w-2xl mx-auto">
+                  {description}
+                </p>
+              </motion.div>
             )}
 
             {/* CTA Button */}
             {primaryCTA && (
-              <div className="flex justify-center items-center pt-4">
+              <motion.div 
+                className="flex justify-center items-center pt-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+              >
                 <Button
                   variant="primary"
                   size="md"
@@ -99,12 +149,12 @@ export function HeroVideo({
                     {primaryCTA.text}
                   </a>
                 </Button>
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 
