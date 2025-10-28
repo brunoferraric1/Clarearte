@@ -12,10 +12,6 @@ interface HeroVideoProps {
     text: string
     href: string
   }
-  secondaryCTA?: {
-    text: string
-    href: string
-  }
   dimOpacity?: number
   height?: 'small' | 'medium' | 'large'
 }
@@ -26,7 +22,6 @@ export function HeroVideo({
   description,
   videoSrc,
   primaryCTA,
-  secondaryCTA,
   dimOpacity = 0.4,
   height = 'large'
 }: HeroVideoProps) {
@@ -91,34 +86,19 @@ export function HeroVideo({
               </p>
             )}
 
-            {/* CTA Buttons */}
-            {(primaryCTA || secondaryCTA) && (
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-                {primaryCTA && (
-                  <Button
-                    variant="default"
-                    size="default"
-                    className="tracking-wide cursor-pointer"
-                    asChild
-                  >
-                    <a href={primaryCTA.href}>
-                      {primaryCTA.text}
-                    </a>
-                  </Button>
-                )}
-
-                {secondaryCTA && (
-                  <Button
-                    variant="outline"
-                    size="default"
-                    className="tracking-wide cursor-pointer bg-white/10 backdrop-blur-sm border-white/30 text-white hover:bg-white/20"
-                    asChild
-                  >
-                    <a href={secondaryCTA.href}>
-                      {secondaryCTA.text}
-                    </a>
-                  </Button>
-                )}
+            {/* CTA Button */}
+            {primaryCTA && (
+              <div className="flex justify-center items-center pt-4">
+                <Button
+                  variant="primary"
+                  size="md"
+                  className="cursor-pointer"
+                  asChild
+                >
+                  <a href={primaryCTA.href}>
+                    {primaryCTA.text}
+                  </a>
+                </Button>
               </div>
             )}
           </div>

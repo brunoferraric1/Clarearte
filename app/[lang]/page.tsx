@@ -5,6 +5,7 @@ import { MarqueeSection } from '@/components/marquee-section'
 import { DetailsSection } from '@/components/details-section'
 import { AboutSection } from '@/components/about-section'
 import { ContactFormFields } from './contacto/contact-form-fields'
+import { SmoothScroll } from '@/components/smooth-scroll'
 
 export default async function HomePage({
   params,
@@ -15,6 +16,7 @@ export default async function HomePage({
 
   return (
     <div className="min-h-screen">
+      <SmoothScroll />
       <Navbar lang={lang} />
       <HeroVideo
         title="Invitaciones de boda personalizadas y exclusivas"
@@ -23,11 +25,7 @@ export default async function HomePage({
         videoSrc="/images/clarearte-video-hero_for-web-loop.mp4"
         primaryCTA={{
           text: "Ver Colecciones",
-          href: `/${lang}/colecciones`
-        }}
-        secondaryCTA={{
-          text: "Contacta Conmigo",
-          href: `/${lang}/contacto`
+          href: "#colecciones"
         }}
         dimOpacity={0.2}
         height="large"
