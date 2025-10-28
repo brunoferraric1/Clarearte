@@ -1,5 +1,8 @@
+'use client'
+
 import { Marquee } from '@/components/ui/marquee'
 import Image from 'next/image'
+import { ScrollReveal } from './scroll-reveal'
 
 const images = [
   { 
@@ -46,23 +49,25 @@ const images = [
 
 export function MarqueeSection() {
   return (
-    <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-20 bg-background overflow-hidden">
-      <Marquee className="[--duration:45s]">
-        {images.map((image) => (
-          <div
-            key={image.id}
-            className="relative w-[15rem] h-[20rem] md:w-[18.75rem] md:h-[25rem] bg-muted rounded-lg flex-shrink-0 overflow-hidden"
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 15rem, 18.75rem"
-            />
-          </div>
-        ))}
-      </Marquee>
-    </section>
+    <ScrollReveal>
+      <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-20 bg-background overflow-hidden">
+        <Marquee className="[--duration:45s]">
+          {images.map((image) => (
+            <div
+              key={image.id}
+              className="relative w-[15rem] h-[20rem] md:w-[18.75rem] md:h-[25rem] bg-muted rounded-lg flex-shrink-0 overflow-hidden"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 15rem, 18.75rem"
+              />
+            </div>
+          ))}
+        </Marquee>
+      </section>
+    </ScrollReveal>
   )
 }

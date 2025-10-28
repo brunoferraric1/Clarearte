@@ -1,14 +1,25 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { OrganicImageMask } from '@/components/organic-image-mask'
+import { ScrollReveal } from './scroll-reveal'
+import { motion } from 'framer-motion'
 
 export function AboutSection() {
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4 max-w-7xl">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+    <ScrollReveal>
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
 
-          {/* Left column - Text content */}
-          <div className="flex flex-col space-y-6">
+            {/* Left column - Text content */}
+            <motion.div 
+              className="flex flex-col space-y-6"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            >
             <h2 className="text-display-1 font-display font-bold text-foreground">
               Sobre mí
             </h2>
@@ -32,20 +43,27 @@ export function AboutSection() {
                 </a>
               </Button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right column - Image with organic mask */}
-          <div className="aspect-[4/3]">
+          <motion.div 
+            className="aspect-[4/3]"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <OrganicImageMask
               src="/images/paola-sobre-mi.webp"
               alt="Paola - Sobre mí"
               maskSrc="/images/brush_mask-2-better-fill.webp"
               className="w-full h-full"
             />
-          </div>
+          </motion.div>
 
         </div>
       </div>
     </section>
+    </ScrollReveal>
   )
 }

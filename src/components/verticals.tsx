@@ -1,13 +1,24 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
+import { motion } from 'framer-motion'
+import { ScrollReveal } from './scroll-reveal'
 
 export function Verticals() {
   return (
-    <section id="colecciones" className="py-12 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-16 max-w-[1400px] mx-auto">
+    <ScrollReveal>
+      <section id="colecciones" className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-16 max-w-[1400px] mx-auto">
 
           {/* Colecciones de invitaciones */}
-          <div className="flex flex-col">
+          <motion.div 
+            className="flex flex-col"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div className="aspect-[4/3] mb-6 rounded-lg overflow-hidden">
               <img
                 src="/images/home-sections-coleciones.webp"
@@ -36,10 +47,16 @@ export function Verticals() {
                 </a>
               </Button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Invitaciones personalizadas */}
-          <div className="flex flex-col">
+          <motion.div 
+            className="flex flex-col"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.1 }}
+          >
             <div className="aspect-[4/3] mb-6 rounded-lg overflow-hidden">
               <img
                 src="/images/home-sections-invitaciones-personalisadas.webp"
@@ -68,10 +85,11 @@ export function Verticals() {
                 </a>
               </Button>
             </div>
-          </div>
+          </motion.div>
 
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </ScrollReveal>
   )
 }
