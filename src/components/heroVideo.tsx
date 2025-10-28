@@ -4,8 +4,8 @@ import { useEffect, useRef } from 'react'
 import { Button } from '@/components/ui/button'
 
 interface HeroVideoProps {
-  title: string
-  subtitle?: string
+  title: React.ReactNode
+  subtitle?: React.ReactNode
   description?: string
   videoSrc: string
   primaryCTA?: {

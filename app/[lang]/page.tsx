@@ -6,6 +6,7 @@ import { DetailsSection } from '@/components/details-section'
 import { AboutSection } from '@/components/about-section'
 import { ContactFormFields } from './contacto/contact-form-fields'
 import { SmoothScroll } from '@/components/smooth-scroll'
+import { Highlighter } from '@/components/ui/highlighter'
 
 export default async function HomePage({
   params,
@@ -19,8 +20,16 @@ export default async function HomePage({
       <SmoothScroll />
       <Navbar lang={lang} />
       <HeroVideo
-        title="Invitaciones de boda personalizadas y exclusivas"
-        subtitle="Creaciones Únicas"
+        title={
+          <>
+            Invitaciones de boda personalizadas y exclusivas
+          </>
+        }
+        subtitle={
+          <>
+            <Highlighter action="underline" color="#F6EBE2" strokeWidth={1.5} padding={8}>Creaciones únicas</Highlighter>
+          </>
+        }
         description="Creamos convites únicos, menús personalizados e ilustraciones que transforman tu boda en una experiencia inolvidable."
         videoSrc="/images/clarearte-video-hero_for-web-loop.mp4"
         primaryCTA={{
