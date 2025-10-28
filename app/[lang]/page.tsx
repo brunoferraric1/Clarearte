@@ -20,7 +20,7 @@ export default async function HomePage({
         title="Invitaciones de boda personalizadas y exclusivas"
         subtitle="Creaciones Únicas"
         description="Creamos convites únicos, menús personalizados e ilustraciones que transforman tu boda en una experiencia inolvidable."
-        videoSrc="/hero-video.mp4"
+        videoSrc="/images/clarearte-video-hero_for-web-loop.mp4"
         primaryCTA={{
           text: "Ver Colecciones",
           href: `/${lang}/colecciones`
@@ -29,7 +29,7 @@ export default async function HomePage({
           text: "Contacta Conmigo",
           href: `/${lang}/contacto`
         }}
-        dimOpacity={0.5}
+        dimOpacity={0.2}
         height="large"
       />
       <Verticals />
