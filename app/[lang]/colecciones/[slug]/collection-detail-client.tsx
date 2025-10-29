@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { ImageModal } from '@/components/image-modal'
 import { PortableText } from '@/components/sanity/portable-text'
 import { urlForImage } from '@/sanity/lib/image'
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import type { PortableTextBlock } from '@portabletext/types'
 
 interface ImageWithAlt {
   asset: {
@@ -28,7 +28,7 @@ interface CollectionDetailClientProps {
     title: string
     subtitle?: string
     description: string
-    content?: unknown[]
+    content?: PortableTextBlock[]
     heroImage: ImageWithAlt
     gallery?: ImageWithAlt[]
     ctaText?: string
@@ -46,10 +46,10 @@ export function CollectionDetailClient({
   const [modalImageIndex, setModalImageIndex] = useState(0)
 
   // Prepare images for modal (hero + gallery)
-  const allImages = [collection.heroImage, ...(collection.gallery || [])]
+  const allImages = [collection.heroImage, ...(collection.gallery || [])].filter(Boolean)
 
   const modalImages = allImages.map((img) => ({
-    src: urlForImage(img as SanityImageSource)
+    src: urlForImage(img as Parameters<typeof urlForImage>[0])
       .width(2000)
       .url(),
     alt:
@@ -74,7 +74,7 @@ export function CollectionDetailClient({
           onClick={() => openModal(0)}
         >
           <Image
-            src={urlForImage(collection.heroImage as SanityImageSource)
+            src={urlForImage(collection.heroImage as Parameters<typeof urlForImage>[0])
               .width(2000)
               .url()}
             alt={
@@ -144,7 +144,7 @@ export function CollectionDetailClient({
                     onClick={() => openModal(imageIndex)}
                   >
                     <Image
-                      src={urlForImage(image as SanityImageSource)
+                      src={urlForImage(image as Parameters<typeof urlForImage>[0])
                         .width(800)
                         .url()}
                       alt={

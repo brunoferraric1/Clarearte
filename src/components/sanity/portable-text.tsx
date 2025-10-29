@@ -5,6 +5,7 @@ import type { PortableTextBlock } from '@portabletext/types'
 import Link from 'next/link'
 import { urlForImage } from '@/sanity/lib/image'
 import Image from 'next/image'
+import type { Image as SanityImage } from 'sanity'
 import { Button } from '@/components/ui/button'
 import {
   AlertCircle,
@@ -21,7 +22,7 @@ interface PortableTextProps {
 function getVideoId(url: string): { type: string; id: string } | null {
   // YouTube
   const youtubeRegex =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
   const youtubeMatch = url.match(youtubeRegex)
   if (youtubeMatch) {
     return { type: 'youtube', id: youtubeMatch[1] }
@@ -173,7 +174,7 @@ export function PortableText({ value }: PortableTextProps) {
               masonry: 'columns-1 md:columns-2 lg:columns-3',
             }
 
-            const layout = value.layout || 'grid-2'
+            const layout = (value.layout || 'grid-2') as keyof typeof gridClasses
             const isMasonry = layout === 'masonry'
 
             return (
@@ -185,7 +186,12 @@ export function PortableText({ value }: PortableTextProps) {
                       : `grid ${gridClasses[layout]} gap-4`
                   }
                 >
-                  {value.images.map((image: any, index: number) => (
+                  {value.images.map((image: SanityImage & {
+                    alt?: { pt?: string; es?: string; en?: string }
+                    aspectRatio?: string
+                    fit?: 'cover' | 'contain' | 'auto'
+                    caption?: { pt?: string; es?: string; en?: string }
+                  }, index: number) => (
                     <div
                       key={index}
                       className={isMasonry ? 'break-inside-avoid mb-4' : ''}
@@ -331,7 +337,7 @@ export function PortableText({ value }: PortableTextProps) {
 
             return (
               <div className="my-12 flex justify-center">
-                <Button size="lg" variant={variant as any} asChild>
+                <Button size="lg" variant={variant as 'primary' | 'secondary' | 'primary-outline'} asChild>
                   <Wrapper
                     href={url}
                     target={value.openInNewTab ? '_blank' : undefined}
@@ -373,7 +379,14 @@ export function PortableText({ value }: PortableTextProps) {
             const ratio = ratioClasses[value.columnRatio as keyof typeof ratioClasses] || ratioClasses['1:1']
             const reverseClass = value.reverseOnMobile ? 'flex flex-col-reverse md:grid' : 'grid'
 
-            const renderColumn = (column: any) => {
+            const renderColumn = (column: {
+              type: 'text' | 'image'
+              text?: PortableTextBlock[]
+              image?: SanityImage & {
+                alt?: { pt?: string; es?: string; en?: string }
+                caption?: { pt?: string; es?: string; en?: string }
+              }
+            } | null) => {
               if (!column) return null
 
               if (column.type === 'text' && column.text) {

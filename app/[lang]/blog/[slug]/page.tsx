@@ -16,6 +16,9 @@ const locales = {
   en: enUS,
 }
 
+import type { PortableTextBlock } from '@portabletext/types'
+import type { Image as SanityImage } from 'sanity'
+
 interface BlogPost {
   _id: string
   contentId: string
@@ -26,8 +29,12 @@ interface BlogPost {
   }
   title: string
   excerpt: string
-  content: any[]
-  mainImage: any
+  content: PortableTextBlock[]
+  mainImage: SanityImage & {
+    alt?: { pt?: string; es?: string; en?: string }
+    aspectRatio?: string
+    fit?: 'cover' | 'contain' | 'auto'
+  }
   author: string
   publishedAt: string
   seo?: {
@@ -42,7 +49,9 @@ interface RelatedPost {
   slug: string
   title: string
   excerpt: string
-  mainImage: any
+  mainImage: SanityImage & {
+    alt?: { pt?: string; es?: string; en?: string }
+  }
   author: string
   publishedAt: string
 }
@@ -186,7 +195,7 @@ export default async function BlogPostPage({
                 {post.mainImage.aspectRatio && post.mainImage.aspectRatio !== 'auto' ? (
                   <Image
                     src={urlForImage(post.mainImage).width(1600).url()}
-                    alt={post.mainImage.alt?.[lang] || post.title}
+                    alt={post.mainImage.alt?.[lang as keyof typeof post.mainImage.alt] || post.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 90vw"
                     className={(post.mainImage.fit || 'contain') === 'cover' ? 'object-cover' : 'object-contain'}
@@ -195,7 +204,7 @@ export default async function BlogPostPage({
                 ) : (
                   <Image
                     src={urlForImage(post.mainImage).width(1600).url()}
-                    alt={post.mainImage.alt?.[lang] || post.title}
+                    alt={post.mainImage.alt?.[lang as keyof typeof post.mainImage.alt] || post.title}
                     width={1600}
                     height={1000}
                     sizes="(max-width: 768px) 100vw, 90vw"
@@ -204,9 +213,9 @@ export default async function BlogPostPage({
                   />
                 )}
               </div>
-              {post.mainImage.alt?.[lang] && (
+              {post.mainImage.alt?.[lang as keyof typeof post.mainImage.alt] && (
                 <figcaption className="text-body-sm text-muted-foreground text-center mt-4 italic">
-                  {post.mainImage.alt[lang]}
+                  {post.mainImage.alt[lang as keyof typeof post.mainImage.alt]}
                 </figcaption>
               )}
             </figure>
@@ -254,7 +263,7 @@ export default async function BlogPostPage({
                       {relatedPost.mainImage && (
                         <Image
                           src={urlForImage(relatedPost.mainImage).width(800).url()}
-                          alt={relatedPost.mainImage.alt?.[lang] || relatedPost.title}
+                          alt={relatedPost.mainImage.alt?.[lang as keyof typeof relatedPost.mainImage.alt] || relatedPost.title}
                           fill
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, 50vw"

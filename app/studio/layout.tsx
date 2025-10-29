@@ -1,4 +1,6 @@
-export { metadata, viewport } from 'next-sanity/studio'
+// Use dynamic import to avoid fast refresh issues
+const studioModule = await import('next-sanity/studio')
+export const { metadata, viewport } = studioModule
 
 export default function StudioLayout({
   children,

@@ -56,7 +56,7 @@ export function HighlightedButton({
     }
 
     // Create annotation but don't show it yet
-    const annotation = (annotate as any)(
+    const annotation = (annotate as typeof annotate & ((element: HTMLElement, config: typeof annotationConfig, container: HTMLElement) => RoughAnnotation))(
       textRef.current,
       annotationConfig,
       containerRef.current

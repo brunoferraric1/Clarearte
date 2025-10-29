@@ -81,7 +81,7 @@ export function Highlighter({
 
     // Annotate the inner text wrapper, with outer element as container
     // This allows the SVG to be positioned behind the text
-    const annotation = (annotate as any)(textElement, annotationConfig, element)
+    const annotation = (annotate as typeof annotate & ((element: HTMLElement, config: typeof annotationConfig, container: HTMLElement) => RoughAnnotation))(textElement, annotationConfig, element)
 
     annotationRef.current = annotation
     annotation.show()

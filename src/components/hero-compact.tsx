@@ -17,7 +17,6 @@ interface HeroCompactProps {
 export function HeroCompact({ 
   title, 
   subtitle, 
-  description, 
   primaryCTA, 
   secondaryCTA
 }: HeroCompactProps) {

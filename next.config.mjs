@@ -14,6 +14,9 @@ const nextConfig = {
       },
     ],
   },
+  // Force correct workspace root to avoid incorrect inference when multiple lockfiles exist
+  // This also ensures vendor chunks (e.g., Radix) are properly traced for deployment
+  outputFileTracingRoot: process.cwd(),
 }
 
 export default nextConfig
