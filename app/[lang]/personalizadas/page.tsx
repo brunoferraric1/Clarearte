@@ -1,6 +1,5 @@
 import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
-import { PersonalizedShowcase } from '@/components/personalized-showcase'
 import { CreationProcess } from '@/components/creation-process'
 import { PersonalizedBenefits } from '@/components/personalized-benefits'
 import { PersonalizedInspiration } from '@/components/personalized-inspiration'
@@ -53,7 +52,6 @@ export default async function PersonalizedPage({
         </section>
       )}
 
-      <PersonalizedShowcase />
       <CreationProcess />
       <PersonalizedBenefits />
       <PersonalizedInspiration />
