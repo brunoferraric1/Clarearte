@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion } from 'motion/react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import { Button } from '@/components/ui/button'
 import { TextEffect } from '@/components/motion-primitives/text-effect'
 
@@ -28,12 +28,25 @@ export function HeroVideo({
   height = 'large'
 }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const sectionRef = useRef<HTMLElement>(null)
 
   const heightClasses = {
     small: 'h-[50vh] md:h-[60vh]',
     medium: 'h-[70vh] md:h-[80vh]',
     large: 'h-[85vh] md:h-[95vh]'
   }
+
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  })
+
+  // Video moves slower (parallax effect) - moves down as you scroll
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"])
+  
+  // Content moves at normal speed but slightly faster for depth
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
 
   // Ensure video plays smoothly
   useEffect(() => {
@@ -46,32 +59,41 @@ export function HeroVideo({
 
   return (
     <motion.section 
+      ref={sectionRef}
       className={`relative w-full ${heightClasses[height]} overflow-hidden`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Video Background */}
-      <video
-        ref={videoRef}
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+      {/* Video Background with Parallax */}
+      <motion.div
+        style={{ y: videoY }}
+        className="absolute inset-0 w-full h-full"
       >
-        <source src={videoSrc} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-      {/* Dark dim overlay for better contrast */}
-      <div
-        className="absolute inset-0 bg-black"
-        style={{ opacity: dimOpacity }}
-      />
+        {/* Dark dim overlay for better contrast */}
+        <div
+          className="absolute inset-0 bg-black"
+          style={{ opacity: dimOpacity }}
+        />
+      </motion.div>
 
-      {/* Centered Content */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      {/* Centered Content with Parallax */}
+      <motion.div 
+        style={{ y: contentY }}
+        className="absolute inset-0 flex items-center justify-center"
+      >
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             {/* Subtitle */}
@@ -153,7 +175,7 @@ export function HeroVideo({
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </motion.section>
   )
 }

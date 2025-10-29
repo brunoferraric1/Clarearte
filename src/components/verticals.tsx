@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { HighlightedButton } from '@/components/ui/highlighted-button'
 import { AnimatedSection } from './animated-section'
 
 export function Verticals() {
@@ -10,7 +10,7 @@ export function Verticals() {
           {/* Colecciones de invitaciones */}
           <AnimatedSection direction="left" delay={0}>
             <div className="flex flex-col">
-              <div className="aspect-[4/3] mb-6 rounded-lg overflow-hidden">
+              <div className="aspect-[16/9] mb-6 rounded-lg overflow-hidden">
                 <img
                   src="/images/home-sections-coleciones.webp"
                   alt="Colecciones de invitaciones"
@@ -27,8 +27,7 @@ export function Verticals() {
               </p>
 
               <div className="flex justify-center mt-auto">
-                <Button
-                  variant="primary-outline"
+                <HighlightedButton
                   size="md"
                   className="tracking-wide cursor-pointer"
                   asChild
@@ -36,7 +35,7 @@ export function Verticals() {
                   <a href="/colecciones">
                     Ver todas las colecciones
                   </a>
-                </Button>
+                </HighlightedButton>
               </div>
             </div>
           </AnimatedSection>
@@ -44,7 +43,7 @@ export function Verticals() {
           {/* Invitaciones personalizadas */}
           <AnimatedSection direction="right" delay={0.1}>
             <div className="flex flex-col">
-              <div className="aspect-[4/3] mb-6 rounded-lg overflow-hidden">
+              <div className="aspect-[16/9] mb-6 rounded-lg overflow-hidden">
                 <img
                   src="/images/home-sections-invitaciones-personalisadas.webp"
                   alt="Invitaciones personalizadas"
@@ -61,8 +60,7 @@ export function Verticals() {
               </p>
 
               <div className="flex justify-center mt-auto">
-                <Button
-                  variant="primary-outline"
+                <HighlightedButton
                   size="md"
                   className="tracking-wide cursor-pointer"
                   asChild
@@ -70,7 +68,7 @@ export function Verticals() {
                   <a href="/personalizadas">
                     Saber más
                   </a>
-                </Button>
+                </HighlightedButton>
               </div>
             </div>
           </AnimatedSection>
