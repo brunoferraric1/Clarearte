@@ -8,6 +8,7 @@ import { postsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
 import { format } from 'date-fns'
 import { es, pt, enUS } from 'date-fns/locale'
+import type { Image as SanityImage } from 'sanity'
 
 export const metadata: Metadata = {
   title: 'Blog | ClareArte',
@@ -21,7 +22,9 @@ interface BlogPost {
   slug: string
   title: string
   excerpt: string
-  mainImage: any
+  mainImage: SanityImage & {
+    alt?: { pt?: string; es?: string; en?: string }
+  }
   author: string
   publishedAt: string
 }
@@ -99,7 +102,7 @@ export default async function BlogPage({
                       {post.mainImage && (
                         <Image
                           src={urlForImage(post.mainImage).width(800).url()}
-                          alt={post.mainImage.alt?.[lang] || post.title}
+                          alt={post.mainImage.alt?.[lang as keyof typeof post.mainImage.alt] || post.title}
                           fill
                           className="object-cover transition-transform duration-300 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, 50vw"

@@ -12,7 +12,7 @@ export default defineType({
       description: 'YouTube, Vimeo, or other video URL',
       validation: (Rule) =>
         Rule.required().custom((url) => {
-          if (!url) return true
+          if (!url || typeof url !== 'string') return true
           const validDomains = ['youtube.com', 'youtu.be', 'vimeo.com']
           const isValid = validDomains.some((domain) => url.includes(domain))
           return isValid || 'Please use a YouTube or Vimeo URL'

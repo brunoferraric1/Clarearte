@@ -11,17 +11,25 @@ import { urlForImage } from '@/sanity/lib/image'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+interface CollectionSlug {
+  slugs?: {
+    pt?: string
+    es?: string
+    en?: string
+  }
+}
+
 // Generate static params for all collection slugs
 export async function generateStaticParams() {
   const collectionsData = await client.fetch(allCollectionSlugsQuery)
 
   const params: { lang: string; slug: string }[] = []
 
-  collectionsData.forEach((collection: any) => {
+  collectionsData.forEach((collection: CollectionSlug) => {
     if (collection.slugs) {
       const langs = ['pt', 'es', 'en'] as const
       langs.forEach((lang) => {
-        const slug = collection.slugs[lang]
+        const slug = collection.slugs?.[lang]
         if (slug) {
           params.push({ lang, slug })
         }

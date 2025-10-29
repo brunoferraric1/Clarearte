@@ -47,7 +47,7 @@ export default defineType({
           if (url && parent?.type === 'video') {
             const youtubeRegex = /(?:youtube\.com|youtu\.be)/
             const vimeoRegex = /vimeo\.com/
-            if (!youtubeRegex.test(url) && !vimeoRegex.test(url)) {
+            if (typeof url === 'string' && !youtubeRegex.test(url) && !vimeoRegex.test(url)) {
               return 'Please provide a valid YouTube or Vimeo URL'
             }
           }

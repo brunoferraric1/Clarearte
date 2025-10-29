@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/image'
 import { Play, X } from 'lucide-react'
@@ -33,7 +33,7 @@ interface GalleryGridProps {
 function getVideoId(url: string): { type: string; id: string } | null {
   // YouTube
   const youtubeRegex =
-    /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/
+    /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
   const youtubeMatch = url.match(youtubeRegex)
   if (youtubeMatch) {
     return { type: 'youtube', id: youtubeMatch[1] }
@@ -73,14 +73,14 @@ export function GalleryGrid({
     document.body.style.overflow = ''
   }
 
-  const navigateLightbox = (direction: 'prev' | 'next') => {
+  const navigateLightbox = useCallback((direction: 'prev' | 'next') => {
     const newIndex =
       direction === 'prev'
         ? (lightboxIndex - 1 + items.length) % items.length
         : (lightboxIndex + 1) % items.length
     setLightboxIndex(newIndex)
     setLightboxItem(items[newIndex])
-  }
+  }, [lightboxIndex, items])
 
   // Keyboard navigation
   useEffect(() => {
@@ -98,7 +98,7 @@ export function GalleryGrid({
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [lightboxItem, lightboxIndex, items])
+  }, [lightboxItem, navigateLightbox])
 
   const gapClasses = {
     small: 'gap-2 md:gap-3',
@@ -192,9 +192,9 @@ export function GalleryGrid({
             {lightboxItem.type === 'image' && lightboxItem.image?.asset?._ref && (
               <div className="relative w-full h-full flex items-center justify-center">
                 <Image
-                  src={urlForImage(lightboxItem.image).width(2000).url()}
+                  src={urlForImage(lightboxItem.image as Parameters<typeof urlForImage>[0]).width(2000).url()}
                   alt={
-                    lightboxItem.image.alt?.[lang] ||
+                    lightboxItem.image.alt?.[lang as keyof typeof lightboxItem.image.alt] ||
                     lightboxItem.image.alt?.es ||
                     lightboxItem.image.alt?.pt ||
                     lightboxItem.image.alt?.en ||
@@ -265,13 +265,13 @@ function GalleryItem({
   }
 
   if (item.type === 'image' && item.image?.asset?._ref) {
-    const imageUrl = urlForImage(item.image).width(1200).url()
+    const imageUrl = urlForImage(item.image as Parameters<typeof urlForImage>[0]).width(1200).url()
     const aspectRatio = item.image.aspectRatio
     const aspectRatioClass = getAspectRatioClass(aspectRatio)
     const useAspectRatio = aspectRatio && aspectRatio !== 'auto'
     
     const alt =
-      item.image.alt?.[lang] ||
+      item.image.alt?.[lang as keyof typeof item.image.alt] ||
       item.image.alt?.es ||
       item.image.alt?.pt ||
       item.image.alt?.en ||
@@ -321,12 +321,12 @@ function GalleryItem({
 
     // Get thumbnail
     const thumbnailUrl = item.thumbnail?.asset?._ref
-      ? urlForImage(item.thumbnail).width(1200).url()
+      ? urlForImage(item.thumbnail as Parameters<typeof urlForImage>[0]).width(1200).url()
       : videoData.type === 'youtube'
         ? `https://img.youtube.com/vi/${videoData.id}/maxresdefault.jpg`
         : null
 
-    const alt = item.thumbnail?.alt?.[lang] || 'Video thumbnail'
+    const alt = item.thumbnail?.alt?.[lang as keyof typeof item.thumbnail.alt] || 'Video thumbnail'
 
     return (
       <div

@@ -1,4 +1,12 @@
-import { ContentBlock } from '@/types/blog';
+// Define ContentBlock type locally since @/types/blog doesn't exist
+type ContentBlock =
+  | { type: 'heading'; level: 1 | 2 | 3 | 4 | 5 | 6; text: string }
+  | { type: 'paragraph'; text: string }
+  | { type: 'image'; src: string; alt: string; caption?: string }
+  | { type: 'bulletList'; items: string[] }
+  | { type: 'numberedList'; items: string[] }
+  | { type: 'quote'; text: string; author?: string }
+  | { type: 'divider' }
 
 interface RichContentProps {
   content: ContentBlock[];
