@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { Hero } from '@/components/hero'
+import { HeroCompact } from '@/components/hero-compact'
 import { CreationProcess } from '@/components/creation-process'
 import { PersonalizedBenefits } from '@/components/personalized-benefits'
 import { PersonalizedInspiration } from '@/components/personalized-inspiration'
@@ -8,6 +8,7 @@ import { ContactFormSection } from '../contacto/contact-form-section'
 import { GalleryGrid } from '@/components/gallery-grid'
 import { client } from '@/sanity/lib/client'
 import { galleryBySlugQuery } from '@/sanity/lib/queries'
+import { Highlighter } from '@/components/ui/highlighter'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -31,15 +32,19 @@ export default async function PersonalizedPage({
   return (
     <div className="min-h-screen">
       <Navbar lang={lang} />
-      <Hero
-        title="Invitaciones de boda personalizadas y exclusivas"
-        subtitle=""
+      <HeroCompact
+        title={
+          <>
+            Invitaciones <Highlighter action="highlight" color="#F6EBE2" padding={8} isView={true}>personalizadas</Highlighter>
+          </>
+        }
+        subtitle="Invitaciones de boda personalizadas y exclusivas"
         description="Cada pareja tiene una historia que merece ser contada de manera única. Las invitaciones personalizadas transforman momentos, recuerdos y detalles cotidianos en piezas de papelería que reflejan vuestra esencia auténtica. Desde un viaje especial hasta vuestras mascotas, cada elemento forma parte del diseño."
       />
       
       {/* Gallery Grid Section */}
       {gallery && gallery.items && gallery.items.length > 0 && (
-        <section className="py-16 md:py-24 px-4">
+        <section className="pb-16 md:pb-24 px-4">
           <div className="container mx-auto max-w-7xl">
             <GalleryGrid
               items={gallery.items}
