@@ -46,19 +46,19 @@ const images = [
 
 export function MarqueeSection() {
   return (
-    <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-20 bg-background overflow-hidden">
+    <section className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-28 bg-background overflow-hidden">
       <Marquee className="[--duration:45s]">
         {images.map((image) => (
           <div
             key={image.id}
-            className="relative w-[15rem] h-[20rem] md:w-[18.75rem] md:h-[25rem] bg-muted rounded-lg flex-shrink-0 overflow-hidden"
+            className="relative w-[18rem] h-[24rem] md:w-[22rem] md:h-[30rem] bg-muted rounded-lg flex-shrink-0 overflow-hidden"
           >
             <Image
               src={image.src}
               alt={image.alt}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 15rem, 18.75rem"
+              sizes="(max-width: 768px) 18rem, 22rem"
             />
           </div>
         ))}
