@@ -119,10 +119,19 @@ export const galleryBySlugQuery = groq`
     description,
     items[] {
       type,
-      image,
+      image {
+        asset,
+        alt,
+        caption,
+        aspectRatio
+      },
       videoUrl,
-      thumbnail,
-      aspectRatio
+      thumbnail {
+        asset,
+        alt,
+        caption,
+        aspectRatio
+      }
     },
     layout,
     gap,

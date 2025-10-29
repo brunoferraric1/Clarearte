@@ -11,13 +11,14 @@ interface GalleryItem {
     asset: { _ref: string }
     alt?: { pt?: string; es?: string; en?: string }
     caption?: { pt?: string; es?: string; en?: string }
+    aspectRatio?: string
   }
   videoUrl?: string
   thumbnail?: {
     asset: { _ref: string }
     alt?: { pt?: string; es?: string; en?: string }
+    aspectRatio?: string
   }
-  aspectRatio?: string
 }
 
 interface GalleryGridProps {
@@ -224,12 +225,13 @@ function GalleryItem({
   enableLightbox: boolean
   onOpen: () => void
 }) {
-  const aspectRatioClass = item.aspectRatio && item.aspectRatio !== 'auto' 
-    ? `aspect-[${item.aspectRatio.replace('/', '-')}]`
-    : 'aspect-auto'
-
   if (item.type === 'image' && item.image?.asset?._ref) {
     const imageUrl = urlForImage(item.image).width(1200).url()
+    const aspectRatio = item.image.aspectRatio
+    const aspectRatioClass = aspectRatio && aspectRatio !== 'auto' 
+      ? `aspect-[${aspectRatio.replace('/', '-')}]`
+      : 'aspect-auto'
+    
     const alt =
       item.image.alt?.[lang] ||
       item.image.alt?.es ||
@@ -242,8 +244,8 @@ function GalleryItem({
         className={`relative overflow-hidden rounded-lg group ${enableLightbox ? 'cursor-pointer' : ''}`}
         onClick={onOpen}
       >
-        <div className={item.aspectRatio && item.aspectRatio !== 'auto' ? `relative ${aspectRatioClass}` : 'relative'}>
-          {item.aspectRatio && item.aspectRatio !== 'auto' ? (
+        <div className={aspectRatio && aspectRatio !== 'auto' ? `relative ${aspectRatioClass}` : 'relative'}>
+          {aspectRatio && aspectRatio !== 'auto' ? (
             <Image
               src={imageUrl}
               alt={alt}
@@ -273,6 +275,11 @@ function GalleryItem({
     const videoData = getVideoId(item.videoUrl)
     if (!videoData) return null
 
+    const aspectRatio = item.thumbnail?.aspectRatio
+    const aspectRatioClass = aspectRatio && aspectRatio !== 'auto' 
+      ? `aspect-[${aspectRatio.replace('/', '-')}]`
+      : 'aspect-video'
+
     // Get thumbnail
     const thumbnailUrl = item.thumbnail?.asset?._ref
       ? urlForImage(item.thumbnail).width(1200).url()
@@ -287,7 +294,7 @@ function GalleryItem({
         className={`relative overflow-hidden rounded-lg group cursor-pointer`}
         onClick={onOpen}
       >
-        <div className={item.aspectRatio && item.aspectRatio !== 'auto' ? `relative ${aspectRatioClass}` : 'relative aspect-video'}>
+        <div className={`relative ${aspectRatioClass}`}>
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}

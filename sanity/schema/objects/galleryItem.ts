@@ -61,23 +61,6 @@ export default defineType({
       description: 'Optional custom thumbnail for video (auto-generated if not provided)',
       hidden: ({ parent }) => parent?.type !== 'video',
     },
-    {
-      name: 'aspectRatio',
-      title: 'Aspect Ratio',
-      type: 'string',
-      description: 'Force a specific aspect ratio for this item',
-      options: {
-        list: [
-          { title: 'Auto', value: 'auto' },
-          { title: 'Square (1:1)', value: '1/1' },
-          { title: 'Landscape (4:3)', value: '4/3' },
-          { title: 'Wide (16:9)', value: '16/9' },
-          { title: 'Portrait (3:4)', value: '3/4' },
-          { title: 'Tall (9:16)', value: '9/16' },
-        ],
-      },
-      initialValue: 'auto',
-    },
   ],
   preview: {
     select: {

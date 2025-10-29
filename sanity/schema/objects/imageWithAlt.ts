@@ -12,7 +12,7 @@ export default defineType({
       name: 'alt',
       title: 'Alternative Text',
       type: 'localizedString',
-      validation: (Rule) => Rule.required(),
+      description: 'Describe the image for accessibility. Leave empty only for decorative images.',
     },
     {
       name: 'caption',
