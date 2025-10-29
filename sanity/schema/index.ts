@@ -14,6 +14,7 @@ import imageGallery from './objects/imageGallery'
 import videoEmbed from './objects/videoEmbed'
 import cta from './objects/cta'
 import divider from './objects/divider'
+import twoColumn from './objects/twoColumn'
 
 // Documents
 import post from './documents/post'
@@ -34,6 +35,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     videoEmbed,
     cta,
     divider,
+    twoColumn,
     // Documents
     post,
     collection,

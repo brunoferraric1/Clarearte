@@ -344,6 +344,103 @@ export function PortableText({ value }: PortableTextProps) {
             )
           },
 
+          // Two Column Layout
+          twoColumn: ({ value }) => {
+            if (!value?.leftColumn && !value?.rightColumn) {
+              return null
+            }
+
+            const gapClasses = {
+              small: 'gap-4 md:gap-6',
+              medium: 'gap-6 md:gap-12',
+              large: 'gap-8 md:gap-16',
+            }
+
+            const alignClasses = {
+              top: 'items-start',
+              center: 'items-center',
+              bottom: 'items-end',
+            }
+
+            const ratioClasses = {
+              '1:1': 'md:grid-cols-2',
+              '3:2': 'md:grid-cols-[3fr_2fr]',
+              '2:3': 'md:grid-cols-[2fr_3fr]',
+            }
+
+            const gap = gapClasses[value.gap as keyof typeof gapClasses] || gapClasses.medium
+            const align = alignClasses[value.verticalAlign as keyof typeof alignClasses] || alignClasses.center
+            const ratio = ratioClasses[value.columnRatio as keyof typeof ratioClasses] || ratioClasses['1:1']
+            const reverseClass = value.reverseOnMobile ? 'flex flex-col-reverse md:grid' : 'grid'
+
+            const renderColumn = (column: any) => {
+              if (!column) return null
+
+              if (column.type === 'text' && column.text) {
+                return (
+                  <div className="prose prose-lg max-w-none">
+                    <PortableTextComponent
+                      value={column.text}
+                      components={{
+                        block: {
+                          normal: ({ children }) => (
+                            <p className="text-body-lg mb-4 leading-relaxed text-foreground/90">
+                              {children}
+                            </p>
+                          ),
+                          h3: ({ children }) => (
+                            <h3 className="text-title-2 font-serif mb-4">{children}</h3>
+                          ),
+                          h4: ({ children }) => (
+                            <h4 className="text-title-3 font-serif mb-3">{children}</h4>
+                          ),
+                        },
+                        marks: {
+                          strong: ({ children }) => (
+                            <strong className="font-semibold">{children}</strong>
+                          ),
+                          em: ({ children }) => <em className="italic">{children}</em>,
+                        },
+                      }}
+                    />
+                  </div>
+                )
+              }
+
+              if (column.type === 'image' && column.image?.asset?._ref) {
+                const imageUrl = urlForImage(column.image).width(1400).url()
+                return (
+                  <figure>
+                    <div className="relative w-full overflow-hidden rounded-lg">
+                      <Image
+                        src={imageUrl}
+                        alt={column.image.alt?.pt || column.image.alt?.es || column.image.alt?.en || 'Column image'}
+                        width={1400}
+                        height={1050}
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="w-full h-auto object-cover"
+                      />
+                    </div>
+                    {column.image.caption && (
+                      <figcaption className="text-body-sm text-muted-foreground mt-3 italic">
+                        {column.image.caption.pt || column.image.caption.es || column.image.caption.en}
+                      </figcaption>
+                    )}
+                  </figure>
+                )
+              }
+
+              return null
+            }
+
+            return (
+              <div className={`my-12 ${reverseClass} ${ratio} ${gap} ${align}`}>
+                <div>{renderColumn(value.leftColumn)}</div>
+                <div>{renderColumn(value.rightColumn)}</div>
+              </div>
+            )
+          },
+
           // Divider
           divider: ({ value }) => {
             const spacingClasses = {
