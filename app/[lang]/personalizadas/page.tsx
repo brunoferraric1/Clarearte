@@ -6,6 +6,9 @@ import { PersonalizedBenefits } from '@/components/personalized-benefits'
 import { PersonalizedInspiration } from '@/components/personalized-inspiration'
 import { PersonalizedCTA } from '@/components/personalized-cta'
 import { ContactFormSection } from '../contacto/contact-form-section'
+import { GalleryGrid } from '@/components/gallery-grid'
+import { client } from '@/sanity/lib/client'
+import { galleryBySlugQuery } from '@/sanity/lib/queries'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -20,6 +23,12 @@ export default async function PersonalizedPage({
 }) {
   const { lang } = await params
 
+  // Fetch gallery data from Sanity
+  // Use slug 'personalizadas-main' for this page's gallery
+  const gallery = await client.fetch(galleryBySlugQuery, {
+    slug: 'personalizadas-main',
+  })
+
   return (
     <div className="min-h-screen">
       <Navbar lang={lang} />
@@ -28,6 +37,22 @@ export default async function PersonalizedPage({
         subtitle=""
         description="Cada pareja tiene una historia que merece ser contada de manera única. Las invitaciones personalizadas transforman momentos, recuerdos y detalles cotidianos en piezas de papelería que reflejan vuestra esencia auténtica. Desde un viaje especial hasta vuestras mascotas, cada elemento forma parte del diseño."
       />
+      
+      {/* Gallery Grid Section */}
+      {gallery && gallery.items && gallery.items.length > 0 && (
+        <section className="py-16 md:py-24 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <GalleryGrid
+              items={gallery.items}
+              layout={gallery.layout}
+              gap={gallery.gap}
+              enableLightbox={gallery.enableLightbox}
+              lang={lang as 'pt' | 'es' | 'en'}
+            />
+          </div>
+        </section>
+      )}
+
       <PersonalizedShowcase />
       <CreationProcess />
       <PersonalizedBenefits />

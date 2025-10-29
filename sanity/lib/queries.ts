@@ -109,3 +109,35 @@ export const allCollectionSlugsQuery = groq`
     }
   }
 `
+
+// Fetch gallery grid by slug
+export const galleryBySlugQuery = groq`
+  *[_type == "galleryGrid" && slug.current == $slug && !(_id in path("drafts.**"))][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    items[] {
+      type,
+      image,
+      videoUrl,
+      thumbnail,
+      aspectRatio
+    },
+    layout,
+    gap,
+    enableLightbox
+  }
+`
+
+// Fetch all gallery grids (for listing)
+export const allGalleriesQuery = groq`
+  *[_type == "galleryGrid" && !(_id in path("drafts.**"))] | order(_createdAt desc) {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    "itemCount": count(items),
+    layout
+  }
+`

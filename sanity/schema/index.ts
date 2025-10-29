@@ -15,10 +15,12 @@ import videoEmbed from './objects/videoEmbed'
 import cta from './objects/cta'
 import divider from './objects/divider'
 import twoColumn from './objects/twoColumn'
+import galleryItem from './objects/galleryItem'
 
 // Documents
 import post from './documents/post'
 import collection from './documents/collection'
+import galleryGrid from './documents/galleryGrid'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -36,8 +38,10 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     cta,
     divider,
     twoColumn,
+    galleryItem,
     // Documents
     post,
     collection,
+    galleryGrid,
   ],
 }
