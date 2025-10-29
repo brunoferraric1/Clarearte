@@ -249,12 +249,26 @@ function GalleryItem({
   enableLightbox: boolean
   onOpen: () => void
 }) {
+  // Map aspect ratios to Tailwind classes
+  const getAspectRatioClass = (ratio?: string) => {
+    if (!ratio || ratio === 'auto') return null
+    
+    const ratioMap: Record<string, string> = {
+      '16/9': 'aspect-video',
+      '4/3': 'aspect-[4/3]',
+      '1/1': 'aspect-square',
+      '3/4': 'aspect-[3/4]',
+      '2/3': 'aspect-[2/3]',
+    }
+    
+    return ratioMap[ratio] || null
+  }
+
   if (item.type === 'image' && item.image?.asset?._ref) {
     const imageUrl = urlForImage(item.image).width(1200).url()
     const aspectRatio = item.image.aspectRatio
-    const aspectRatioClass = aspectRatio && aspectRatio !== 'auto' 
-      ? `aspect-[${aspectRatio.replace('/', '-')}]`
-      : 'aspect-auto'
+    const aspectRatioClass = getAspectRatioClass(aspectRatio)
+    const useAspectRatio = aspectRatio && aspectRatio !== 'auto'
     
     const alt =
       item.image.alt?.[lang] ||
@@ -268,8 +282,11 @@ function GalleryItem({
         className={`relative overflow-hidden rounded-lg group ${enableLightbox ? 'cursor-pointer' : ''}`}
         onClick={onOpen}
       >
-        <div className={aspectRatio && aspectRatio !== 'auto' ? `relative ${aspectRatioClass}` : 'relative'}>
-          {aspectRatio && aspectRatio !== 'auto' ? (
+        <div 
+          className={`relative ${useAspectRatio ? aspectRatioClass : ''}`}
+          style={useAspectRatio && !aspectRatioClass ? { aspectRatio } : undefined}
+        >
+          {useAspectRatio ? (
             <Image
               src={imageUrl}
               alt={alt}
@@ -300,9 +317,7 @@ function GalleryItem({
     if (!videoData) return null
 
     const aspectRatio = item.thumbnail?.aspectRatio
-    const aspectRatioClass = aspectRatio && aspectRatio !== 'auto' 
-      ? `aspect-[${aspectRatio.replace('/', '-')}]`
-      : 'aspect-video'
+    const aspectRatioClass = getAspectRatioClass(aspectRatio) || 'aspect-video'
 
     // Get thumbnail
     const thumbnailUrl = item.thumbnail?.asset?._ref
@@ -318,7 +333,10 @@ function GalleryItem({
         className={`relative overflow-hidden rounded-lg group cursor-pointer`}
         onClick={onOpen}
       >
-        <div className={`relative ${aspectRatioClass}`}>
+        <div 
+          className={`relative ${aspectRatioClass}`}
+          style={aspectRatio && aspectRatio !== 'auto' && !aspectRatioClass ? { aspectRatio } : undefined}
+        >
           {thumbnailUrl ? (
             <Image
               src={thumbnailUrl}

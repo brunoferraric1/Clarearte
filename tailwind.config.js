@@ -13,6 +13,16 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  safelist: [
+    'aspect-video',
+    'aspect-square',
+    'aspect-[4/3]',
+    'aspect-[3/4]',
+    'aspect-[2/3]',
+    'aspect-[16/9]',
   ],
   theme: {
     extend: {
