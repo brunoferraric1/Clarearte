@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { urlForImage } from '@/sanity/lib/image'
 import { Play, X } from 'lucide-react'
@@ -82,6 +82,24 @@ export function GalleryGrid({
     setLightboxItem(items[newIndex])
   }
 
+  // Keyboard navigation
+  useEffect(() => {
+    if (!lightboxItem) return
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeLightbox()
+      } else if (e.key === 'ArrowLeft') {
+        navigateLightbox('prev')
+      } else if (e.key === 'ArrowRight') {
+        navigateLightbox('next')
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [lightboxItem, lightboxIndex, items])
+
   const gapClasses = {
     small: 'gap-2 md:gap-3',
     medium: 'gap-4 md:gap-6',
@@ -126,11 +144,17 @@ export function GalleryGrid({
       {lightboxItem && (
         <div
           className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
-          onClick={closeLightbox}
+          onClick={(e) => {
+            e.stopPropagation()
+            closeLightbox()
+          }}
         >
           <button
-            onClick={closeLightbox}
-            className="absolute top-4 right-4 text-white hover:text-primary transition-colors p-2"
+            onClick={(e) => {
+              e.stopPropagation()
+              closeLightbox()
+            }}
+            className="absolute top-4 right-4 text-white hover:text-primary transition-colors p-2 z-10"
             aria-label="Close"
           >
             <X className="w-8 h-8" />
@@ -143,7 +167,7 @@ export function GalleryGrid({
                   e.stopPropagation()
                   navigateLightbox('prev')
                 }}
-                className="absolute left-4 text-white hover:text-primary transition-colors p-2 text-4xl"
+                className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-primary transition-colors p-2 text-5xl z-10 bg-black/30 rounded-full w-14 h-14 flex items-center justify-center"
                 aria-label="Previous"
               >
                 ‹
@@ -153,7 +177,7 @@ export function GalleryGrid({
                   e.stopPropagation()
                   navigateLightbox('next')
                 }}
-                className="absolute right-4 text-white hover:text-primary transition-colors p-2 text-4xl"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-primary transition-colors p-2 text-5xl z-10 bg-black/30 rounded-full w-14 h-14 flex items-center justify-center"
                 aria-label="Next"
               >
                 ›
