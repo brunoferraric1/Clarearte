@@ -27,13 +27,16 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // defined in your index.css
+        // defined in your globals.css
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"], // Zen Kaku Gothic New
         serif: ["var(--font-serif)", "ui-serif", "serif"], // Playfair Display
         mono: ["var(--font-mono)", "ui-monospace", "monospace"], // Roboto Mono
 
         // use serif font (Playfair Display) for big hero titles
         display: ["var(--font-serif)", "ui-serif", "serif"],
+        
+        // Billion Miracles custom font
+        'billion-miracles': ["var(--font-billion-miracles)", "cursive", "serif"],
       },
 
       fontSize: {

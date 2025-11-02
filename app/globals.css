@@ -3,6 +3,44 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Custom Font Face Declarations */
+/* 
+ * To add your custom font:
+ * 1. Place your font files in /public/fonts/ directory
+ * 2. Update the @font-face declarations below with your font name and file paths
+ * 3. Add a CSS variable in :root (see --font-custom example)
+ * 4. Optional: Add preload link in app/layout.tsx for critical fonts
+ * 
+ * Recommended formats: woff2 (best compression), woff (fallback)
+ * Use font-display: swap for performance (prevents invisible text during font load)
+ */
+
+/* Billion Miracles Custom Font */
+/* Try multiple font-family names in case the internal name differs */
+@font-face {
+  font-family: 'Billion Miracles';
+  src: url('/fonts/Billion Miracles Personal Use Only.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BillionMiracles';
+  src: url('/fonts/Billion Miracles Personal Use Only.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Billion Miracles Personal Use Only';
+  src: url('/fonts/Billion Miracles Personal Use Only.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: oklch(1.0000 0 0);
   --foreground: oklch(0.3211 0 0);
@@ -39,6 +77,7 @@
   --font-sans: Zen Kaku Gothic New, sans-serif;
   --font-serif: Playfair Display, ui-serif, serif;
   --font-mono: Roboto Mono, monospace;
+  --font-billion-miracles: 'Billion Miracles', cursive, serif;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
@@ -102,6 +141,7 @@
   --font-sans: Zen Kaku Gothic New, sans-serif;
   --font-serif: Playfair Display, ui-serif, serif;
   --font-mono: Roboto Mono, monospace;
+  --font-billion-miracles: 'Billion Miracles', cursive, serif;
   --font-weight-light: 300;
   --font-weight-normal: 400;
   --font-weight-medium: 500;

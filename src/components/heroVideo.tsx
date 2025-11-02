@@ -111,7 +111,7 @@ export function HeroVideo({
 
             {/* Main Title - using TextEffect for word-by-word animation */}
             <motion.h1 
-              className="text-display-1 font-display font-bold text-white drop-shadow-2xl"
+              className="text-display-2 font-display font-bold text-white drop-shadow-2xl"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.01 }}

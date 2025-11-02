@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Test - Billion Miracles</title>
+    <style>
+        @font-face {
+            font-family: 'Billion Miracles';
+            src: url('/fonts/Billion Miracles Personal Use Only.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'BillionMiracles';
+            src: url('/fonts/Billion Miracles Personal Use Only.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Billion Miracles Personal Use Only';
+            src: url('/fonts/Billion Miracles Personal Use Only.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        body {
+            font-family: system-ui, sans-serif;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .test {
+            margin: 30px 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .test h3 {
+            margin-top: 0;
+            color: #666;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        
+        .test-text {
+            font-size: 48px;
+            margin: 10px 0;
+        }
+        
+        .test1 { font-family: 'Billion Miracles', cursive; }
+        .test2 { font-family: 'BillionMiracles', cursive; }
+        .test3 { font-family: 'Billion Miracles Personal Use Only', cursive; }
+        
+        .info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Billion Miracles Font Test</h1>
+    <p>If the font is loading correctly, you should see a decorative script/handwritten style. If you see generic cursive, the font might not be loading or the name might be wrong.</p>
+    
+    <div class="test">
+        <h3>Test 1: 'Billion Miracles'</h3>
+        <div class="test-text test1">Sobre mí</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 2: 'BillionMiracles' (no spaces)</h3>
+        <div class="test-text test2">Sobre mí</div>
+    </div>
+    
+    <div class="test">
+        <h3>Test 3: 'Billion Miracles Personal Use Only' (full name)</h3>
+        <div class="test-text test3">Sobre mí</div>
+    </div>
+    
+    <div class="info">
+        <strong>Debug Info:</strong><br>
+        Open DevTools → Network tab → Filter by "Font" → Refresh page<br>
+        Check if the font file loads. Then check Computed styles to see which font-family is actually being used.
+    </div>
+    
+    <script>
+        // Check if font is loaded
+        document.fonts.ready.then(() => {
+            const fontCheck = document.fonts.check('48px "Billion Miracles"');
+            console.log('Font "Billion Miracles" loaded:', fontCheck);
+            
+            const fontCheck2 = document.fonts.check('48px "BillionMiracles"');
+            console.log('Font "BillionMiracles" loaded:', fontCheck2);
+            
+            const fontCheck3 = document.fonts.check('48px "Billion Miracles Personal Use Only"');
+            console.log('Font "Billion Miracles Personal Use Only" loaded:', fontCheck3);
+            
+            // List all loaded fonts
+            console.log('All loaded fonts:', Array.from(document.fonts).map(f => f.family));
+        });
+    </script>
+</body>
+</html>

@@ -23,7 +23,7 @@ export function AboutSplashHero({ image, imageAlt, introText }: AboutSplashHeroP
           </div>
 
           {/* Title */}
-          <h1 className="text-display-1 font-display font-light text-foreground text-center">
+          <h1 className="text-display-1 font-billion-miracles font-light text-foreground text-center">
             Sobre mí
           </h1>
 
