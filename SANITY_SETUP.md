@@ -159,11 +159,17 @@ When deploying to production:
 
 1. **Create a production dataset** in Sanity (optional, or use the same one)
 2. **Add environment variables** to your hosting platform (Vercel, Netlify, etc.)
-3. **Set up CORS** in Sanity dashboard:
+3. **Set up CORS** in Sanity dashboard (⚠️ **CRITICAL for Studio access**):
    - Go to https://www.sanity.io/manage
-   - Select your project
+   - Select your project (project ID: `mc6ib0v3`)
    - Go to **API** → **CORS Origins**
-   - Add your production domain (e.g., `https://clarearte.com`)
+   - Click **"Add CORS origin"**
+   - Add **BOTH** of these origins:
+     - `https://clareartestudio.es`
+     - `https://www.clareartestudio.es`
+   - Leave **"Allow credentials"** checked ✅
+   - Click **Save**
+   - **Important:** Changes take effect immediately, but you may need to refresh your browser
 
 ## Troubleshooting
 
@@ -175,8 +181,30 @@ Make sure your `.env.local` file exists and has all required variables:
 
 ### Studio not loading
 
+**In Development:**
 1. Clear `.next` cache: `rm -rf .next`
 2. Restart dev server: `npm run dev`
+
+**In Production (CORS Error):**
+If you see: `"Access to XMLHttpRequest blocked by CORS policy"` when accessing `/studio`:
+
+⚠️ **This means your production domain is not whitelisted in Sanity.**
+
+**Fix:**
+1. Go to https://www.sanity.io/manage
+2. Select your project (`mc6ib0v3`)
+3. Navigate to **API** → **CORS Origins**
+4. Add both:
+   - `https://clareartestudio.es`
+   - `https://www.clareartestudio.es`
+5. Make sure **"Allow credentials"** is checked
+6. Click **Save**
+7. Refresh the studio page in your browser
+
+**Common CORS Errors:**
+- `No 'Access-Control-Allow-Origin' header` → Domain not added to CORS origins
+- `CorsOriginError` → Same issue, need to add domain to Sanity dashboard
+- `Workspace: missing context value` → Usually follows CORS error, fix CORS first
 
 ### Images not displaying
 
