@@ -18,6 +18,7 @@ const translations = {
     submitting: 'Enviando...',
     success: '¡Gracias! Te hemos añadido a nuestra lista de espera.',
     error: 'Hubo un error. Por favor, inténtalo de nuevo.',
+    duplicate: 'Este email ya está en nuestra lista de espera.',
   },
   pt: {
     title: 'Junte-se à nossa lista de espera',
@@ -27,6 +28,7 @@ const translations = {
     submitting: 'Enviando...',
     success: 'Obrigada! Adicionamos você à nossa lista de espera.',
     error: 'Ocorreu um erro. Por favor, tente novamente.',
+    duplicate: 'Este email já está em nossa lista de espera.',
   },
   en: {
     title: 'Join our waiting list',
@@ -36,13 +38,15 @@ const translations = {
     submitting: 'Submitting...',
     success: 'Thank you! We\'ve added you to our waiting list.',
     error: 'An error occurred. Please try again.',
+    duplicate: 'This email is already on our waiting list.',
   },
 }
 
 export function WaitingListClient({ lang }: WaitingListClientProps) {
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error' | 'duplicate'>('idle')
+  const [errorMessage, setErrorMessage] = useState<string>('')
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
@@ -73,18 +77,39 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage('')
 
     try {
-      // TODO: Add your email submission logic here
-      console.log('Email submitted:', email)
-      
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
+      const response = await fetch('/api/waiting-list', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim(),
+          lang: lang,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        if (response.status === 409) {
+          // Duplicate email
+          setSubmitStatus('duplicate')
+        } else {
+          setSubmitStatus('error')
+          setErrorMessage(data.error || t.error)
+        }
+        return
+      }
+
       setSubmitStatus('success')
       setEmail('')
     } catch (error) {
+      console.error('Error submitting email:', error)
       setSubmitStatus('error')
+      setErrorMessage(t.error)
     } finally {
       setIsSubmitting(false)
     }
@@ -199,13 +224,22 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
                   {t.success}
                 </motion.p>
               )}
+              {submitStatus === 'duplicate' && (
+                <motion.p
+                  className="text-body text-yellow-300 font-medium"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  {t.duplicate}
+                </motion.p>
+              )}
               {submitStatus === 'error' && (
                 <motion.p
                   className="text-body text-red-300 font-medium"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                 >
-                  {t.error}
+                  {errorMessage || t.error}
                 </motion.p>
               )}
             </div>

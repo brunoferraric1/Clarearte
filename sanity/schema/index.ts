@@ -21,6 +21,7 @@ import galleryItem from './objects/galleryItem'
 import post from './documents/post'
 import collection from './documents/collection'
 import galleryGrid from './documents/galleryGrid'
+import waitingListEmail from './documents/waitingListEmail'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -43,5 +44,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     post,
     collection,
     galleryGrid,
+    waitingListEmail,
   ],
 }
