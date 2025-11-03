@@ -127,3 +127,46 @@ sanity tokens create
 
 Follow the prompts, and you'll get a token that definitely works!
 
+## Production Deployment (Vercel)
+
+⚠️ **CRITICAL:** After setting up the token locally, you **must** add it to Vercel for production.
+
+### Adding Token to Vercel
+
+1. **Get your token** from `.env.local` (should start with `sk...`)
+
+2. **Go to Vercel Dashboard:**
+   - Navigate to https://vercel.com/dashboard
+   - Select your Clarearte project
+
+3. **Add Environment Variable:**
+   - Go to **Settings** → **Environment Variables**
+   - Click **Add New**
+   - **Key**: `SANITY_API_WRITE_TOKEN`
+   - **Value**: Paste your token (the same one from `.env.local`)
+   - **Environment**: Check all (Production, Preview, Development)
+   - Click **Save**
+
+4. **Redeploy:**
+   - Environment variables only apply to new deployments
+   - Go to **Deployments** → Click **"..."** → **Redeploy**
+   - Or push a new commit to trigger automatic deployment
+
+### Why This is Needed
+
+- `.env.local` files are **never deployed** to production (they're in `.gitignore`)
+- Vercel needs environment variables configured in their dashboard
+- Without `SANITY_API_WRITE_TOKEN` in Vercel, you'll get: *"Server configuration error: Write token not configured"* in production
+
+### Verify Production Setup
+
+After deploying, test the API:
+```bash
+# Replace with your actual production URL
+curl -X POST https://your-domain.com/api/waiting-list \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","lang":"pt"}'
+```
+
+If successful, you should get a `201` response with `"success": true`.
+

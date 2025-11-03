@@ -294,6 +294,64 @@ async function exportEmails() {
 exportEmails()
 ```
 
+## Production Deployment (Vercel)
+
+⚠️ **IMPORTANT:** Environment variables in `.env.local` are **only for local development**. They are **NOT deployed to production**.
+
+### Setting Up Environment Variables in Vercel
+
+To make the waiting list work in production, you **must** add `SANITY_API_WRITE_TOKEN` to your Vercel project:
+
+1. **Go to Vercel Dashboard:**
+   - Navigate to https://vercel.com/dashboard
+   - Select your project
+
+2. **Open Settings → Environment Variables:**
+   - Click on your project
+   - Go to **Settings** tab
+   - Click **Environment Variables** in the sidebar
+
+3. **Add the Write Token:**
+   - **Key**: `SANITY_API_WRITE_TOKEN`
+   - **Value**: Your token (starts with `sk...`)
+   - **Environment**: Select all environments (Production, Preview, Development)
+   - Click **Save**
+
+4. **Redeploy:**
+   - After adding the variable, go to **Deployments**
+   - Click the **"..."** menu on the latest deployment
+   - Select **Redeploy** (or push a new commit to trigger a new deployment)
+
+### Required Environment Variables for Production
+
+Make sure these are set in Vercel:
+- ✅ `SANITY_API_WRITE_TOKEN` - **Required** for waiting list API
+- ✅ `NEXT_PUBLIC_SANITY_PROJECT_ID` - Your Sanity project ID
+- ✅ `NEXT_PUBLIC_SANITY_DATASET` - Your dataset name (e.g., "production")
+- ✅ `NEXT_PUBLIC_SANITY_API_VERSION` - API version (default: "2025-01-26")
+
+### Verifying Production Setup
+
+After deploying, test the waiting list:
+
+```bash
+# Test production endpoint
+curl -X POST https://your-domain.com/api/waiting-list \
+  -H "Content-Type: application/json" \
+  -d '{"email":"test@example.com","lang":"pt"}'
+```
+
+### Common Production Issues
+
+**Error: "Server configuration error: Write token not configured"**
+- ✅ **Solution**: Add `SANITY_API_WRITE_TOKEN` to Vercel environment variables
+- ✅ **Verify**: Token should be available in all environments (Production, Preview, Development)
+- ✅ **Redeploy**: Environment variables are only applied on new deployments
+
+**Error: "Token does not have create permissions"**
+- ✅ **Solution**: Recreate token with **Editor** permissions (not Viewer)
+- ✅ Use `sanity tokens create` CLI command for reliable setup
+
 ## Summary
 
 **Current Setup:**
@@ -302,6 +360,12 @@ exportEmails()
 - ✅ API endpoint for programmatic access
 - ✅ Duplicate prevention
 - ✅ Language tracking
+
+**Production Checklist:**
+- ✅ Add `SANITY_API_WRITE_TOKEN` to Vercel environment variables
+- ✅ Add other Sanity env vars to Vercel
+- ✅ Redeploy after adding environment variables
+- ✅ Test production endpoint after deployment
 
 **Recommended Next Steps:**
 1. ✅ Set up email service integration (Resend recommended)
