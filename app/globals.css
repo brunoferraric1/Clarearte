@@ -394,3 +394,23 @@
     letter-spacing: var(--tracking-normal);
   }
 }
+
+/* Sonner success toast customization */
+.sonner-success-custom [data-icon] {
+  color: rgb(34 197 94) !important;
+}
+
+.sonner-success-custom svg[data-icon] {
+  color: rgb(34 197 94) !important;
+}
+
+/* Sonner toast width customization */
+[data-sonner-toaster] {
+  --width: 480px !important;
+  width: var(--width) !important;
+}
+
+[data-sonner-toast] {
+  width: 100% !important;
+  max-width: 480px !important;
+}

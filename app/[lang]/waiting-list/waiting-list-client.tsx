@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { toast } from 'sonner'
 
 interface WaitingListClientProps {
   lang: string
@@ -106,6 +107,13 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
 
       setSubmitStatus('success')
       setEmail('')
+      toast.success(t.success, {
+        style: {
+          background: 'white',
+          color: 'rgb(55 65 81)',
+        },
+        className: 'sonner-success-custom',
+      })
     } catch (error) {
       console.error('Error submitting email:', error)
       setSubmitStatus('error')
@@ -189,7 +197,7 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
               {/* Email Form */}
               <motion.form
                 onSubmit={handleSubmit}
-                className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+                className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
@@ -201,7 +209,7 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   disabled={isSubmitting}
-                  className="flex-1 h-12 text-body bg-white/95 backdrop-blur-sm border-white/20 text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="flex-1 h-12 text-body-lg pl-5 pt-2.5 pb-3 bg-white/95 backdrop-blur-sm border-white/20 text-foreground placeholder:text-muted-foreground focus-visible:ring-2 focus-visible:ring-white/50"
                 />
                 <Button
                   type="submit"
@@ -214,16 +222,7 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
                 </Button>
               </motion.form>
 
-              {/* Success/Error Messages */}
-              {submitStatus === 'success' && (
-                <motion.p
-                  className="text-body text-green-300 font-medium"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {t.success}
-                </motion.p>
-              )}
+              {/* Error Messages */}
               {submitStatus === 'duplicate' && (
                 <motion.p
                   className="text-body text-yellow-300 font-medium"
