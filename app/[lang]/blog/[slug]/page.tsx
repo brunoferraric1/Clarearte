@@ -9,6 +9,7 @@ import { postBySlugQuery, allPostSlugsQuery, relatedPostsQuery } from '@/sanity/
 import { urlForImage } from '@/sanity/lib/image'
 import { format } from 'date-fns'
 import { es, pt, enUS } from 'date-fns/locale'
+import { generateBlogMetadata } from '@/lib/metadata'
 
 const locales = {
   pt: pt,
@@ -90,17 +91,23 @@ export async function generateMetadata({
     }
   }
 
-  return {
-    title: post.seo?.metaTitle || `${post.title} | ClareArte`,
-    description: post.seo?.metaDescription || post.excerpt,
-    openGraph: {
-      title: post.seo?.metaTitle || post.title,
-      description: post.seo?.metaDescription || post.excerpt,
-      images: post.mainImage
-        ? [urlForImage(post.mainImage).width(1200).height(630).url()]
-        : [],
-    },
-  }
+  const title = post.seo?.metaTitle || post.title
+  const description = post.seo?.metaDescription || post.excerpt
+
+  // Build absolute URL for OG image if available
+  const ogImage = post.mainImage
+    ? urlForImage(post.mainImage).width(1200).height(630).url()
+    : undefined
+
+  return generateBlogMetadata({
+    title,
+    description,
+    slug,
+    lang,
+    image: ogImage,
+    publishedTime: post.publishedAt,
+    authors: [post.author],
+  })
 }
 
 export default async function BlogPostPage({

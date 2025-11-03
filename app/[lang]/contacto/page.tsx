@@ -2,10 +2,37 @@ import { Navbar } from '@/components/navbar'
 import { Hero } from '@/components/hero'
 import { ContactFormFields } from './contact-form-fields'
 import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Contacto | ClareArte',
-  description: 'Ponte en contacto con nosotros para solicitar un presupuesto o cualquier consulta sobre nuestras invitaciones de boda ilustradas.',
+const pageMetadata = {
+  es: {
+    title: 'Contacto',
+    description: 'Ponte en contacto con nosotros para solicitar un presupuesto o cualquier consulta sobre nuestras invitaciones de boda ilustradas.',
+  },
+  pt: {
+    title: 'Contato',
+    description: 'Entre em contato conosco para solicitar um orçamento ou qualquer consulta sobre nossos convites de casamento ilustrados.',
+  },
+  en: {
+    title: 'Contact',
+    description: 'Get in touch with us to request a quote or any inquiry about our illustrated wedding invitations.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  const { lang } = await params
+  const meta = pageMetadata[lang as keyof typeof pageMetadata] || pageMetadata.es
+
+  return generatePageMetadata({
+    title: meta.title,
+    description: meta.description,
+    path: 'contacto',
+    lang,
+  })
 }
 
 export default async function ContactPage({

@@ -7,6 +7,39 @@ import { AboutSection } from '@/components/about-section'
 import { SmoothScroll } from '@/components/smooth-scroll'
 import { Highlighter } from '@/components/ui/highlighter'
 import { ContactSection } from '@/components/contact-section'
+import { generatePageMetadata } from '@/lib/metadata'
+import type { Metadata } from 'next'
+
+const pageMetadata = {
+  es: {
+    title: 'ClareArte - Invitaciones de Boda Personalizadas',
+    description: 'Invitaciones personalizadas, ilustración en vivo y diseño gráfico para bodas. Convites únicos y especiales para tu gran día.',
+  },
+  pt: {
+    title: 'ClareArte - Convites de Casamento Personalizados',
+    description: 'Convites personalizados, ilustração ao vivo e design gráfico para casamentos. Convites únicos e especiais para o seu grande dia.',
+  },
+  en: {
+    title: 'ClareArte - Personalized Wedding Invitations',
+    description: 'Personalized invitations, live illustration and graphic design for weddings. Unique and special invitations for your big day.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  const { lang } = await params
+  const meta = pageMetadata[lang as keyof typeof pageMetadata] || pageMetadata.es
+
+  return generatePageMetadata({
+    title: meta.title,
+    description: meta.description,
+    path: '',
+    lang,
+  })
+}
 
 export default async function HomePage({
   params,

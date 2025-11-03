@@ -10,6 +10,7 @@ import {
 import { urlForImage } from '@/sanity/lib/image'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import { generateCollectionMetadata } from '@/lib/metadata'
 
 interface CollectionSlug {
   slugs?: {
@@ -60,34 +61,26 @@ export async function generateMetadata({
     }
   }
 
-  const title = collection.seo?.metaTitle || `${collection.title} | ClareArte`
+  const title = collection.seo?.metaTitle || collection.title
   const description =
     collection.seo?.metaDescription ||
     collection.description ||
     `Discover the ${collection.title} collection by ClareArte`
 
+  // Build absolute URL for OG image
   const ogImage = collection.seo?.ogImage
     ? urlForImage(collection.seo.ogImage).width(1200).height(630).url()
     : collection.heroImage
       ? urlForImage(collection.heroImage).width(1200).height(630).url()
       : undefined
 
-  return {
+  return generateCollectionMetadata({
     title,
     description,
-    openGraph: {
-      title,
-      description,
-      images: ogImage ? [{ url: ogImage }] : [],
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title,
-      description,
-      images: ogImage ? [ogImage] : [],
-    },
-  }
+    slug,
+    lang,
+    image: ogImage,
+  })
 }
 
 export default async function CollectionDetailPage({

@@ -9,11 +9,37 @@ import { urlForImage } from '@/sanity/lib/image'
 import { format } from 'date-fns'
 import { es, pt, enUS } from 'date-fns/locale'
 import type { Image as SanityImage } from 'sanity'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Blog | ClareArte',
-  description:
-    'Inspiración, consejos y reflexiones sobre el arte de crear invitaciones personalizadas',
+const pageMetadata = {
+  es: {
+    title: 'Blog',
+    description: 'Inspiración, consejos y reflexiones sobre el arte de crear invitaciones personalizadas',
+  },
+  pt: {
+    title: 'Blog',
+    description: 'Inspiração, conselhos e reflexões sobre a arte de criar convites personalizados',
+  },
+  en: {
+    title: 'Blog',
+    description: 'Inspiration, advice and reflections on the art of creating personalized invitations',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  const { lang } = await params
+  const meta = pageMetadata[lang as keyof typeof pageMetadata] || pageMetadata.es
+
+  return generatePageMetadata({
+    title: meta.title,
+    description: meta.description,
+    path: 'blog',
+    lang,
+  })
 }
 
 interface BlogPost {

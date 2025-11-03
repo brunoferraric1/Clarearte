@@ -10,10 +10,37 @@ import type { Image } from 'sanity'
 import { client } from '@/sanity/lib/client'
 import { collectionsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Colecciones de Invitaciones | ClareArte',
-  description: 'Descubre nuestras colecciones de invitaciones de boda ilustradas en acuarela: Albor, Raíces y Luz & Línea. Diseños elegantes y accesibles para tu gran día.',
+const pageMetadata = {
+  es: {
+    title: 'Colecciones de Invitaciones',
+    description: 'Descubre nuestras colecciones de invitaciones de boda ilustradas en acuarela: Albor, Raíces y Luz & Línea. Diseños elegantes y accesibles para tu gran día.',
+  },
+  pt: {
+    title: 'Coleções de Convites',
+    description: 'Descubra nossas coleções de convites de casamento ilustrados em aquarela: Albor, Raíces e Luz & Línea. Designs elegantes e acessíveis para o seu grande dia.',
+  },
+  en: {
+    title: 'Invitation Collections',
+    description: 'Discover our collections of watercolor illustrated wedding invitations: Albor, Raíces and Luz & Línea. Elegant and accessible designs for your big day.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  const { lang } = await params
+  const meta = pageMetadata[lang as keyof typeof pageMetadata] || pageMetadata.es
+
+  return generatePageMetadata({
+    title: meta.title,
+    description: meta.description,
+    path: 'colecciones',
+    lang,
+  })
 }
 
 const benefits = [

@@ -1,11 +1,14 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Toaster } from 'sonner'
+import { generateMetadata as generateMetadataUtil } from '@/lib/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateMetadataUtil({
   title: 'ClareArte - Arte Personalizada para Casamentos',
   description: 'Invitaciones personalizadas, ilustración en vivo y diseño gráfico para bodas. Convites únicos y especiales para tu gran día.',
-}
+  path: '',
+  lang: 'es',
+})
 
 export default function RootLayout({
   children,

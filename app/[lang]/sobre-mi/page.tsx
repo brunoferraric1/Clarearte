@@ -2,10 +2,37 @@ import { Navbar } from '@/components/navbar'
 import { AboutSplashHero } from '@/components/about-splash-hero'
 import { AboutContentSection } from '@/components/about-content-section'
 import type { Metadata } from 'next'
+import { generatePageMetadata } from '@/lib/metadata'
 
-export const metadata: Metadata = {
-  title: 'Sobre Mí - Paola | ClareArte',
-  description: 'Conoce a Paola, la diseñadora e ilustradora detrás de ClareArte. Especializada en papelería de bodas con ilustraciones en acuarela.',
+const pageMetadata = {
+  es: {
+    title: 'Sobre Mí - Paola',
+    description: 'Conoce a Paola, la diseñadora e ilustradora detrás de ClareArte. Especializada en papelería de bodas con ilustraciones en acuarela.',
+  },
+  pt: {
+    title: 'Sobre Mim - Paola',
+    description: 'Conheça Paola, a designer e ilustradora por trás da ClareArte. Especializada em papelaria de casamentos com ilustrações em aquarela.',
+  },
+  en: {
+    title: 'About Me - Paola',
+    description: 'Meet Paola, the designer and illustrator behind ClareArte. Specialized in wedding stationery with watercolor illustrations.',
+  },
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
+  const { lang } = await params
+  const meta = pageMetadata[lang as keyof typeof pageMetadata] || pageMetadata.es
+
+  return generatePageMetadata({
+    title: meta.title,
+    description: meta.description,
+    path: 'sobre-mi',
+    lang,
+  })
 }
 
 export default async function AboutPage({
