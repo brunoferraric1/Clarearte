@@ -11,35 +11,16 @@ interface WaitingListClientProps {
 }
 
 const translations = {
-  es: {
-    title: 'Únete a nuestra lista de espera',
-    description: 'Sé el primero en conocer nuestras nuevas colecciones y ofertas exclusivas.',
-    placeholder: 'tu@email.com',
-    submit: 'Enviar',
-    submitting: 'Enviando...',
-    success: '¡Gracias! Te hemos añadido a nuestra lista de espera.',
-    error: 'Hubo un error. Por favor, inténtalo de nuevo.',
-    duplicate: 'Este email ya está en nuestra lista de espera.',
-  },
   pt: {
-    title: 'Junte-se à nossa lista de espera',
-    description: 'Seja o primeiro a conhecer nossas novas coleções e ofertas exclusivas.',
+    title: 'Transforme sua arte em um negócio lucrativo',
+    description: 'Essa mentoria é pra quem quer parar de "fazer por amor" e começar a viver do que ama. Inscreva-se na lista de interesse e seja avisada com prioridade assim que as vagas abrirem.',
+    note: '💌 As vagas serão limitadas. Entre pra lista e garanta sua chance.',
     placeholder: 'seu@email.com',
-    submit: 'Enviar',
+    submit: 'Entrar pra lista',
     submitting: 'Enviando...',
     success: 'Obrigada! Adicionamos você à nossa lista de espera.',
     error: 'Ocorreu um erro. Por favor, tente novamente.',
     duplicate: 'Este email já está em nossa lista de espera.',
-  },
-  en: {
-    title: 'Join our waiting list',
-    description: 'Be the first to know about our new collections and exclusive offers.',
-    placeholder: 'your@email.com',
-    submit: 'Submit',
-    submitting: 'Submitting...',
-    success: 'Thank you! We\'ve added you to our waiting list.',
-    error: 'An error occurred. Please try again.',
-    duplicate: 'This email is already on our waiting list.',
   },
 }
 
@@ -51,7 +32,7 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
-  const t = translations[lang as keyof typeof translations] || translations.es
+  const t = translations.pt
 
   // Parallax scroll effect
   const { scrollYProgress } = useScroll({
@@ -185,14 +166,15 @@ export function WaitingListClient({ lang }: WaitingListClientProps) {
               </motion.h1>
 
               {/* Description */}
-              <motion.p
-                className="text-body-lg md:text-title-2 text-white/90 leading-relaxed max-w-2xl mx-auto"
+              <motion.div
+                className="text-body-lg md:text-title-2 text-white/90 leading-relaxed max-w-2xl mx-auto space-y-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
               >
-                {t.description}
-              </motion.p>
+                <p>{t.description}</p>
+                <p>{t.note}</p>
+              </motion.div>
 
               {/* Email Form */}
               <motion.form
