@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { Hero } from '@/components/hero'
+import { HeroCompact } from '@/components/hero-compact'
 import { CollectionCard } from '@/components/collection-card'
 import { ContactFormSection } from '../contacto/contact-form-section'
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import { client } from '@/sanity/lib/client'
 import { collectionsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
 import { generatePageMetadata } from '@/lib/metadata'
+import { Highlighter } from '@/components/ui/highlighter'
 
 const pageMetadata = {
   es: {
@@ -173,18 +174,13 @@ export default async function CollectionsPage({
       <Navbar lang={lang} />
 
       {/* Hero Banner */}
-      <Hero
-        title="Colecciones de invitaciones de boda ilustradas en acuarela"
-        subtitle=""
-        description="Cada boda tiene un estilo, y cada pareja una manera única de contar su historia. Las colecciones reúnen ilustraciones en acuarela, tipografía cuidada y acabados artesanales, para que el primer detalle de vuestra celebración transmita emoción, belleza y autenticidad."
-        primaryCTA={{
-          text: 'Ver Colecciones',
-          href: '#colecciones',
-        }}
-        secondaryCTA={{
-          text: 'Contactar',
-          href: `/${lang}/contacto`,
-        }}
+      <HeroCompact
+        title={
+          <>
+            Colecciones <Highlighter action="highlight" color="#F6EBE2" padding={8} isView={true}>para elegir</Highlighter>
+          </>
+        }
+        subtitle="Colecciones de invitaciones de boda ilustradas en acuarela"
       />
 
       {/* Collections Info */}
