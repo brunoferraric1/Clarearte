@@ -183,24 +183,9 @@ export default async function CollectionsPage({
         subtitle="Colecciones de invitaciones de boda ilustradas en acuarela"
       />
 
-      {/* Collections Info */}
-      <section className="py-12 md:py-16 bg-muted/20">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <p className="text-body text-foreground leading-relaxed text-center">
-            Elegir una invitación de colección es la forma perfecta de combinar
-            belleza y practicidad. Estas invitaciones ofrecen diseños
-            cuidadosamente elaborados a un precio más accesible, lo que permite
-            dedicar recursos a detalles adicionales que personalizan cada pieza.
-            Opciones como forros de sobre, lacres delicados o acabados especiales
-            aportan un toque único, haciendo que incluso una invitación de
-            colección se sienta completamente personalizada y llena de encanto.
-          </p>
-        </div>
-      </section>
-
       {/* Collection Cards */}
-      <section id="colecciones" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl space-y-20 md:space-y-32">
+      <section id="colecciones" className="pb-16 md:pb-24 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl space-y-20 md:space-y-32">
           {collections.map((collection, index) => (
             <CollectionCard
               key={collection.title}

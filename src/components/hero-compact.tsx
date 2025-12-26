@@ -1,4 +1,7 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
+import { motion } from 'motion/react'
 
 interface HeroCompactProps {
   title: React.ReactNode
@@ -42,15 +45,33 @@ export function HeroCompact({
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
-          {/* Main Title - Visual hierarchy */}
-          <div className="text-display-1 font-display font-bold text-foreground mb-4">
+          {/* Main Title - Visual hierarchy with smooth intro animation */}
+          <motion.div 
+            className="text-display-1 font-display font-bold text-foreground mb-4"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.8, 
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.2
+            }}
+          >
             {title}
-          </div>
+          </motion.div>
           
           {/* Subtitle - SEO H1 but with smaller visual style */}
-          <h1 className="text-title-2 font-display text-foreground mb-6">
+          <motion.h1 
+            className="text-title-2 font-display text-foreground mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              duration: 0.6, 
+              ease: [0.16, 1, 0.3, 1],
+              delay: 0.4
+            }}
+          >
             {subtitle}
-          </h1>
+          </motion.h1>
           
           {/* Optional Description */}
           {/* {description && (
