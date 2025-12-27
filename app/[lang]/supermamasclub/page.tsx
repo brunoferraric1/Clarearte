@@ -48,12 +48,12 @@ const copy = {
     howTitle: 'Cómo funciona',
     howSteps: [
       {
-        title: 'Únete al club en Patreon',
-        body: 'Serás redirigida a Patreon, donde vive Super Mama\'s Mail Club. Allí podrás crear una cuenta rápida (o iniciar sesión), hacerte miembro mensual y disfrutar de la libertad de cancelar cuando quieras. (Sin compromiso a largo plazo. Solo un ritual mensual muy suave.)',
-      },
-      {
         title: 'Elige tu plan',
         body: 'Elige la suscripción que mejor te va: 📍 España (correo nacional) o 🌍 Internacional (cualquier otro lugar del mundo).',
+      },
+      {
+        title: 'Suscríbete con Stripe',
+        body: 'Completa el pago seguro con Stripe para activar tu suscripción mensual. Recibirás un email de confirmación y podrás gestionarla o cancelarla cuando quieras.',
       },
       {
         title: 'Espera tu correo',
@@ -140,12 +140,12 @@ const copy = {
     howTitle: 'Como funciona',
     howSteps: [
       {
-        title: 'Entra no clube no Patreon',
-        body: 'Serás redirecionada para o Patreon, onde vive o Super Mama\'s Mail Club. Lá podes criar uma conta rápida (ou entrar), tornares-te membro mensal e desfrutar da liberdade de cancelar quando quiseres. (Sem compromisso a longo prazo. Apenas um ritual mensal suave.)',
-      },
-      {
         title: 'Escolhe o teu plano',
         body: 'Escolhe a subscrição que melhor te serve: 📍 Espanha (correio nacional) ou 🌍 Internacional (qualquer outro lugar do mundo).',
+      },
+      {
+        title: 'Subscreve com Stripe',
+        body: 'Conclui o pagamento seguro com Stripe para ativar a tua subscrição mensal. Vais receber um email de confirmação e podes gerir ou cancelar quando quiseres.',
       },
       {
         title: 'Espera pelo teu correio',
@@ -232,12 +232,12 @@ const copy = {
     howTitle: 'How it works',
     howSteps: [
       {
-        title: 'Join the club on Patreon',
-        body: 'You\'ll be redirected to Patreon, where Super Mama\'s Mail Club lives. There, you\'ll create a quick account (or log in), become a monthly member, and enjoy the freedom to cancel anytime. (No long-term commitment. Just a gentle monthly ritual.)',
+        title: 'Pick your plan',
+        body: 'Pick the subscription that feels right for you: 📍 Spain-based (national mail) or 🌍 International (anywhere else in the world).',
       },
       {
-        title: 'Choose your plan',
-        body: 'Pick the subscription that feels right for you: 📍 Spain-based (national mail) or 🌍 International (anywhere else in the world).',
+        title: 'Subscribe',
+        body: 'Complete secure checkout with Stripe to start your monthly subscription. You’ll get an email confirmation, and you can manage or cancel anytime.',
       },
       {
         title: 'Wait for your mail',
