@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
@@ -25,6 +25,11 @@ const staggerContainer = {
 }
 
 export function SuperMamasClubContent({ copy: t }: ContentProps) {
+  const { scrollY } = useScroll()
+  const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
+  const logoY = useTransform(scrollY, [0, 500], [0, -50])
+  const textY = useTransform(scrollY, [0, 500], [0, -25])
+
   const colorClasses = {
     orange: 'text-[#E8976C] bg-[#E8976C]/10',
     yellow: 'text-[#D4A84B] bg-[#D4A84B]/10',
@@ -41,9 +46,12 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#4A4A4A] font-sans selection:bg-[#E8976C]/30">
       {/* HERO SECTION */}
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16">
+      <section className="relative min-h-[85vh] flex flex-col overflow-hidden">
         {/* Background Image with Warm Overlay */}
-        <div className="absolute inset-0 z-0">
+        <motion.div 
+          style={{ y: backgroundY }}
+          className="absolute inset-0 z-0"
+        >
           <Image
             src="/images/supermamas-hero-bg.jpg"
             alt="Cozy reading moment"
@@ -53,43 +61,55 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
           />
           {/* Soft dim overlay for readability */}
           <div className="absolute inset-0 bg-black/20" />
-        </div>
+        </motion.div>
 
-        <div className="relative z-10 container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="mb-4 flex justify-center"
-          >
-            <SuperMamasLogo className="mx-auto" size="lg" />
-          </motion.div>
+        <div className="relative z-10 flex-1 flex flex-col">
+          {/* Main container with reduced top padding on desktop to pull content up */}
+          <div className="container mx-auto flex-1 px-6 text-center flex flex-col items-center justify-start pt-4 pb-10 md:pt-4 lg:-mt-8 gap-0">
+            {/* Logo (top) */}
+            <motion.div
+              style={{ y: logoY }}
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.75, ease: 'easeOut' }}
+            >
+              <SuperMamasLogo size="lg" />
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="max-w-4xl mx-auto space-y-4"
-          >
-            <p className="font-handwriting text-5xl md:text-7xl text-white/90 drop-shadow-md rotate-[-2deg] pb-2">
-              {t.tagline}
-            </p>
-            
-            <h1 className="text-display-1 font-serif text-white drop-shadow-lg text-balance px-4 leading-[1.1]">
-              {t.headline}
-            </h1>
-
-            <div className="pt-8">
-              <Button
-                variant="default"
-                size="lg"
-                disabled
-                className="bg-[#EAB308] hover:bg-[#CA8A04] text-white rounded-full px-10 py-7 text-lg font-bold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-not-allowed opacity-90 underline decoration-transparent hover:decoration-white/30 underline-offset-4"
+            {/* Content Group: Headline + CTA */}
+            <motion.div 
+              style={{ y: textY }}
+              className="flex flex-col items-center w-full max-w-4xl -mt-4 md:-mt-6"
+            >
+              {/* Headline (center) */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.8, ease: 'easeOut' }}
+                className="mb-8 md:mb-10"
               >
-                {t.cta}
-              </Button>
-            </div>
-          </motion.div>
+                <h1 className="text-[clamp(2.25rem,5vw+1rem,4.5rem)] font-serif text-white drop-shadow-lg text-balance leading-[1.08] px-2">
+                  {t.headline}
+                </h1>
+              </motion.div>
+
+              {/* CTA (bottom) */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.7, ease: 'easeOut' }}
+              >
+                <Button
+                  variant="default"
+                  size="lg"
+                  disabled
+                  className="bg-[#EAB308] hover:bg-[#CA8A04] text-white rounded-full px-10 py-6 md:px-12 md:py-7 text-base md:text-lg font-bold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-not-allowed opacity-90"
+                >
+                  {t.cta}
+                </Button>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -102,6 +122,13 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
           >
              {/* Decorative element */}
             <div className="absolute -left-8 -top-8 w-24 h-24 bg-[#E8976C]/10 rounded-full blur-2xl" />
+
+            {/* Moved tagline here (handwriting title) */}
+            <div className="space-y-2">
+              <p className="text-center lg:text-left font-handwriting text-5xl md:text-6xl text-[#E8976C] leading-none">
+                {t.tagline}
+              </p>
+            </div>
             
             <div className="space-y-4 text-lg md:text-xl text-stone-500 font-light leading-relaxed">
               {t.intro.lines.map((line: string, idx: number) => (

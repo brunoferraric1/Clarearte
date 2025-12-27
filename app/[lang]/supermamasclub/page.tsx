@@ -227,7 +227,7 @@ const copy = {
       'That said, this club was created especially for mothers and mothers-to-be.',
       'Every month, you receive in your mailbox exclusive illustrated prints and a personal letter.',
       'The illustrations and letters are deeply inspired by pregnancy, postpartum, and the emotional landscape of motherhood.',
-      'If this season of life resonates with you, you\'re in the right place.',
+      "If this season of life resonates with you, you're in the right place.",
     ],
     howTitle: 'How it works',
     howSteps: [
