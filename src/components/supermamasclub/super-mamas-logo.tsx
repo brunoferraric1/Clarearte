@@ -21,33 +21,12 @@ export function SuperMamasLogo({ className, size = 'md' }: SuperMamasLogoProps) 
   return (
     <div className={className}>
       <div className={`relative ${sizeClasses[size]}`}>
-        {/* Video animation (preferred) - no background, transparent */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster="/images/supermamasclub-logo.webp"
-          className="w-full h-full object-contain motion-reduce:hidden"
-        >
-          <source src="/images/supermamasclub-logo.webm" type="video/webm" />
-          <source src="/images/supermamasclub-logo.mp4" type="video/mp4" />
-        </video>
-
-        {/* Static fallback for reduced motion */}
-        <picture className="absolute inset-0 w-full h-full hidden motion-reduce:block">
-          <source srcSet="/images/supermamasclub-logo.webp" type="image/webp" />
-          <img
-            src="/images/supermamasclub-logo.gif"
-            alt="Super Mamas Mail Club"
-            width={420}
-            height={420}
-            className="w-full h-full object-contain"
-            loading="eager"
-            decoding="async"
-          />
-        </picture>
+        {/* GIF animation as requested */}
+        <img
+          src="/images/supermamasclub-logo.gif"
+          alt="Super Mamas Mail Club"
+          className="w-full h-full object-contain"
+        />
       </div>
     </div>
   )

@@ -41,18 +41,18 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#4A4A4A] font-sans selection:bg-[#E8976C]/30">
       {/* HERO SECTION */}
-      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden py-16">
         {/* Background Image with Warm Overlay */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80"
+            src="/images/supermamas-hero-bg.jpg"
             alt="Cozy reading moment"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-stone-900/30 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-transparent opacity-90" />
+          {/* Soft dim overlay for readability */}
+          <div className="absolute inset-0 bg-black/20" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -60,7 +60,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="mb-8"
+            className="mb-4 flex justify-center"
           >
             <SuperMamasLogo className="mx-auto" size="lg" />
           </motion.div>
@@ -69,24 +69,24 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="max-w-2xl mx-auto space-y-6"
+            className="max-w-4xl mx-auto space-y-4"
           >
-            <p className="font-billion-miracles text-3xl md:text-4xl text-white/90 drop-shadow-md rotate-[-2deg]">
+            <p className="font-handwriting text-5xl md:text-7xl text-white/90 drop-shadow-md rotate-[-2deg] pb-2">
               {t.tagline}
             </p>
             
-            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] drop-shadow-lg">
+            <h1 className="text-display-1 font-serif text-white drop-shadow-lg text-balance px-4 leading-[1.1]">
               {t.headline}
             </h1>
 
-            <div className="pt-4">
+            <div className="pt-8">
               <Button
                 variant="default"
                 size="lg"
                 disabled
-                className="bg-[#D4A84B] hover:bg-[#C39840] text-white rounded-full px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-not-allowed opacity-90"
+                className="bg-[#EAB308] hover:bg-[#CA8A04] text-white rounded-full px-10 py-7 text-lg font-bold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-not-allowed opacity-90 underline decoration-transparent hover:decoration-white/30 underline-offset-4"
               >
-                {t.cta} <span className="ml-2 text-sm opacity-80 font-normal">{t.ctaNote}</span>
+                {t.cta}
               </Button>
             </div>
           </motion.div>
