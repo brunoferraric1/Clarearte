@@ -1,0 +1,437 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { ArrowRight, Heart, Mail, Star, Sparkles, Send, Globe } from 'lucide-react'
+import { cn } from '@/lib/utils'
+
+type ContentProps = {
+  copy: any
+}
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.6, ease: 'easeOut' }
+}
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.1 } },
+  viewport: { once: true }
+}
+
+export function SuperMamasClubContent({ copy: t }: ContentProps) {
+  const colorClasses = {
+    orange: 'text-[#E8976C] bg-[#E8976C]/10',
+    yellow: 'text-[#D4A84B] bg-[#D4A84B]/10',
+    sage: 'text-[#7BB5A3] bg-[#7BB5A3]/10',
+    purple: 'text-[#B896C6] bg-[#B896C6]/10',
+  }
+
+  const iconMap = {
+    yellow: Heart,
+    orange: Star,
+    sage: Sparkles,
+  }
+
+  return (
+    <div className="min-h-screen bg-[#FAF8F5] text-[#4A4A4A] font-sans selection:bg-[#E8976C]/30">
+      {/* HERO SECTION */}
+      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image with Warm Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=80"
+            alt="Cozy reading moment"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-stone-900/30 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#FAF8F5] via-transparent to-transparent opacity-90" />
+        </div>
+
+        <div className="relative z-10 container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="mb-8"
+          >
+            <SuperMamasLogo className="mx-auto" size="lg" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="max-w-2xl mx-auto space-y-6"
+          >
+            <p className="font-billion-miracles text-3xl md:text-4xl text-white/90 drop-shadow-md rotate-[-2deg]">
+              {t.tagline}
+            </p>
+            
+            <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white leading-[1.1] drop-shadow-lg">
+              {t.headline}
+            </h1>
+
+            <div className="pt-4">
+              <Button
+                variant="default"
+                size="lg"
+                disabled
+                className="bg-[#D4A84B] hover:bg-[#C39840] text-white rounded-full px-8 py-6 text-lg shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-not-allowed opacity-90"
+              >
+                {t.cta} <span className="ml-2 text-sm opacity-80 font-normal">{t.ctaNote}</span>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* INTRO SECTION - Warm & Personal */}
+      <section className="py-24 md:py-32 container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div 
+            {...fadeInUp}
+            className="space-y-8 relative"
+          >
+             {/* Decorative element */}
+            <div className="absolute -left-8 -top-8 w-24 h-24 bg-[#E8976C]/10 rounded-full blur-2xl" />
+            
+            <div className="space-y-4 text-lg md:text-xl text-stone-500 font-light leading-relaxed">
+              {t.intro.lines.map((line: string, idx: number) => (
+                <p key={idx}>{line}</p>
+              ))}
+            </div>
+
+            <div className="pl-6 border-l-4 border-[#E8976C]">
+              <p className="text-2xl md:text-3xl font-serif text-stone-800 leading-tight">
+                {t.intro.highlight}
+              </p>
+            </div>
+
+            <div className="pt-4 space-y-2 font-medium text-stone-600">
+              {t.intro.closing.map((line: string, idx: number) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <Heart className="w-4 h-4 text-[#E8976C]" />
+                  <p>{line}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 ease-out">
+              <Image
+                src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80"
+                alt="Hand holding illustrated postcard"
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* Organic shape backdrop */}
+            <div className="absolute -inset-4 bg-[#D4A84B]/20 -z-10 rounded-[2rem] rotate-[-3deg]" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WHAT IS IT - Clean Cards */}
+      <section className="py-24 bg-white/50 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <motion.h2 
+              {...fadeInUp}
+              className="font-serif text-4xl md:text-5xl text-stone-800 mb-6"
+            >
+              {t.whatIsTitle}
+            </motion.h2>
+          </div>
+
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid md:grid-cols-2 gap-8 md:gap-12"
+          >
+            <motion.div variants={fadeInUp} className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+               <p className="text-lg text-stone-600 leading-relaxed mb-6">
+                {t.whatIsBody[0]} {t.whatIsBody[1]}
+               </p>
+               <p className="text-lg text-stone-600 leading-relaxed">
+                 {t.whatIsBody[2]}
+               </p>
+            </motion.div>
+            
+            <motion.div variants={fadeInUp} className="bg-white p-8 md:p-10 rounded-3xl shadow-sm border border-stone-100 hover:shadow-md transition-shadow">
+               <p className="text-lg text-stone-600 leading-relaxed mb-6">
+                 {t.whatIsBody[3]} {t.whatIsBody[4]}
+               </p>
+               <div className="flex items-center gap-3 text-[#E8976C] font-serif italic text-xl">
+                 <Sparkles className="w-5 h-5" />
+                 {t.whatIsBody[5]}
+               </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS - Horizontal Steps */}
+      <section className="py-24 md:py-32 bg-[#E8976C]/10">
+        <div className="container mx-auto px-6">
+          <motion.h2 
+            {...fadeInUp}
+            className="text-center font-serif text-4xl md:text-5xl text-stone-800 mb-16"
+          >
+            {t.howTitle}
+          </motion.h2>
+
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            className="grid md:grid-cols-3 gap-10"
+          >
+            {t.howSteps.map((step: any, idx: number) => (
+              <motion.div 
+                key={idx} 
+                variants={fadeInUp}
+                className="relative bg-white p-8 rounded-3xl shadow-sm hover:-translate-y-2 transition-transform duration-300"
+              >
+                <div className="absolute -top-6 left-8 w-12 h-12 bg-[#E8976C] text-white rounded-full flex items-center justify-center font-serif text-2xl shadow-lg">
+                  {idx + 1}
+                </div>
+                <h3 className="font-serif text-2xl text-stone-800 mt-6 mb-4">{step.title}</h3>
+                <p className="text-stone-600 leading-relaxed">{step.body}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* WHAT YOU RECEIVE - Visual List */}
+      <section className="py-24 container mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <motion.div 
+            {...fadeInUp}
+            className="space-y-6"
+          >
+             <h2 className="font-serif text-4xl md:text-5xl text-stone-800 leading-tight">
+               {t.receiveTitle}
+             </h2>
+             <p className="text-xl text-stone-500 font-light">
+               Each envelope is a curated experience.
+             </p>
+          </motion.div>
+
+          <div className="space-y-8">
+            {t.receiveItems.map((item: any, idx: number) => {
+              const colorKey = item.color as keyof typeof iconMap;
+              const Icon = iconMap[colorKey] || Star;
+              
+              return (
+                <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex gap-6 group"
+                >
+                  <div className={cn(
+                    "w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center transition-colors",
+                    colorClasses[item.color as keyof typeof colorClasses]
+                  )}>
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-2xl text-stone-800 mb-2 group-hover:text-[#E8976C] transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-stone-600 leading-relaxed text-lg">
+                      {item.body}
+                    </p>
+                  </div>
+                </motion.div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* VALUES - Minimalist */}
+      <section className="py-24 bg-stone-900 text-[#FAF8F5]">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16">
+            <motion.div {...fadeInUp}>
+               <h2 className="font-serif text-4xl md:text-6xl leading-[1.1]">
+                 <span className="text-[#D4A84B]">Nothing generic.</span><br/>
+                 <span className="text-[#E8976C]">Nothing automated.</span><br/>
+                 <span className="text-[#7BB5A3]">Nothing copied.</span>
+               </h2>
+            </motion.div>
+
+            <motion.div 
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+              className="grid gap-8"
+            >
+              {t.values.map((val: any, idx: number) => (
+                <motion.div key={idx} variants={fadeInUp} className="border-l border-white/20 pl-6">
+                   <h3 className="text-xl font-bold uppercase tracking-wider mb-2 text-white/80">{val.title}</h3>
+                   <p className="text-white/60 text-lg">{val.body}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* WHY - Emotional Connection */}
+      <section className="py-24 bg-[#FAF8F5]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center space-y-10">
+            <motion.h2 
+              {...fadeInUp}
+              className="font-serif text-4xl md:text-5xl text-stone-800"
+            >
+              {t.whyTitle}
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="text-xl md:text-2xl text-stone-600 leading-relaxed font-light"
+            >
+              {t.whyBody}
+            </motion.p>
+            <motion.p 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="text-2xl font-serif text-[#E8976C] italic"
+            >
+              {t.whyClosing}
+            </motion.p>
+          </div>
+        </div>
+      </section>
+
+      {/* QUOTE - Sticky note style */}
+      <section className="py-20 bg-[#D4A84B]">
+        <div className="container mx-auto px-6 text-center">
+          <motion.p 
+            initial={{ scale: 0.9, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            className="font-billion-miracles text-4xl md:text-5xl lg:text-6xl text-white leading-tight"
+          >
+            &quot;{t.quote}&quot;
+          </motion.p>
+        </div>
+      </section>
+
+      {/* PRICING - Postal Style */}
+      <section className="py-24 container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl text-stone-800 mb-4">{t.plansTitle}</h2>
+          <p className="text-stone-500">{t.plansNote}</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Plan 1 */}
+          <motion.div 
+            whileHover={{ y: -5 }}
+            className="relative bg-white p-8 rounded-xl shadow-xl border-2 border-stone-100 flex flex-col items-center text-center overflow-hidden"
+          >
+            {/* Stamp decoration */}
+            <div className="absolute top-4 right-4 opacity-20 rotate-12">
+               <Globe className="w-16 h-16" />
+            </div>
+
+            <h3 className="font-serif text-2xl text-stone-800 mb-2">{t.planSpain.title}</h3>
+            <p className="font-mono text-3xl text-[#E8976C] mb-6">{t.planSpain.price}</p>
+            
+            <ul className="space-y-4 mb-8 text-stone-600">
+              {t.planSpain.bullets.map((b: string) => (
+                <li key={b} className="flex items-center gap-3 justify-center">
+                  <span className="w-1.5 h-1.5 bg-[#E8976C] rounded-full" />
+                  {b}
+                </li>
+              ))}
+            </ul>
+            <Button variant="outline" className="w-full rounded-full border-stone-200 hover:bg-[#FAF8F5] hover:text-[#E8976C]">
+              Seleccionar
+            </Button>
+          </motion.div>
+
+          {/* Plan 2 */}
+          <motion.div 
+             whileHover={{ y: -5 }}
+             className="relative bg-white p-8 rounded-xl shadow-xl border-2 border-[#D4A84B]/20 flex flex-col items-center text-center overflow-hidden"
+           >
+             <div className="absolute top-4 right-4 opacity-20 rotate-12">
+                <Send className="w-16 h-16" />
+             </div>
+ 
+             <h3 className="font-serif text-2xl text-stone-800 mb-2">{t.planIntl.title}</h3>
+             <p className="font-mono text-3xl text-[#D4A84B] mb-6">{t.planIntl.price}</p>
+             
+             <ul className="space-y-4 mb-8 text-stone-600">
+               {t.planIntl.bullets.map((b: string) => (
+                 <li key={b} className="flex items-center gap-3 justify-center">
+                   <span className="w-1.5 h-1.5 bg-[#D4A84B] rounded-full" />
+                   {b}
+                 </li>
+               ))}
+             </ul>
+             <Button variant="outline" className="w-full rounded-full border-stone-200 hover:bg-[#FAF8F5] hover:text-[#D4A84B]">
+               Seleccionar
+             </Button>
+           </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-6 max-w-3xl">
+          <h2 className="font-serif text-3xl md:text-4xl text-stone-800 mb-12 text-center decoration-[#E8976C]/30 underline underline-offset-8">
+            {t.faqTitle}
+          </h2>
+          <div className="space-y-6">
+            {t.faqs.map((item: any, idx: number) => (
+              <details key={idx} className="group p-6 bg-[#FAF8F5] rounded-xl cursor-pointer">
+                <summary className="flex justify-between items-center font-medium text-lg text-stone-800 list-none">
+                  {item.q}
+                  <span className="transition-transform group-open:rotate-180 text-[#E8976C]">
+                    <ArrowRight className="w-5 h-5 rotate-90" />
+                  </span>
+                </summary>
+                <p className="mt-4 text-stone-600 leading-relaxed">
+                  {item.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER SIGNOFF */}
+      <section className="py-32 bg-[#FAF8F5] text-center">
+        <h2 className="font-serif text-3xl text-stone-400 mb-2">{t.signoffTitle}</h2>
+        <p className="font-billion-miracles text-5xl text-[#E8976C]">{t.signoffBy}</p>
+      </section>
+    </div>
+  )
+}
+
