@@ -282,8 +282,8 @@ const copy = {
     },
     whyTitle: 'Why does this exist?',
     whyBody: 'Because motherhood can be beautiful… but also lonely. Especially if you feel overwhelmed by daily life, miss moments just for yourself, love art but rarely buy something only for you, or crave connection beyond screens.',
-    whyClosing: 'The Super Mamas Mail Club was created to be a monthly pause. A physical reminder that you are not alone.',
-    quote: 'This club is my way of reaching through the noise and saying: I see you. I feel you. You matter.',
+    whyClosing: '',
+    quote: 'The Super Mamas Mail Club was created to be a monthly pause. A physical reminder that you are not alone.',
     faqTitle: 'Frequently asked questions',
     faqs: [
       { q: 'When does it ship?', a: 'At the beginning of each month.' },

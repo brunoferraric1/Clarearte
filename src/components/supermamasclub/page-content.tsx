@@ -343,14 +343,16 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             >
               {t.whyBody}
             </motion.p>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="text-2xl font-serif text-[#E8976C] italic"
-            >
-              {t.whyClosing}
-            </motion.p>
+            {t.whyClosing ? (
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-2xl font-serif text-[#E8976C] italic"
+              >
+                {t.whyClosing}
+              </motion.p>
+            ) : null}
           </div>
         </div>
       </section>
@@ -361,7 +363,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
           <motion.p 
             initial={{ scale: 0.9, opacity: 0 }}
             whileInView={{ scale: 1, opacity: 1 }}
-            className="font-billion-miracles text-4xl md:text-5xl lg:text-6xl text-white leading-tight"
+            className="font-serif italic text-4xl md:text-5xl lg:text-6xl text-white leading-tight"
           >
             &quot;{t.quote}&quot;
           </motion.p>
@@ -461,4 +463,3 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
     </div>
   )
 }
-
