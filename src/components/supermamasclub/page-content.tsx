@@ -1,21 +1,79 @@
 'use client'
 
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { animate, motion, useScroll, useTransform } from 'framer-motion'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
-import { ArrowRight, Heart, Mail, Star, Sparkles, Send, Globe } from 'lucide-react'
+import { ArrowRight, Heart, Star, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type ContentProps = {
-  copy: any
+type HowStep = {
+  title: string
+  body: string
 }
+
+type ReceiveItem = {
+  title: string
+  body: string
+  color: string
+}
+
+type ValueItem = {
+  title: string
+  body: string
+}
+
+type Plan = {
+  title: string
+  price: string
+  bullets: string[]
+}
+
+type FaqItem = {
+  q: string
+  a: string
+}
+
+type SuperMamasCopy = {
+  headline: string
+  cta: string
+  tagline: string
+  intro: { lines: string[]; highlight: string; closing: string[] }
+  whatIsTitle: string
+  whatIsBody: string[]
+  howTitle: string
+  howSteps: HowStep[]
+  receiveTitle: string
+  receiveItems: ReceiveItem[]
+  valuesTitle: string
+  values: ValueItem[]
+  plansTitle: string
+  plansNote: string
+  planCta: string
+  pricingNote: string
+  planSpain: Plan
+  planIntl: Plan
+  whyTitle: string
+  whyBody: string
+  whyClosing?: string
+  quote: string
+  faqTitle: string
+  faqs: FaqItem[]
+  signoffTitle: string
+  signoffBy: string
+}
+
+type ContentProps = {
+  copy: SuperMamasCopy
+}
+
+const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.6, ease: 'easeOut' }
+  transition: { duration: 0.6, ease: easeOut }
 }
 
 const staggerContainer = {
@@ -29,6 +87,27 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
   const logoY = useTransform(scrollY, [0, 500], [0, -50])
   const textY = useTransform(scrollY, [0, 500], [0, -25])
+
+  const scrollToPricing = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+
+    const pricingSection = document.getElementById('pricing')
+    if (!pricingSection) return
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      pricingSection.scrollIntoView()
+      return
+    }
+
+    const startY = window.scrollY
+    const targetY = pricingSection.getBoundingClientRect().top + startY
+
+    animate(startY, targetY, {
+      duration: 0.9,
+      ease: easeOut,
+      onUpdate: (latest) => window.scrollTo(0, latest),
+    })
+  }
 
   const colorClasses = {
     orange: 'text-[#E8976C] bg-[#E8976C]/10',
@@ -67,14 +146,14 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
           {/* Main container with reduced top padding on desktop to pull content up */}
           <div className="container mx-auto flex-1 px-6 text-center flex flex-col items-center justify-start pt-4 pb-10 md:pt-4 lg:-mt-8 gap-0">
             {/* Logo (top) */}
-            <motion.div
-              style={{ y: logoY }}
-              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.75, ease: 'easeOut' }}
-            >
-              <SuperMamasLogo size="lg" />
-            </motion.div>
+	            <motion.div
+	              style={{ y: logoY }}
+	              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+	              animate={{ opacity: 1, y: 0, scale: 1 }}
+	              transition={{ duration: 0.75, ease: easeOut }}
+	            >
+	              <SuperMamasLogo size="lg" />
+	            </motion.div>
 
             {/* Content Group: Headline + CTA */}
             <motion.div 
@@ -82,30 +161,32 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
               className="flex flex-col items-center w-full max-w-4xl -mt-4 md:-mt-6"
             >
               {/* Headline (center) */}
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15, duration: 0.8, ease: 'easeOut' }}
-                className="mb-8 md:mb-10"
-              >
+	              <motion.div
+	                initial={{ opacity: 0, y: 14 }}
+	                animate={{ opacity: 1, y: 0 }}
+	                transition={{ delay: 0.15, duration: 0.8, ease: easeOut }}
+	                className="mb-8 md:mb-10"
+	              >
                 <h1 className="text-[clamp(2.25rem,5vw+1rem,4.5rem)] font-serif text-white drop-shadow-lg text-balance leading-[1.08] px-2">
                   {t.headline}
                 </h1>
               </motion.div>
 
               {/* CTA (bottom) */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25, duration: 0.7, ease: 'easeOut' }}
-              >
+	              <motion.div
+	                initial={{ opacity: 0, y: 10 }}
+	                animate={{ opacity: 1, y: 0 }}
+	                transition={{ delay: 0.25, duration: 0.7, ease: easeOut }}
+	              >
                 <Button
-                  variant="default"
+                  variant="primary"
                   size="lg"
-                  disabled
-                  className="bg-[#EAB308] hover:bg-[#CA8A04] text-white rounded-full px-10 py-6 md:px-12 md:py-7 text-base md:text-lg font-bold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 cursor-not-allowed opacity-90"
+                  asChild
+                  className="bg-[#EAB308] hover:bg-[#CA8A04] text-white rounded-full px-10 py-6 md:px-12 md:py-7 text-base md:text-lg font-bold tracking-wide uppercase shadow-lg hover:shadow-xl transition-all hover:-translate-y-1"
                 >
-                  {t.cta}
+                  <a href="#pricing" onClick={scrollToPricing}>
+                    {t.cta}
+                  </a>
                 </Button>
               </motion.div>
             </motion.div>
@@ -229,7 +310,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             whileInView="whileInView"
             className="grid md:grid-cols-3 gap-10"
           >
-            {t.howSteps.map((step: any, idx: number) => (
+            {t.howSteps.map((step, idx: number) => (
               <motion.div 
                 key={idx} 
                 variants={fadeInUp}
@@ -262,8 +343,8 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
           </motion.div>
 
           <div className="space-y-8">
-            {t.receiveItems.map((item: any, idx: number) => {
-              const colorKey = item.color as keyof typeof iconMap;
+            {t.receiveItems.map((item, idx: number) => {
+              const colorKey = item.color as keyof typeof iconMap
               const Icon = iconMap[colorKey] || Star;
               
               return (
@@ -314,7 +395,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
               whileInView="whileInView"
               className="grid gap-8"
             >
-              {t.values.map((val: any, idx: number) => (
+              {t.values.map((val, idx: number) => (
                 <motion.div key={idx} variants={fadeInUp} className="border-l border-white/20 pl-6">
                    <h3 className="text-xl font-bold uppercase tracking-wider mb-2 text-white/80">{val.title}</h3>
                    <p className="text-white/60 text-lg">{val.body}</p>
@@ -360,75 +441,91 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       {/* QUOTE - Sticky note style */}
       <section className="py-20 bg-[#D4A84B]">
         <div className="container mx-auto px-6 text-center">
-          <motion.p 
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            className="font-serif italic text-4xl md:text-5xl lg:text-6xl text-white leading-tight"
-          >
+	          <motion.p 
+	            initial={{ opacity: 0, y: 12 }}
+	            whileInView={{ opacity: 1, y: 0 }}
+	            viewport={{ once: true, amount: 0.65 }}
+	            transition={{ duration: 1.0, ease: easeOut }}
+	            className="font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+	          >
             &quot;{t.quote}&quot;
           </motion.p>
         </div>
       </section>
 
       {/* PRICING - Postal Style */}
-      <section className="py-24 container mx-auto px-6">
+      <section id="pricing" className="py-24 container mx-auto px-6 scroll-mt-20">
         <div className="text-center mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-stone-800 mb-4">{t.plansTitle}</h2>
-          <p className="text-stone-500">{t.plansNote}</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* Plan 1 */}
           <motion.div 
-            whileHover={{ y: -5 }}
-            className="relative bg-white p-8 rounded-xl shadow-xl border-2 border-stone-100 flex flex-col items-center text-center overflow-hidden"
+             whileHover={{ y: -5 }}
+             className="relative bg-white p-8 rounded-xl shadow-xl border-2 border-stone-100 flex flex-col items-center text-center overflow-hidden"
           >
-            {/* Stamp decoration */}
-            <div className="absolute top-4 right-4 opacity-20 rotate-12">
-               <Globe className="w-16 h-16" />
-            </div>
-
             <h3 className="font-serif text-2xl text-stone-800 mb-2">{t.planSpain.title}</h3>
             <p className="font-mono text-3xl text-[#E8976C] mb-6">{t.planSpain.price}</p>
             
-            <ul className="space-y-4 mb-8 text-stone-600">
+            <ul className="w-full max-w-sm space-y-4 mb-8 text-stone-600">
               {t.planSpain.bullets.map((b: string) => (
-                <li key={b} className="flex items-center gap-3 justify-center">
-                  <span className="w-1.5 h-1.5 bg-[#E8976C] rounded-full" />
-                  {b}
+                <li key={b} className="flex items-start gap-3 text-left">
+                  <span className="mt-2 w-1.5 h-1.5 bg-[#E8976C] rounded-full shrink-0" />
+                  <span className="leading-relaxed">{b}</span>
                 </li>
               ))}
             </ul>
-            <Button variant="outline" className="w-full rounded-full border-stone-200 hover:bg-[#FAF8F5] hover:text-[#E8976C]">
-              Seleccionar
+            <Button
+              asChild
+              variant="outline"
+              className="w-full rounded-full border-stone-200 hover:bg-[#EAB308] hover:border-[#EAB308] hover:text-white"
+            >
+              <a
+                href="https://buy.stripe.com/cNidR8fqY5jl2oa1oHe3e00"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t.planCta}
+              </a>
             </Button>
           </motion.div>
 
           {/* Plan 2 */}
           <motion.div 
              whileHover={{ y: -5 }}
-             className="relative bg-white p-8 rounded-xl shadow-xl border-2 border-[#D4A84B]/20 flex flex-col items-center text-center overflow-hidden"
+             className="relative bg-white p-8 rounded-xl shadow-xl border-2 border-stone-100 flex flex-col items-center text-center overflow-hidden"
            >
-             <div className="absolute top-4 right-4 opacity-20 rotate-12">
-                <Send className="w-16 h-16" />
-             </div>
- 
              <h3 className="font-serif text-2xl text-stone-800 mb-2">{t.planIntl.title}</h3>
              <p className="font-mono text-3xl text-[#D4A84B] mb-6">{t.planIntl.price}</p>
              
-             <ul className="space-y-4 mb-8 text-stone-600">
+             <ul className="w-full max-w-sm space-y-4 mb-8 text-stone-600">
                {t.planIntl.bullets.map((b: string) => (
-                 <li key={b} className="flex items-center gap-3 justify-center">
-                   <span className="w-1.5 h-1.5 bg-[#D4A84B] rounded-full" />
-                   {b}
+                 <li key={b} className="flex items-start gap-3 text-left">
+                   <span className="mt-2 w-1.5 h-1.5 bg-[#D4A84B] rounded-full shrink-0" />
+                   <span className="leading-relaxed">{b}</span>
                  </li>
                ))}
              </ul>
-             <Button variant="outline" className="w-full rounded-full border-stone-200 hover:bg-[#FAF8F5] hover:text-[#D4A84B]">
-               Seleccionar
+             <Button
+               asChild
+               variant="outline"
+               className="w-full rounded-full border-stone-200 hover:bg-[#EAB308] hover:border-[#EAB308] hover:text-white"
+             >
+               <a
+                 href="https://buy.stripe.com/7sYfZg5QoeTV5Am5EXe3e01"
+                 target="_blank"
+                 rel="noopener noreferrer"
+               >
+                 {t.planCta}
+               </a>
              </Button>
            </motion.div>
         </div>
+
+        <p className="mt-10 text-center text-stone-500">
+          {t.pricingNote}
+        </p>
       </section>
 
       {/* FAQ */}
@@ -438,7 +535,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             {t.faqTitle}
           </h2>
           <div className="space-y-6">
-            {t.faqs.map((item: any, idx: number) => (
+            {t.faqs.map((item, idx: number) => (
               <details key={idx} className="group p-6 bg-[#FAF8F5] rounded-xl cursor-pointer">
                 <summary className="flex justify-between items-center font-medium text-lg text-stone-800 list-none">
                   {item.q}
