@@ -289,38 +289,21 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             </div>
           </div>
 
-          {/* Bottom Row: List & Image */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Bottom Row: Image centered, then 3 columns below */}
+          <div className="flex flex-col gap-12 md:gap-16 items-center">
             
+            {/* Centered Image - Bigger */}
             <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 }}
-              className="pt-4 space-y-6 font-light text-stone-600"
-            >
-              {t.intro.closing.map((line: string, idx: number) => {
-                const Icon = introIcons[idx % introIcons.length] || Heart
-                return (
-                  <div key={idx} className="flex items-center gap-4">
-                    <Icon className="w-6 h-6 text-[#EAB308]" />
-                    <p className="text-xl md:text-2xl">{line}</p>
-                  </div>
-                )
-              })}
-            </motion.div>
-
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative isolate w-full max-w-xl mx-auto lg:mx-0 lg:ml-auto"
+              className="relative isolate w-full max-w-5xl mx-auto"
             >
               {/* Organic shape backdrop */}
-              <div className="pointer-events-none absolute -inset-2 z-0 rounded-[2rem] bg-[#D4A84B]/20 rotate-[-2deg]" />
+              <div className="pointer-events-none absolute -inset-3 z-0 rounded-[2rem] bg-[#D4A84B]/20 rotate-[-1deg]" />
 
-              <div className="relative z-10 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-700 ease-out">
+              <div className="relative z-10 w-full aspect-[3/2] rounded-2xl overflow-hidden shadow-2xl">
                 <Image
                   src="/images/super-mamas-mail-club-paola-ferrari.webp"
                   alt="Hand holding illustrated postcard"
@@ -328,6 +311,25 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                   className="object-cover"
                 />
               </div>
+            </motion.div>
+
+            {/* 3 Columns - Side by side on desktop, stacked on mobile */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-4xl mx-auto"
+            >
+              {t.intro.closing.map((line: string, idx: number) => {
+                const Icon = introIcons[idx % introIcons.length] || Heart
+                return (
+                  <div key={idx} className="flex flex-col items-center text-center gap-3">
+                    <Icon className="w-8 h-8 text-[#EAB308]" />
+                    <p className="text-lg md:text-xl font-light text-stone-600">{line}</p>
+                  </div>
+                )
+              })}
             </motion.div>
           </div>
 
