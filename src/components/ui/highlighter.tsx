@@ -44,7 +44,7 @@ export function Highlighter({
   color = '#ffd1dc',
   strokeWidth = 1.5,
   animationDuration = 800,
-  iterations = 2,
+  iterations = 1, // Changed default to 1 for single pass
   padding = 2,
   multiline = true,
   isView = false,
@@ -53,17 +53,21 @@ export function Highlighter({
   const elementRef = useRef<HTMLSpanElement>(null)
   const textWrapperRef = useRef<HTMLSpanElement>(null)
   const annotationRef = useRef<RoughAnnotation | null>(null)
+  const highlightDivRef = useRef<HTMLDivElement | null>(null)
 
   const isInView = useInView(elementRef, {
     once: true,
     margin: '-10%',
   })
 
-  // If we have a progress prop, we don't auto-trigger based on view
+  // If we have a progress prop, we use CSS-based highlight instead of RoughNotation
   const isControlled = typeof progress !== 'undefined'
   const shouldShow = isControlled ? false : (!isView || isInView)
 
+  // For NON-controlled mode: use RoughNotation as before
   useEffect(() => {
+    if (isControlled) return // Skip RoughNotation for controlled mode
+
     const element = elementRef.current
     const textElement = textWrapperRef.current
     if (!element || !textElement) return
@@ -85,7 +89,7 @@ export function Highlighter({
       strokeWidth,
       animationDuration,
       iterations,
-      padding: padding + 2, // Slight increase in padding for better coverage
+      padding: padding + 2,
       multiline,
     }
 
@@ -93,18 +97,12 @@ export function Highlighter({
 
     annotationRef.current = annotation
 
-    // If controlled, we check if we need to initialize
-    if (isControlled && annotationRef.current) {
-       // Force show immediately to generate SVG, but hidden by initial clip-path logic (handled in effect below)
-       // We need to make sure animationDuration is small or 0 so it draws instantly, then we clip it.
-       // The config already has it (passed as prop, user should pass 0).
-       annotationRef.current.show()
-    } else if (shouldShow) {
+    if (shouldShow) {
       annotationRef.current?.show()
     }
 
     const resizeObserver = new ResizeObserver(() => {
-      if (!isControlled && shouldShow) {
+      if (shouldShow) {
         annotation.hide()
         annotation.show()
       }
@@ -127,47 +125,71 @@ export function Highlighter({
     iterations,
     padding,
     multiline,
-    isControlled
-    // Removed shouldShow from dep array to avoid re-creating annotation constantly
+    isControlled,
+    shouldShow
   ])
 
-  // Handle controlled progress
+  // For CONTROLLED mode: use a simple CSS-based highlight div
   useEffect(() => {
-    if (!isControlled || !elementRef.current) return
+    if (!isControlled || !elementRef.current || !textWrapperRef.current) return
 
     const element = elementRef.current
+    const textElement = textWrapperRef.current
 
-    const applyClip = (rawProgress: number) => {
-      const svg = element.querySelector('svg')
-      if (!svg) return
-
-      // Ensure it's visible (RoughNotation might set display:none when hidden)
-      if (svg.style.display === 'none') svg.style.display = 'block'
-
-      // Clip it based on progress (left to right)
-      // Use a little overflow to fully reveal rough edges at the end
-      const p = Math.max(0, Math.min(1, rawProgress || 0)) * 130
-      svg.style.clipPath = `polygon(0 0, ${p}% 0, ${p}% 100%, 0 100%)`
+    // Create or get the highlight div
+    let highlightDiv = highlightDivRef.current
+    if (!highlightDiv) {
+      highlightDiv = document.createElement('div')
+      highlightDiv.style.position = 'absolute'
+      highlightDiv.style.top = '-2px'
+      highlightDiv.style.left = '-4px'
+      highlightDiv.style.bottom = '-2px'
+      highlightDiv.style.backgroundColor = color
+      highlightDiv.style.zIndex = '1'
+      highlightDiv.style.pointerEvents = 'none'
+      highlightDiv.style.width = '0%'
+      // Add some padding to fully cover
+      highlightDiv.style.paddingRight = '8px'
+      highlightDiv.style.marginRight = '-8px'
+      element.insertBefore(highlightDiv, textElement)
+      highlightDivRef.current = highlightDiv
     }
 
-    // If MotionValue: subscribe to changes without involving React state
+    // Update color if changed
+    highlightDiv.style.backgroundColor = color
+
+    const applyProgress = (rawProgress: number) => {
+      if (!highlightDiv) return
+      const p = Math.max(0, Math.min(1, rawProgress || 0))
+      // Add a bit extra to ensure full coverage
+      const widthPercent = p * 108
+      highlightDiv.style.width = `${widthPercent}%`
+    }
+
+    // If MotionValue: subscribe to changes
     if (isMotionValueNumber(progress)) {
-      applyClip(progress.get())
-      requestAnimationFrame(() => applyClip(progress.get()))
-      const unsubscribe = progress.on('change', (latest) => applyClip(latest))
+      applyProgress(progress.get())
+      const unsubscribe = progress.on('change', (latest) => applyProgress(latest))
       return () => unsubscribe()
     }
 
-    // If number: apply once per render update
+    // If number: apply directly
     if (typeof progress === 'number') {
-      applyClip(progress)
-      requestAnimationFrame(() => applyClip(progress))
+      applyProgress(progress)
     }
-  }, [progress, isControlled])
+
+    return () => {
+      // Cleanup highlight div on unmount
+      if (highlightDivRef.current && element.contains(highlightDivRef.current)) {
+        element.removeChild(highlightDivRef.current)
+        highlightDivRef.current = null
+      }
+    }
+  }, [progress, isControlled, color])
 
   return (
     <span ref={elementRef} className="relative inline-block bg-transparent">
-      {/* Wrap children in a span with higher z-index to appear above the annotation */}
+      {/* Wrap children in a span with higher z-index to appear above the highlight */}
       <span ref={textWrapperRef} className="relative z-[2] inline-block">
         {children}
       </span>

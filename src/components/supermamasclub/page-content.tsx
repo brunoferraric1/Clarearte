@@ -121,7 +121,7 @@ function ScrollRevealLine({
           <Highlighter 
             color={highlightColor} 
             progress={highlightProgress}
-            animationDuration={0} // Instant draw, we control reveal via CSS clip
+            iterations={1}
             padding={6}
           >
             {text.highlight}
