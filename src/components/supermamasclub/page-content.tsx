@@ -1,10 +1,12 @@
 'use client'
 
-import { animate, motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+import { animate, motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 import { Button } from '@/components/ui/button'
+import { Highlighter } from '@/components/ui/highlighter'
 import Image from 'next/image'
-import { ArrowRight, Heart, Star, Sparkles } from 'lucide-react'
+import { ArrowRight, Heart, Star, Sparkles, PenTool, Mail } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 type HowStep = {
@@ -34,11 +36,17 @@ type FaqItem = {
   a: string
 }
 
+type IntroItem = {
+  prefix: string
+  highlight: string
+  color: string
+}
+
 type SuperMamasCopy = {
   headline: string
   cta: string
   tagline: string
-  intro: { lines: string[]; highlight: string; closing: string[] }
+  intro: { items: IntroItem[]; closing: string[] }
   whatIsTitle: string
   whatIsBody: string[]
   howTitle: string
@@ -82,11 +90,58 @@ const staggerContainer = {
   viewport: { once: true }
 }
 
+function ScrollRevealLine({ 
+  progress, 
+  range,
+  highlightColor,
+  text
+}: { 
+  progress: MotionValue<number>
+  range: [number, number]
+  highlightColor: string
+  text: { prefix: string, highlight: string }
+}) {
+  const opacity = useTransform(progress, range, [0, 1])
+  const y = useTransform(progress, range, [20, 0])
+  // Removed filter/blur as requested
+  
+  // Highlight progress: starts after the text fades in a bit, and finishes by the end of range
+  // Let's say highlight animates from 50% to 100% of the range
+  const highlightStart = range[0] + (range[1] - range[0]) * 0.2 // Start earlier
+  const highlightEnd = range[1] + 0.05 // End a bit later to ensure full coverage
+  const highlightProgress = useTransform(progress, [highlightStart, highlightEnd], [0, 1])
+
+  return (
+    <motion.div 
+      style={{ opacity, y }} 
+      className="font-sans text-3xl md:text-4xl lg:text-5xl font-light text-stone-800 leading-tight md:whitespace-nowrap"
+    >
+      <span>{text.prefix}</span>{' '}
+      <span className="inline-block font-normal">
+          <Highlighter 
+            color={highlightColor} 
+            progress={highlightProgress}
+            animationDuration={0} // Instant draw, we control reveal via CSS clip
+            padding={6}
+          >
+            {text.highlight}
+          </Highlighter>
+      </span>
+    </motion.div>
+  )
+}
+
 export function SuperMamasClubContent({ copy: t }: ContentProps) {
   const { scrollY } = useScroll()
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
   const logoY = useTransform(scrollY, [0, 500], [0, -50])
   const textY = useTransform(scrollY, [0, 500], [0, -25])
+
+  const introRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress: introScrollProgress } = useScroll({
+    target: introRef,
+    offset: ["start 0.8", "start 0.35"]
+  })
 
   const scrollToPricing = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault()
@@ -122,6 +177,8 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
     sage: Sparkles,
   }
 
+  const introIcons = [Heart, PenTool, Mail]
+
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#4A4A4A] font-sans selection:bg-[#E8976C]/30">
       {/* HERO SECTION */}
@@ -132,7 +189,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
           className="absolute inset-0 z-0"
         >
           <Image
-            src="/images/supermamas-hero-bg.jpg"
+            src="/images/supermamas-imagem-bg-hero.webp"
             alt="Cozy reading moment"
             fill
             className="object-cover"
@@ -196,61 +253,84 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
 
       {/* INTRO SECTION - Warm & Personal */}
       <section className="py-24 md:py-32 container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div 
-            {...fadeInUp}
-            className="space-y-8 relative"
-          >
+        <div className="flex flex-col gap-16 md:gap-20">
+          
+          {/* Top Row: Highlighted Text */}
+          <div className="relative">
              {/* Decorative element */}
-            <div className="absolute -left-8 -top-8 w-24 h-24 bg-[#E8976C]/10 rounded-full blur-2xl" />
+            <div className="absolute -left-8 -top-8 w-24 h-24 bg-[#E8976C]/10 rounded-full blur-2xl -z-10" />
 
-            {/* Moved tagline here (handwriting title) */}
-            <div className="space-y-2">
-              <p className="text-center lg:text-left font-handwriting text-5xl md:text-6xl text-[#E8976C] leading-none">
-                {t.tagline}
-              </p>
+            <div ref={introRef} className="space-y-3 md:space-y-5 w-fit mx-auto min-h-[300px]">
+              {t.intro.items.map((item, idx) => {
+                const isYellow = item.color === 'yellow'
+                const highlightColor = isYellow ? '#EAB308' : '#FEE2E2' // Intense Yellow or Light Pink
+                
+                // Stagger the reveal of each line based on scroll progress
+                // Total range [0, 1]. Each line takes a portion.
+                // 4 items. 
+                // Delay start to 0.15 as requested ("start a bit later")
+                // Total effective range 0.15 - 1.0 = 0.85
+                // Step size per item approx 0.2
+                const offsetStart = 0.15
+                const step = 0.18
+                const start = offsetStart + (idx * step)
+                const end = start + 0.25 // Duration of fade for each line
+
+                return (
+                  <ScrollRevealLine
+                    key={idx}
+                    progress={introScrollProgress}
+                    range={[start, end]}
+                    highlightColor={highlightColor}
+                    text={item}
+                  />
+                )
+              })}
             </div>
+          </div>
+
+          {/* Bottom Row: List & Image */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             
-            <div className="space-y-4 text-lg md:text-xl text-stone-500 font-light leading-relaxed">
-              {t.intro.lines.map((line: string, idx: number) => (
-                <p key={idx}>{line}</p>
-              ))}
-            </div>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 }}
+              className="pt-4 space-y-6 font-light text-stone-600"
+            >
+              {t.intro.closing.map((line: string, idx: number) => {
+                const Icon = introIcons[idx % introIcons.length] || Heart
+                return (
+                  <div key={idx} className="flex items-center gap-4">
+                    <Icon className="w-6 h-6 text-[#EAB308]" />
+                    <p className="text-xl md:text-2xl">{line}</p>
+                  </div>
+                )
+              })}
+            </motion.div>
 
-            <div className="pl-6 border-l-4 border-[#E8976C]">
-              <p className="text-2xl md:text-3xl font-serif text-stone-800 leading-tight">
-                {t.intro.highlight}
-              </p>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative isolate w-full max-w-xl mx-auto lg:mx-0 lg:ml-auto"
+            >
+              {/* Organic shape backdrop */}
+              <div className="pointer-events-none absolute -inset-2 z-0 rounded-[2rem] bg-[#D4A84B]/20 rotate-[-2deg]" />
 
-            <div className="pt-4 space-y-2 font-medium text-stone-600">
-              {t.intro.closing.map((line: string, idx: number) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <Heart className="w-4 h-4 text-[#E8976C]" />
-                  <p>{line}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
+              <div className="relative z-10 w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl rotate-1 hover:rotate-0 transition-transform duration-700 ease-out">
+                <Image
+                  src="/images/super-mamas-mail-club-paola-ferrari.webp"
+                  alt="Hand holding illustrated postcard"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+            </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700 ease-out">
-              <Image
-                src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80"
-                alt="Hand holding illustrated postcard"
-                fill
-                className="object-cover"
-              />
-            </div>
-            {/* Organic shape backdrop */}
-            <div className="absolute -inset-4 bg-[#D4A84B]/20 -z-10 rounded-[2rem] rotate-[-3deg]" />
-          </motion.div>
         </div>
       </section>
 
