@@ -61,9 +61,6 @@ type SuperMamasCopy = {
   pricingNote: string
   planSpain: Plan
   planIntl: Plan
-  whyTitle: string
-  whyBody: string
-  whyClosing?: string
   quote: string
   faqTitle: string
   faqs: FaqItem[]
@@ -313,24 +310,6 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
               </div>
             </motion.div>
 
-            {/* 3 Columns - Side by side on desktop, stacked on mobile */}
-            <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-4xl mx-auto"
-            >
-              {t.intro.closing.map((line: string, idx: number) => {
-                const Icon = introIcons[idx % introIcons.length] || Heart
-                return (
-                  <div key={idx} className="flex flex-col items-center text-center gap-3">
-                    <Icon className="w-8 h-8 text-[#EAB308]" />
-                    <p className="text-lg md:text-xl font-light text-stone-600">{line}</p>
-                  </div>
-                )
-              })}
-            </motion.div>
           </div>
 
         </div>
@@ -367,11 +346,28 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                <p className="text-lg text-stone-600 leading-relaxed mb-6">
                  {t.whatIsBody[3]} {t.whatIsBody[4]}
                </p>
-               <div className="flex items-center gap-3 text-[#E8976C] font-serif italic text-xl">
-                 <Sparkles className="w-5 h-5" />
+               <p className="text-[#E8976C] font-serif italic text-xl">
                  {t.whatIsBody[5]}
-               </div>
+               </p>
             </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-4xl mx-auto"
+          >
+            {t.intro.closing.map((line: string, idx: number) => {
+              const Icon = introIcons[idx % introIcons.length] || Heart
+              return (
+                <div key={idx} className="flex flex-col items-center text-center gap-3">
+                  <Icon className="w-8 h-8 text-[#EAB308]" />
+                  <p className="text-lg md:text-xl font-light text-stone-600">{line}</p>
+                </div>
+              )
+            })}
           </motion.div>
         </div>
       </section>
@@ -484,38 +480,6 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                 </motion.div>
               ))}
             </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* WHY - Emotional Connection */}
-      <section className="py-24 bg-[#FAF8F5]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center space-y-10">
-            <motion.h2 
-              {...fadeInUp}
-              className="font-serif text-4xl md:text-5xl text-stone-800"
-            >
-              {t.whyTitle}
-            </motion.h2>
-            <motion.p 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl md:text-2xl text-stone-600 leading-relaxed font-light"
-            >
-              {t.whyBody}
-            </motion.p>
-            {t.whyClosing ? (
-              <motion.p
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-2xl font-serif text-[#E8976C] italic"
-              >
-                {t.whyClosing}
-              </motion.p>
-            ) : null}
           </div>
         </div>
       </section>
