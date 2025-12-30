@@ -554,9 +554,9 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
         <div className="container relative mx-auto px-6">
           <motion.div {...fadeInUp} className="py-8 md:py-12" style={{ y: valuesTextY }}>
             <h2 className="font-serif font-semibold tracking-[-0.02em] leading-[0.95] text-[clamp(3.5rem,7vw,7.5rem)]">
-              <span className="text-[#EEDCB7]">Nothing generic.</span><br/>
+              <span className="text-[#CFE6B0]">Nothing generic.</span><br/>
               <span className="text-[#F6D5C4]">Nothing automated.</span><br/>
-              <span className="text-[#CAE1DA]">Nothing copied.</span>
+              <span className="text-[#F2D06B]">Nothing copied.</span>
             </h2>
           </motion.div>
         </div>
