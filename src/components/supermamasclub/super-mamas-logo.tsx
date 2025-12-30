@@ -15,7 +15,7 @@ export function SuperMamasLogo({ className, size = 'md' }: SuperMamasLogoProps) 
   const sizeClasses = {
     sm: 'w-[160px] h-[160px] sm:w-[180px] sm:h-[180px]',
     md: 'w-[220px] h-[220px] sm:w-[280px] sm:h-[280px]',
-    lg: 'w-[280px] h-[280px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] lg:w-[480px] lg:h-[480px]',
+    lg: 'w-[240px] h-[240px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px] lg:w-[420px] lg:h-[420px]',
   }
 
   return (
