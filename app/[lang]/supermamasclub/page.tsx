@@ -28,7 +28,7 @@ const copy = {
       howItWorks: 'Cómo funciona',
       plans: 'Planes',
       faq: 'FAQ',
-      subscribe: 'Suscribirse',
+      subscribe: 'Únete al club',
     },
     intro: {
       items: [
@@ -126,7 +126,7 @@ const copy = {
       howItWorks: 'Como funciona',
       plans: 'Planos',
       faq: 'FAQ',
-      subscribe: 'Subscrever',
+      subscribe: 'Entra no clube',
     },
     intro: {
       items: [
@@ -224,7 +224,7 @@ const copy = {
       howItWorks: 'How it works',
       plans: 'Plans',
       faq: 'FAQ',
-      subscribe: 'Subscribe',
+      subscribe: 'Join the club',
     },
     intro: {
       items: [
