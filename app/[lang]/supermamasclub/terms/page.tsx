@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { generatePageMetadata } from '@/lib/metadata'
 import Link from 'next/link'
+import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 
 const pageMetadata = {
   es: {
@@ -265,7 +266,7 @@ export async function generateMetadata({
   return generatePageMetadata({
     title: meta.title,
     description: meta.description,
-    path: 'supermamasclub/terminos',
+    path: 'supermamasclub/terms',
     lang,
   })
 }
@@ -281,9 +282,9 @@ export default async function TermsPage({
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#4A4A4A] font-sans selection:bg-[#E8976C]/30">
       {/* Header */}
-      <header className="bg-[#D4A84B] py-16 md:py-24">
-        <div className="container mx-auto px-6 text-center">
-          <p className="text-white/80 text-sm uppercase tracking-widest mb-2">{t.subtitle}</p>
+      <header className="bg-[#D4A84B] py-12 md:py-16">
+        <div className="container mx-auto px-6 text-center flex flex-col items-center">
+          <SuperMamasLogo size="sm" className="mb-4" />
           <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-white mb-4">
             {t.title}
           </h1>
@@ -330,7 +331,7 @@ export default async function TermsPage({
               {t.backLink}
             </Link>
             <Link 
-              href={`/${lang}/supermamasclub/privacidad`}
+              href={`/${lang}/supermamasclub/privacy`}
               className="inline-flex items-center text-stone-500 hover:text-[#E8976C] transition-colors text-sm"
             >
               {t.privacyLink} →

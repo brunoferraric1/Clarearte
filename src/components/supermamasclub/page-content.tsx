@@ -548,7 +548,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             <motion.div
               initial="initial"
               animate={quoteControls}
-              className="relative mx-auto h-[44vh] min-h-[280px] max-h-[420px] md:h-[52vh] md:min-h-[340px] md:max-h-[560px] w-full"
+              className="relative mx-auto h-[40vh] min-h-[260px] max-h-[380px] md:h-[48vh] md:min-h-[320px] md:max-h-[520px] w-full"
             >
               <motion.div
                 variants={{
@@ -556,7 +556,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                   in: { opacity: 1, x: -160, y: 80, rotate: -12 },
                 }}
                 transition={{ duration: 1.6, ease: easeOut }}
-                className="absolute left-1/2 top-1/2 z-10 w-[clamp(180px,24vw,300px)] -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 z-10 w-[clamp(170px,22vw,270px)] -translate-x-1/2 -translate-y-1/2"
               >
                 <div className="relative aspect-[148/210] overflow-hidden rounded-none bg-white shadow-[0_28px_60px_rgba(0,0,0,0.22),0_2px_0_rgba(0,0,0,0.06)] ring-1 ring-black/10">
                   <Image
@@ -575,7 +575,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                   in: { opacity: 1, y: -10, rotate: 0, scale: 1 },
                 }}
                 transition={{ duration: 1.75, ease: easeOut, delay: 0.08 }}
-                className="absolute left-1/2 top-1/2 z-20 w-[clamp(220px,30vw,380px)] -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 z-20 w-[clamp(210px,28vw,350px)] -translate-x-1/2 -translate-y-1/2"
               >
                 <div className="relative aspect-[210/297] overflow-hidden rounded-none bg-white shadow-[0_34px_80px_rgba(0,0,0,0.26),0_2px_0_rgba(0,0,0,0.07)] ring-1 ring-black/10">
                   <Image
@@ -594,7 +594,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                   in: { opacity: 1, x: 170, y: 90, rotate: 10 },
                 }}
                 transition={{ duration: 1.6, ease: easeOut, delay: 0.06 }}
-                className="absolute left-1/2 top-1/2 z-10 w-[clamp(220px,32vw,420px)] -translate-x-1/2 -translate-y-1/2"
+                className="absolute left-1/2 top-1/2 z-10 w-[clamp(210px,30vw,380px)] -translate-x-1/2 -translate-y-1/2"
               >
                 <div className="relative aspect-[210/148] overflow-hidden rounded-none bg-white shadow-[0_28px_60px_rgba(0,0,0,0.22),0_2px_0_rgba(0,0,0,0.06)] ring-1 ring-black/10">
                   <Image
