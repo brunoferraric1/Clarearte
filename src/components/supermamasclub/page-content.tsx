@@ -85,6 +85,8 @@ type SuperMamasCopy = {
   faqs: FaqItem[]
   signoffTitle: string
   signoffBy: string
+  signoffBio: string
+  signoffTagline: string
 }
 
 type ContentProps = {
@@ -563,10 +565,10 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       {/* QUOTE - Sticky note style */}
       <section
         ref={quoteRef}
-        className="bg-[#D4A84B] min-h-[110svh] md:min-h-[120svh] pt-10 pb-14 md:py-24 flex items-start md:items-center"
+        className="bg-[#D4A84B] py-12 md:py-24"
       >
         <div className="container mx-auto px-6 text-center">
-          <div className="mx-auto w-full max-w-5xl">
+          <div className="mx-auto w-full max-w-5xl flex flex-col items-center gap-14 sm:gap-16 md:gap-20">
             <motion.div
               initial="initial"
               animate={quoteControls}
@@ -636,7 +638,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                 in: { opacity: 1, y: 0 },
               }}
               transition={{ duration: 1.4, ease: easeOut, delay: 0.1 }}
-              className="mt-10 md:mt-20 lg:mt-24 font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+              className="font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
             >
               {t.quote}
             </motion.p>
@@ -743,10 +745,53 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
         </div>
       </section>
 
-      {/* FOOTER SIGNOFF */}
-      <section className="py-32 bg-[#FAF8F5] text-center">
-        <h2 className="font-serif text-3xl text-stone-400 mb-2">{t.signoffTitle}</h2>
-        <p className="font-billion-miracles text-5xl text-[#E8976C]">{t.signoffBy}</p>
+      {/* FOOTER SIGNOFF - Centered Simple */}
+      <section className="relative py-24 md:py-32 overflow-hidden bg-[#FAF8F5]">
+        {/* Background elements */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#E8976C]/5 to-transparent" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#E8976C]/5 rounded-full blur-3xl -z-10" />
+
+        <div className="container relative z-10 mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center gap-8 md:gap-10 max-w-2xl mx-auto"
+          >
+            {/* Circular Image */}
+            <div className="relative">
+              <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden ring-4 ring-white shadow-xl">
+                <Image
+                  src="/images/paola-sobre-mi.webp"
+                  alt="Paola"
+                  fill
+                  className="object-cover object-[center_15%] scale-150"
+                />
+              </div>
+              {/* Little Heart Badge */}
+              <div className="absolute bottom-1 right-1 bg-[#EAB308] text-white p-2.5 rounded-full shadow-md">
+                <Heart className="w-5 h-5 fill-current" />
+              </div>
+            </div>
+
+            {/* Text Content */}
+            <div className="space-y-6">
+              <h2 className="font-serif text-3xl md:text-4xl text-stone-800">
+                {t.signoffTitle}
+              </h2>
+
+              <div className="space-y-3">
+                <p className="font-billion-miracles text-3xl md:text-4xl text-[#E8976C]">
+                  {t.signoffBy}
+                </p>
+                <p className="font-sans text-stone-500 font-light tracking-widest uppercase text-xs md:text-sm">
+                  {t.signoffBio}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
     </div>
   )

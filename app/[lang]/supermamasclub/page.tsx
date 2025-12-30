@@ -105,7 +105,7 @@ const copy = {
       price: '€10/mes',
       bullets: ['Envío internacional (fuera de España)', 'Preparado y enviado con cariño a principios de mes'],
     },
-    quote: 'El Super Mamas Mail Club fue creado para ser una pausa mensual. Un recordatorio físico de que no estás sola.',
+    quote: 'El Super Mamas Mail Club fue creado para ser una pausa y un abrazo mensual en tu buzón.',
     faqTitle: 'Preguntas frecuentes',
     faqs: [
       { q: '¿Cuándo se envía?', a: 'A principio de mes.' },
@@ -114,7 +114,9 @@ const copy = {
       { q: '¿Es solo para madres?', a: 'No. Si te resuena, eres bienvenida.' },
     ],
     signoffTitle: 'Hecho por mí, para ti.',
-    signoffBy: 'Paola',
+    signoffBy: 'Paola Ferrari - Estudio Clarearte',
+    signoffBio: 'Ilustradora, diseñadora y madre',
+    signoffTagline: 'con amor desde mi estudio',
   },
   pt: {
     tagline: 'Não é só uma postal',
@@ -203,7 +205,7 @@ const copy = {
       price: '€10/mês',
       bullets: ['Envio internacional (fora de Espanha)', 'Preparado e enviado com carinho no início do mês'],
     },
-    quote: 'O Super Mamas Mail Club foi criado para ser uma pausa mensal. Um lembrete físico de que não estás sozinha.',
+    quote: 'El Super Mamas Mail Club fue creado para ser una pausa y un abrazo mensual en tu buzón.',
     faqTitle: 'Perguntas frequentes',
     faqs: [
       { q: 'Quando é enviado?', a: 'No início de cada mês.' },
@@ -212,7 +214,9 @@ const copy = {
       { q: 'É só para mães?', a: 'Não. Se fizer sentido para ti, és bem-vinda.' },
     ],
     signoffTitle: 'Feito por mim, para ti.',
-    signoffBy: 'Paola',
+    signoffBy: 'Paola Ferrari - Estúdio Clarearte',
+    signoffBio: 'Ilustradora, designer e mãe',
+    signoffTagline: 'com amor do meu estúdio',
   },
   en: {
     tagline: 'Not just a print',
@@ -301,7 +305,7 @@ const copy = {
       price: '€10/month',
       bullets: ['International shipping (outside Spain)', 'Packed and shipped with love at the beginning of the month'],
     },
-    quote: 'The Super Mamas Mail Club was created to be a monthly pause. A physical reminder that you are not alone.',
+    quote: 'El Super Mamas Mail Club fue creado para ser una pausa y un abrazo mensual en tu buzón.',
     faqTitle: 'Frequently asked questions',
     faqs: [
       { q: 'When does it ship?', a: 'At the beginning of each month.' },
@@ -310,7 +314,9 @@ const copy = {
       { q: 'Is it only for moms?', a: 'No. If it resonates, you\'re welcome here.' },
     ],
     signoffTitle: 'Made by me, for you.',
-    signoffBy: 'Paola',
+    signoffBy: 'Paola Ferrari - Clarearte Studio',
+    signoffBio: 'Illustrator, designer, and mother',
+    signoffTagline: 'with love from my studio',
   },
 }
 
