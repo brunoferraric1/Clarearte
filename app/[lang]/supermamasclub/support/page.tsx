@@ -189,12 +189,12 @@ const content = {
   },
 }
 
-const easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const _easeOut: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const fadeInUp = {
+const _fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, ease: easeOut }
+  transition: { duration: 0.6, ease: _easeOut }
 }
 
 function SupportPageContent({ lang }: { lang: string }) {

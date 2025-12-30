@@ -153,6 +153,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
   const logoY = useTransform(scrollY, [0, 500], [0, -50])
   const textY = useTransform(scrollY, [0, 500], [0, -25])
+  const valuesRef = useRef<HTMLElement | null>(null)
   const quoteRef = useRef<HTMLElement | null>(null)
   const quoteControls = useAnimation()
   const quoteHasAnimatedRef = useRef(false)
@@ -168,6 +169,14 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
     target: quoteRef,
     offset: ['start end', 'start start'],
   })
+
+  const { scrollYProgress: valuesScrollProgress } = useScroll({
+    target: valuesRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const valuesBgY = useTransform(valuesScrollProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, 120])
+  const valuesTextY = useTransform(valuesScrollProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -40])
 
   useMotionValueEvent(quoteScrollProgress, 'change', (progress) => {
     if (prefersReducedMotion) return
@@ -534,33 +543,20 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* VALUES - Minimalist */}
-      <section className="relative overflow-hidden py-24">
-        <div className="absolute inset-0 bg-[url('/images/supermamasclub-abstract-bg.webp')] bg-cover bg-center" />
-        <div className="absolute inset-0 bg-[#FAF8F5]/75" />
+      <section ref={valuesRef} className="relative overflow-hidden py-24">
+        <motion.div
+          aria-hidden
+          className="absolute inset-0 bg-[url('/images/supermamasclub-abstract-bg.webp')] bg-cover bg-center -scale-x-100"
+          style={{ y: valuesBgY }}
+        />
         <div className="container relative mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16">
-            <motion.div {...fadeInUp}>
-               <h2 className="font-serif text-4xl md:text-6xl leading-[1.1]">
-                 <span className="text-[#D4A84B]">Nothing generic.</span><br/>
-                 <span className="text-[#E8976C]">Nothing automated.</span><br/>
-                 <span className="text-[#7BB5A3]">Nothing copied.</span>
-               </h2>
-            </motion.div>
-
-            <motion.div 
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="whileInView"
-              className="grid gap-8 rounded-3xl bg-white/70 p-8 shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-black/5 backdrop-blur-md"
-            >
-              {t.values.map((val, idx: number) => (
-                <motion.div key={idx} variants={fadeInUp} className="border-l border-stone-300 pl-6">
-                   <h3 className="text-xl font-bold uppercase tracking-wider mb-2 text-stone-800">{val.title}</h3>
-                   <p className="text-stone-600 text-lg">{val.body}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
+          <motion.div {...fadeInUp} className="py-8 md:py-12" style={{ y: valuesTextY }}>
+            <h2 className="font-serif font-semibold tracking-[-0.02em] leading-[0.95] text-[clamp(3.5rem,7vw,7.5rem)]">
+              <span className="text-[#EEDCB7]">Nothing generic.</span><br/>
+              <span className="text-[#F6D5C4]">Nothing automated.</span><br/>
+              <span className="text-[#CAE1DA]">Nothing copied.</span>
+            </h2>
+          </motion.div>
         </div>
       </section>
 
