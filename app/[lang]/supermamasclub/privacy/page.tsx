@@ -75,7 +75,8 @@ const content = {
       },
       {
         title: '6. Contacto',
-        content: 'Si tienes preguntas sobre esta política de privacidad o quieres ejercer tus derechos, contáctanos en: hello@clarearte.com',
+        content: 'Si tienes preguntas sobre esta política de privacidad o quieres ejercer tus derechos, visita nuestra página de soporte.',
+        link: { text: 'Ir a soporte', href: '/supermamasclub/support' },
       },
     ],
     backLink: '← Volver al Super Mamas Mail Club',
@@ -136,7 +137,8 @@ const content = {
       },
       {
         title: '6. Contacto',
-        content: 'Se tens perguntas sobre esta política de privacidade ou queres exercer os teus direitos, contacta-nos em: hello@clarearte.com',
+        content: 'Se tens perguntas sobre esta política de privacidade ou queres exercer os teus direitos, visita a nossa página de suporte.',
+        link: { text: 'Ir para suporte', href: '/supermamasclub/support' },
       },
     ],
     backLink: '← Voltar ao Super Mamas Mail Club',
@@ -197,7 +199,8 @@ const content = {
       },
       {
         title: '6. Contact',
-        content: 'If you have questions about this privacy policy or want to exercise your rights, contact us at: hello@clarearte.com',
+        content: 'If you have questions about this privacy policy or want to exercise your rights, visit our support page.',
+        link: { text: 'Go to support', href: '/supermamasclub/support' },
       },
     ],
     backLink: '← Back to Super Mamas Mail Club',
@@ -257,6 +260,14 @@ export default async function PrivacyPolicyPage({
                 <p className={`text-lg leading-relaxed mb-4 ${section.highlight ? 'text-stone-800 font-medium' : 'text-stone-600'}`}>
                   {section.content}
                 </p>
+                {section.link && (
+                  <Link 
+                    href={`/${lang}${section.link.href}`}
+                    className="inline-flex items-center gap-2 text-[#E8976C] hover:text-[#D4A84B] transition-colors font-medium mb-4"
+                  >
+                    {section.link.text} →
+                  </Link>
+                )}
                 {section.items && (
                   <ul className="space-y-3">
                     {section.items.map((item, itemIdx) => (

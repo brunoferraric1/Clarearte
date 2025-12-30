@@ -91,7 +91,8 @@ const content = {
       },
       {
         title: '8. Contacto',
-        content: 'Para cualquier pregunta sobre estos términos, contáctanos en: hello@clarearte.com',
+        content: 'Para cualquier pregunta sobre estos términos, visita nuestra página de soporte.',
+        link: { text: 'Ir a soporte', href: '/supermamasclub/support' },
       },
     ],
     backLink: '← Volver al Super Mamas Mail Club',
@@ -169,7 +170,8 @@ const content = {
       },
       {
         title: '8. Contacto',
-        content: 'Para qualquer pergunta sobre estes termos, contacta-nos em: hello@clarearte.com',
+        content: 'Para qualquer pergunta sobre estes termos, visita a nossa página de suporte.',
+        link: { text: 'Ir para suporte', href: '/supermamasclub/support' },
       },
     ],
     backLink: '← Voltar ao Super Mamas Mail Club',
@@ -247,7 +249,8 @@ const content = {
       },
       {
         title: '8. Contact',
-        content: 'For any questions about these terms, contact us at: hello@clarearte.com',
+        content: 'For any questions about these terms, visit our support page.',
+        link: { text: 'Go to support', href: '/supermamasclub/support' },
       },
     ],
     backLink: '← Back to Super Mamas Mail Club',
@@ -308,6 +311,14 @@ export default async function TermsPage({
                 <p className="text-lg text-stone-600 leading-relaxed mb-4">
                   {section.content}
                 </p>
+                {section.link && (
+                  <Link 
+                    href={`/${lang}${section.link.href}`}
+                    className="inline-flex items-center gap-2 text-[#D4A84B] hover:text-[#E8976C] transition-colors font-medium mb-4"
+                  >
+                    {section.link.text} →
+                  </Link>
+                )}
                 {section.items && (
                   <ul className="space-y-3">
                     {section.items.map((item, itemIdx) => (

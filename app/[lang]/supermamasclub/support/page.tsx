@@ -15,14 +15,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Mail, MessageCircle, Heart, Send, CheckCircle } from 'lucide-react'
+import { Mail, MessageCircle, Heart, Send, CheckCircle, XCircle } from 'lucide-react'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 
 const content = {
   es: {
     title: 'Estamos aquí para ayudarte',
     subtitle: '¿Tienes alguna pregunta o necesitas ayuda?',
-    intro: 'Tu satisfacción es lo más importante para nosotras. Si tienes cualquier duda, problema con tu suscripción o simplemente quieres saludarnos, estamos aquí.',
     formTitle: 'Envíanos un mensaje',
     fields: {
       name: 'Tu nombre',
@@ -79,7 +78,6 @@ const content = {
   pt: {
     title: 'Estamos aqui para te ajudar',
     subtitle: 'Tens alguma pergunta ou precisas de ajuda?',
-    intro: 'A tua satisfação é o mais importante para nós. Se tens qualquer dúvida, problema com a tua subscrição ou simplesmente queres dizer olá, estamos aqui.',
     formTitle: 'Envia-nos uma mensagem',
     fields: {
       name: 'O teu nome',
@@ -136,7 +134,6 @@ const content = {
   en: {
     title: 'We\'re here to help',
     subtitle: 'Have a question or need assistance?',
-    intro: 'Your satisfaction is our top priority. If you have any questions, issues with your subscription, or just want to say hi, we\'re here for you.',
     formTitle: 'Send us a message',
     fields: {
       name: 'Your name',
@@ -233,7 +230,7 @@ function SupportPageContent({ lang }: { lang: string }) {
   const iconMap = {
     subscription: MessageCircle,
     shipping: Mail,
-    cancel: Clock,
+    cancel: XCircle,
   }
 
   return (
@@ -275,14 +272,6 @@ function SupportPageContent({ lang }: { lang: string }) {
       {/* Main Content */}
       <main className="container mx-auto px-6 py-16 md:py-24">
         <div className="max-w-5xl mx-auto">
-          {/* Intro */}
-          <motion.p 
-            {...fadeInUp}
-            className="text-lg md:text-xl text-stone-600 leading-relaxed text-center max-w-3xl mx-auto mb-16"
-          >
-            {t.intro}
-          </motion.p>
-
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Contact Form - Takes 3 columns */}
             <motion.div 
