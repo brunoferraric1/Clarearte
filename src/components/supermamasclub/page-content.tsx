@@ -1,7 +1,16 @@
 'use client'
 
 import { useRef } from 'react'
-import { animate, motion, useReducedMotion, useScroll, useTransform, MotionValue } from 'framer-motion'
+import {
+  animate,
+  motion,
+  useAnimation,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  MotionValue,
+} from 'framer-motion'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 import { Button } from '@/components/ui/button'
 import { Highlighter } from '@/components/ui/highlighter'
@@ -134,6 +143,38 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
   const logoY = useTransform(scrollY, [0, 500], [0, -50])
   const textY = useTransform(scrollY, [0, 500], [0, -25])
+  const quoteRef = useRef<HTMLElement | null>(null)
+  const quoteControls = useAnimation()
+  const quoteHasAnimatedRef = useRef(false)
+  const scrollDirectionRef = useRef<'down' | 'up'>('down')
+  const prevScrollYRef = useRef(0)
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    scrollDirectionRef.current = latest > prevScrollYRef.current ? 'down' : 'up'
+    prevScrollYRef.current = latest
+  })
+
+  const { scrollYProgress: quoteScrollProgress } = useScroll({
+    target: quoteRef,
+    offset: ['start end', 'start start'],
+  })
+
+  useMotionValueEvent(quoteScrollProgress, 'change', (progress) => {
+    if (prefersReducedMotion) return
+
+    const isScrollingDown = scrollDirectionRef.current === 'down'
+
+    if (!quoteHasAnimatedRef.current && isScrollingDown && progress > 0.12) {
+      quoteHasAnimatedRef.current = true
+      quoteControls.start('in')
+      return
+    }
+
+    if (progress < 0.02) {
+      quoteHasAnimatedRef.current = false
+      quoteControls.set('initial')
+    }
+  })
 
   const introRef = useRef<HTMLDivElement>(null)
   const { scrollYProgress: introScrollProgress } = useScroll({
@@ -374,8 +415,20 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* HOW IT WORKS - Horizontal Steps */}
-      <section className="py-24 md:py-32 bg-[#E8976C]/10">
-        <div className="container mx-auto px-6">
+      <section className="relative overflow-hidden py-24 md:py-32 bg-[#E8976C]/10">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/supermamasclub-bg-pattern.webp"
+            alt=""
+            fill
+            className="object-cover opacity-35"
+            sizes="100vw"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-[#E8976C]/10" />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
           <motion.h2 
             {...fadeInUp}
             className="text-center font-serif text-4xl md:text-5xl text-stone-800 mb-16"
@@ -486,18 +539,20 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* QUOTE - Sticky note style */}
-      <section className="bg-[#D4A84B] min-h-[110svh] md:min-h-[120svh] pt-10 pb-14 md:py-24 flex items-start md:items-center">
+      <section
+        ref={quoteRef}
+        className="bg-[#D4A84B] min-h-[110svh] md:min-h-[120svh] pt-10 pb-14 md:py-24 flex items-start md:items-center"
+      >
         <div className="container mx-auto px-6 text-center">
           <div className="mx-auto w-full max-w-5xl">
             <motion.div
               initial="initial"
-              whileInView="in"
-              viewport={{ once: true, amount: 0.55 }}
+              animate={quoteControls}
               className="relative mx-auto h-[44vh] min-h-[280px] max-h-[420px] md:h-[52vh] md:min-h-[340px] md:max-h-[560px] w-full"
             >
               <motion.div
                 variants={{
-                  initial: { opacity: 0, x: prefersReducedMotion ? 0 : -260, y: prefersReducedMotion ? 0 : 130, rotate: prefersReducedMotion ? 0 : -20 },
+                  initial: { opacity: 1, x: prefersReducedMotion ? -160 : -360, y: prefersReducedMotion ? 80 : 140, rotate: prefersReducedMotion ? -12 : -18 },
                   in: { opacity: 1, x: -160, y: 80, rotate: -12 },
                 }}
                 transition={{ duration: 1.6, ease: easeOut }}
@@ -516,7 +571,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
 
               <motion.div
                 variants={{
-                  initial: { opacity: 0, y: prefersReducedMotion ? 0 : -170, rotate: prefersReducedMotion ? 0 : 12, scale: prefersReducedMotion ? 1 : 0.96 },
+                  initial: { opacity: 1, y: prefersReducedMotion ? -10 : -80, rotate: prefersReducedMotion ? 0 : 6, scale: prefersReducedMotion ? 1 : 0.985 },
                   in: { opacity: 1, y: -10, rotate: 0, scale: 1 },
                 }}
                 transition={{ duration: 1.75, ease: easeOut, delay: 0.08 }}
@@ -535,7 +590,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
 
               <motion.div
                 variants={{
-                  initial: { opacity: 0, x: prefersReducedMotion ? 0 : 280, y: prefersReducedMotion ? 0 : 120, rotate: prefersReducedMotion ? 0 : 20 },
+                  initial: { opacity: 1, x: prefersReducedMotion ? 170 : 390, y: prefersReducedMotion ? 90 : 150, rotate: prefersReducedMotion ? 10 : 16 },
                   in: { opacity: 1, x: 170, y: 90, rotate: 10 },
                 }}
                 transition={{ duration: 1.6, ease: easeOut, delay: 0.06 }}
@@ -554,13 +609,14 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             </motion.div>
 
             <motion.p
-              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.65 }}
+              variants={{
+                initial: { opacity: 0, y: prefersReducedMotion ? 0 : 12 },
+                in: { opacity: 1, y: 0 },
+              }}
               transition={{ duration: 1.4, ease: easeOut, delay: 0.1 }}
               className="mt-10 md:mt-20 lg:mt-24 font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
             >
-              &quot;{t.quote}&quot;
+              {t.quote}
             </motion.p>
           </div>
         </div>
