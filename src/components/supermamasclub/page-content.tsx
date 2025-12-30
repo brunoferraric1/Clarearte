@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
-import { animate, motion, useScroll, useTransform, MotionValue } from 'framer-motion'
+import { animate, motion, useReducedMotion, useScroll, useTransform, MotionValue } from 'framer-motion'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
 import { Button } from '@/components/ui/button'
 import { Highlighter } from '@/components/ui/highlighter'
@@ -129,6 +129,7 @@ function ScrollRevealLine({
 }
 
 export function SuperMamasClubContent({ copy: t }: ContentProps) {
+  const prefersReducedMotion = useReducedMotion()
   const { scrollY } = useScroll()
   const backgroundY = useTransform(scrollY, [0, 500], [0, 150])
   const logoY = useTransform(scrollY, [0, 500], [0, -50])
@@ -485,17 +486,83 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* QUOTE - Sticky note style */}
-      <section className="py-20 bg-[#D4A84B]">
+      <section className="bg-[#D4A84B] min-h-[110svh] md:min-h-[120svh] pt-10 pb-14 md:py-24 flex items-start md:items-center">
         <div className="container mx-auto px-6 text-center">
-	          <motion.p 
-	            initial={{ opacity: 0, y: 12 }}
-	            whileInView={{ opacity: 1, y: 0 }}
-	            viewport={{ once: true, amount: 0.65 }}
-	            transition={{ duration: 1.0, ease: easeOut }}
-	            className="font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
-	          >
-            &quot;{t.quote}&quot;
-          </motion.p>
+          <div className="mx-auto w-full max-w-5xl">
+            <motion.div
+              initial="initial"
+              whileInView="in"
+              viewport={{ once: true, amount: 0.55 }}
+              className="relative mx-auto h-[44vh] min-h-[280px] max-h-[420px] md:h-[52vh] md:min-h-[340px] md:max-h-[560px] w-full"
+            >
+              <motion.div
+                variants={{
+                  initial: { opacity: 0, x: prefersReducedMotion ? 0 : -260, y: prefersReducedMotion ? 0 : 130, rotate: prefersReducedMotion ? 0 : -20 },
+                  in: { opacity: 1, x: -160, y: 80, rotate: -12 },
+                }}
+                transition={{ duration: 1.6, ease: easeOut }}
+                className="absolute left-1/2 top-1/2 z-10 w-[clamp(180px,24vw,300px)] -translate-x-1/2 -translate-y-1/2"
+              >
+                <div className="relative aspect-[148/210] overflow-hidden rounded-2xl bg-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.18)] ring-1 ring-white/25">
+                  <Image
+                    src="/images/supermamasclub-comp-3.webp"
+                    alt="Super Mamas Club sample artwork (A5 vertical)"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 55vw, 300px"
+                  />
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  initial: { opacity: 0, y: prefersReducedMotion ? 0 : -170, rotate: prefersReducedMotion ? 0 : 12, scale: prefersReducedMotion ? 1 : 0.96 },
+                  in: { opacity: 1, y: -10, rotate: 0, scale: 1 },
+                }}
+                transition={{ duration: 1.75, ease: easeOut, delay: 0.08 }}
+                className="absolute left-1/2 top-1/2 z-20 w-[clamp(220px,30vw,380px)] -translate-x-1/2 -translate-y-1/2"
+              >
+                <div className="relative aspect-[210/297] overflow-hidden rounded-2xl bg-white shadow-[0_40px_90px_rgba(0,0,0,0.22)] ring-1 ring-black/10">
+                  <Image
+                    src="/images/supermamasclub-comp-2.webp"
+                    alt="Super Mamas Club sample letter (A4 vertical)"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 70vw, 380px"
+                  />
+                </div>
+              </motion.div>
+
+              <motion.div
+                variants={{
+                  initial: { opacity: 0, x: prefersReducedMotion ? 0 : 280, y: prefersReducedMotion ? 0 : 120, rotate: prefersReducedMotion ? 0 : 20 },
+                  in: { opacity: 1, x: 170, y: 90, rotate: 10 },
+                }}
+                transition={{ duration: 1.6, ease: easeOut, delay: 0.06 }}
+                className="absolute left-1/2 top-1/2 z-10 w-[clamp(220px,32vw,420px)] -translate-x-1/2 -translate-y-1/2"
+              >
+                <div className="relative aspect-[210/148] overflow-hidden rounded-2xl bg-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.18)] ring-1 ring-white/25">
+                  <Image
+                    src="/images/supermamasclub-comp-1.webp"
+                    alt="Super Mamas Club sample postcard (A5 horizontal)"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 80vw, 420px"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.65 }}
+              transition={{ duration: 1.4, ease: easeOut, delay: 0.1 }}
+              className="mt-10 md:mt-20 lg:mt-24 font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+            >
+              &quot;{t.quote}&quot;
+            </motion.p>
+          </div>
         </div>
       </section>
 
