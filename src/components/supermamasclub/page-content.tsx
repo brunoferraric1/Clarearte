@@ -12,6 +12,7 @@ import {
   MotionValue,
 } from 'framer-motion'
 import { SuperMamasLogo } from '@/components/supermamasclub/super-mamas-logo'
+import { StickyHeader } from '@/components/supermamasclub/sticky-header'
 import { Button } from '@/components/ui/button'
 import { Highlighter } from '@/components/ui/highlighter'
 import Image from 'next/image'
@@ -51,10 +52,19 @@ type IntroItem = {
   color: string
 }
 
+type MenuLabels = {
+  whatIsIt: string
+  howItWorks: string
+  plans: string
+  faq: string
+  subscribe: string
+}
+
 type SuperMamasCopy = {
   headline: string
   cta: string
   tagline: string
+  menu: MenuLabels
   intro: { items: IntroItem[]; closing: string[] }
   whatIsTitle: string
   whatIsBody: string[]
@@ -218,10 +228,24 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
 
   const introIcons = [Heart, PenTool, Mail]
 
+  const menuItems = [
+    { label: t.menu.whatIsIt, href: '#what-is-it' },
+    { label: t.menu.howItWorks, href: '#how-it-works' },
+    { label: t.menu.plans, href: '#pricing' },
+    { label: t.menu.faq, href: '#faq' },
+  ]
+
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#4A4A4A] font-sans selection:bg-[#E8976C]/30">
+      {/* Sticky Header */}
+      <StickyHeader 
+        menuItems={menuItems} 
+        ctaLabel={t.menu.subscribe} 
+        ctaHref="#pricing" 
+      />
+
       {/* HERO SECTION */}
-      <section className="relative min-h-[85vh] flex flex-col overflow-hidden">
+      <section id="hero" className="relative min-h-[85vh] flex flex-col overflow-hidden">
         {/* Background Image with Warm Overlay */}
         <motion.div 
           style={{ y: backgroundY }}
@@ -358,7 +382,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* WHAT IS IT - Clean Cards */}
-      <section className="py-24 bg-white/50 relative overflow-hidden">
+      <section id="what-is-it" className="py-24 bg-white/50 relative overflow-hidden scroll-mt-20">
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <motion.h2 
@@ -415,7 +439,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* HOW IT WORKS - Horizontal Steps */}
-      <section className="relative overflow-hidden py-24 md:py-32 bg-[#E8976C]/10">
+      <section id="how-it-works" className="relative overflow-hidden py-24 md:py-32 bg-[#E8976C]/10 scroll-mt-20">
         <div className="absolute inset-0">
           <Image
             src="/images/supermamasclub-bg-pattern.webp"
@@ -510,8 +534,10 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* VALUES - Minimalist */}
-      <section className="py-24 bg-stone-900 text-[#FAF8F5]">
-        <div className="container mx-auto px-6">
+      <section className="relative overflow-hidden py-24">
+        <div className="absolute inset-0 bg-[url('/images/supermamasclub-abstract-bg.webp')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[#FAF8F5]/75" />
+        <div className="container relative mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16">
             <motion.div {...fadeInUp}>
                <h2 className="font-serif text-4xl md:text-6xl leading-[1.1]">
@@ -525,12 +551,12 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
               variants={staggerContainer}
               initial="initial"
               whileInView="whileInView"
-              className="grid gap-8"
+              className="grid gap-8 rounded-3xl bg-white/70 p-8 shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-black/5 backdrop-blur-md"
             >
               {t.values.map((val, idx: number) => (
-                <motion.div key={idx} variants={fadeInUp} className="border-l border-white/20 pl-6">
-                   <h3 className="text-xl font-bold uppercase tracking-wider mb-2 text-white/80">{val.title}</h3>
-                   <p className="text-white/60 text-lg">{val.body}</p>
+                <motion.div key={idx} variants={fadeInUp} className="border-l border-stone-300 pl-6">
+                   <h3 className="text-xl font-bold uppercase tracking-wider mb-2 text-stone-800">{val.title}</h3>
+                   <p className="text-stone-600 text-lg">{val.body}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -698,7 +724,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       </section>
 
       {/* FAQ */}
-      <section className="py-24 bg-white">
+      <section id="faq" className="py-24 bg-white scroll-mt-20">
         <div className="container mx-auto px-6 max-w-3xl">
           <h2 className="font-serif text-3xl md:text-4xl text-stone-800 mb-12 text-center decoration-[#E8976C]/30 underline underline-offset-8">
             {t.faqTitle}

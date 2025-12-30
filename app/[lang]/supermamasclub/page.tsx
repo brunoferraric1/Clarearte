@@ -23,6 +23,13 @@ const copy = {
     headline: 'Un abrazo mensual en tu buzón',
     cta: 'Únete al club',
     ctaNote: '(próximamente)',
+    menu: {
+      whatIsIt: '¿Qué es?',
+      howItWorks: 'Cómo funciona',
+      plans: 'Planes',
+      faq: 'FAQ',
+      subscribe: 'Suscribirse',
+    },
     intro: {
       items: [
         { prefix: 'En un mundo donde casi ', highlight: 'todo es digital.', color: 'pink' },
@@ -114,6 +121,13 @@ const copy = {
     headline: 'Um abraço mensal na tua caixa de correio',
     cta: 'Entra no clube',
     ctaNote: '(em breve)',
+    menu: {
+      whatIsIt: 'O que é?',
+      howItWorks: 'Como funciona',
+      plans: 'Planos',
+      faq: 'FAQ',
+      subscribe: 'Subscrever',
+    },
     intro: {
       items: [
         { prefix: 'Num mundo onde quase ', highlight: 'tudo é digital.', color: 'pink' },
@@ -205,6 +219,13 @@ const copy = {
     headline: 'A monthly hug delivered to your mailbox',
     cta: 'Join the club',
     ctaNote: '(coming soon)',
+    menu: {
+      whatIsIt: 'What is it?',
+      howItWorks: 'How it works',
+      plans: 'Plans',
+      faq: 'FAQ',
+      subscribe: 'Subscribe',
+    },
     intro: {
       items: [
         { prefix: 'In a world where almost ', highlight: 'everything is digital.', color: 'pink' },
