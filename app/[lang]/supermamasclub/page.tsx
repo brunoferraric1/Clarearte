@@ -126,7 +126,7 @@ const copy = {
       howItWorks: 'Como funciona',
       plans: 'Planos',
       faq: 'FAQ',
-      subscribe: 'Entra no clube',
+      subscribe: 'Entrar no clube',
     },
     intro: {
       items: [
