@@ -256,7 +256,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       />
 
       {/* HERO SECTION */}
-      <section id="hero" className="relative min-h-[85vh] flex flex-col overflow-hidden">
+      <section id="hero" className="relative min-h-[100svh] md:min-h-[85vh] flex flex-col overflow-hidden">
         {/* Background Image with Warm Overlay */}
         <motion.div 
           style={{ y: backgroundY }}
@@ -274,41 +274,41 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
         </motion.div>
 
         <div className="relative z-10 flex-1 flex flex-col">
-          {/* Main container with reduced top padding on desktop to pull content up */}
-          <div className="container mx-auto flex-1 px-6 text-center flex flex-col items-center justify-start pt-4 pb-10 md:pt-4 lg:-mt-8 gap-0">
+          {/* Main container - centered on mobile, top-aligned on desktop */}
+          <div className="container mx-auto flex-1 px-6 text-center flex flex-col items-center justify-center md:justify-start pt-4 pb-8 md:pt-4 md:pb-10 lg:-mt-8 gap-0">
             {/* Logo (top) */}
-	            <motion.div
-	              style={{ y: logoY }}
-	              initial={{ opacity: 0, y: -8, scale: 0.98 }}
-	              animate={{ opacity: 1, y: 0, scale: 1 }}
-	              transition={{ duration: 0.75, ease: easeOut }}
-	            >
-	              <SuperMamasLogo size="lg" />
-	            </motion.div>
+            <motion.div
+              style={{ y: logoY }}
+              initial={{ opacity: 0, y: -8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.75, ease: easeOut }}
+            >
+              <SuperMamasLogo size="lg" />
+            </motion.div>
 
             {/* Content Group: Headline + CTA */}
             <motion.div 
               style={{ y: textY }}
-              className="flex flex-col items-center w-full max-w-4xl -mt-4 md:-mt-6"
+              className="flex flex-col items-center w-full max-w-4xl -mt-2 md:-mt-6"
             >
               {/* Headline (center) */}
-	              <motion.div
-	                initial={{ opacity: 0, y: 14 }}
-	                animate={{ opacity: 1, y: 0 }}
-	                transition={{ delay: 0.15, duration: 0.8, ease: easeOut }}
-	                className="mb-8 md:mb-10"
-	              >
-                <h1 className="text-[clamp(2.25rem,5vw+1rem,4.5rem)] font-serif text-white drop-shadow-lg text-balance leading-[1.08] px-2">
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15, duration: 0.8, ease: easeOut }}
+                className="mb-6 md:mb-10"
+              >
+                <h1 className="text-[clamp(2.5rem,6vw+1rem,4.5rem)] font-serif text-white drop-shadow-lg text-balance leading-[1.08] px-2">
                   {t.headline}
                 </h1>
               </motion.div>
 
               {/* CTA (bottom) */}
-	              <motion.div
-	                initial={{ opacity: 0, y: 10 }}
-	                animate={{ opacity: 1, y: 0 }}
-	                transition={{ delay: 0.25, duration: 0.7, ease: easeOut }}
-	              >
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.7, ease: easeOut }}
+              >
                 <Button
                   variant="primary"
                   size="lg"
@@ -565,9 +565,9 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
       {/* QUOTE - Sticky note style */}
       <section
         ref={quoteRef}
-        className="bg-[#D4A84B] py-12 md:py-24"
+        className="bg-[#D4A84B] py-12 md:py-24 overflow-x-clip overflow-y-visible"
       >
-        <div className="container mx-auto px-6 text-center">
+        <div className="container mx-auto px-0 text-center">
           <div className="mx-auto w-full max-w-5xl flex flex-col items-center gap-14 sm:gap-16 md:gap-20">
             <motion.div
               initial="initial"
@@ -632,16 +632,18 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
               </motion.div>
             </motion.div>
 
-            <motion.p
-              variants={{
-                initial: { opacity: 0, y: prefersReducedMotion ? 0 : 12 },
-                in: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 1.4, ease: easeOut, delay: 0.1 }}
-              className="font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
-            >
-              {t.quote}
-            </motion.p>
+            <div className="px-6">
+              <motion.p
+                variants={{
+                  initial: { opacity: 0, y: prefersReducedMotion ? 0 : 12 },
+                  in: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 1.4, ease: easeOut, delay: 0.1 }}
+                className="font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight"
+              >
+                {t.quote}
+              </motion.p>
+            </div>
           </div>
         </div>
       </section>
