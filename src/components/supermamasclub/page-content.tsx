@@ -501,7 +501,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             {...fadeInUp}
             className="space-y-6"
           >
-             <h2 className="font-serif text-4xl md:text-5xl text-stone-800 leading-tight">
+             <h2 className="font-serif text-5xl md:text-6xl text-stone-800 leading-tight">
                {t.receiveTitle}
              </h2>
              <p className="text-xl text-stone-500 font-light">
@@ -572,7 +572,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
             <motion.div
               initial="initial"
               animate={quoteControls}
-              className="relative mx-auto h-[40vh] min-h-[260px] max-h-[380px] md:h-[48vh] md:min-h-[320px] md:max-h-[520px] w-full"
+              className="relative mx-auto mb-10 md:mb-14 h-[40vh] min-h-[260px] max-h-[380px] md:h-[48vh] md:min-h-[320px] md:max-h-[520px] w-full"
             >
               <motion.div
                 variants={{
