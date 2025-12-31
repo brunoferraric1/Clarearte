@@ -1,5 +1,5 @@
 import { Navbar } from '@/components/navbar'
-import { Hero } from '@/components/hero'
+import { HeroCompact } from '@/components/hero-compact'
 import { CollectionCard } from '@/components/collection-card'
 import { ContactFormSection } from '../contacto/contact-form-section'
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import { client } from '@/sanity/lib/client'
 import { collectionsQuery } from '@/sanity/lib/queries'
 import { urlForImage } from '@/sanity/lib/image'
 import { generatePageMetadata } from '@/lib/metadata'
+import { Highlighter } from '@/components/ui/highlighter'
 
 const pageMetadata = {
   es: {
@@ -173,38 +174,18 @@ export default async function CollectionsPage({
       <Navbar lang={lang} />
 
       {/* Hero Banner */}
-      <Hero
-        title="Colecciones de invitaciones de boda ilustradas en acuarela"
-        subtitle=""
-        description="Cada boda tiene un estilo, y cada pareja una manera única de contar su historia. Las colecciones reúnen ilustraciones en acuarela, tipografía cuidada y acabados artesanales, para que el primer detalle de vuestra celebración transmita emoción, belleza y autenticidad."
-        primaryCTA={{
-          text: 'Ver Colecciones',
-          href: '#colecciones',
-        }}
-        secondaryCTA={{
-          text: 'Contactar',
-          href: `/${lang}/contacto`,
-        }}
+      <HeroCompact
+        title={
+          <>
+            Colecciones <Highlighter action="highlight" color="#F6EBE2" padding={8} isView={true}>para elegir</Highlighter>
+          </>
+        }
+        subtitle="Colecciones de invitaciones de boda ilustradas en acuarela"
       />
 
-      {/* Collections Info */}
-      <section className="py-12 md:py-16 bg-muted/20">
-        <div className="container mx-auto px-4 max-w-4xl">
-          <p className="text-body text-foreground leading-relaxed text-center">
-            Elegir una invitación de colección es la forma perfecta de combinar
-            belleza y practicidad. Estas invitaciones ofrecen diseños
-            cuidadosamente elaborados a un precio más accesible, lo que permite
-            dedicar recursos a detalles adicionales que personalizan cada pieza.
-            Opciones como forros de sobre, lacres delicados o acabados especiales
-            aportan un toque único, haciendo que incluso una invitación de
-            colección se sienta completamente personalizada y llena de encanto.
-          </p>
-        </div>
-      </section>
-
       {/* Collection Cards */}
-      <section id="colecciones" className="py-16 md:py-24 bg-background">
-        <div className="container mx-auto px-4 max-w-6xl space-y-20 md:space-y-32">
+      <section id="colecciones" className="pb-16 md:pb-24 px-4 bg-background">
+        <div className="container mx-auto max-w-6xl space-y-20 md:space-y-32">
           {collections.map((collection, index) => (
             <CollectionCard
               key={collection.title}

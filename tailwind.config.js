@@ -37,6 +37,9 @@ export default {
         
         // Billion Miracles custom font
         'billion-miracles': ["var(--font-billion-miracles)", "cursive", "serif"],
+        
+        // Corinthia Handwriting font
+        'handwriting': ["Corinthia", "cursive"],
       },
 
       fontSize: {

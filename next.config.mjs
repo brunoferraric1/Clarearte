@@ -12,6 +12,11 @@ const nextConfig = {
         hostname: 'cdn.sanity.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
   // Force correct workspace root to avoid incorrect inference when multiple lockfiles exist
