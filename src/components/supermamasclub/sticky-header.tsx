@@ -76,7 +76,7 @@ export function StickyHeader({ menuItems, ctaLabel, ctaHref }: StickyHeaderProps
           className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-stone-100"
         >
           <div className="container mx-auto px-4 md:px-6">
-            <nav className="flex items-center justify-between h-16 md:h-18">
+            <nav className="flex items-center justify-between h-14">
               {/* Left side: Burger + Logo */}
               <div className="flex items-center gap-3">
                 {/* Mobile Burger Menu */}
@@ -115,7 +115,7 @@ export function StickyHeader({ menuItems, ctaLabel, ctaHref }: StickyHeaderProps
                     key={item.href}
                     href={item.href}
                     onClick={(e) => scrollToSection(e, item.href)}
-                    className="text-stone-600 hover:text-[#E8976C] font-medium text-sm transition-colors relative group"
+                    className="text-stone-600 hover:text-[#E8976C] font-thin hover:font-medium text-md transition-all relative group"
                   >
                     {item.label}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#E8976C] transition-all duration-300 group-hover:w-full" />
@@ -153,7 +153,7 @@ export function StickyHeader({ menuItems, ctaLabel, ctaHref }: StickyHeaderProps
                         key={item.href}
                         href={item.href}
                         onClick={(e) => scrollToSection(e, item.href)}
-                        className="text-stone-600 hover:text-[#E8976C] hover:bg-stone-50 font-medium text-base py-3 px-4 rounded-xl transition-colors"
+                        className="text-stone-600 hover:text-[#E8976C] hover:bg-stone-50 font-thin hover:font-medium text-md py-3 px-4 rounded-xl transition-all"
                       >
                         {item.label}
                       </a>
@@ -168,4 +168,3 @@ export function StickyHeader({ menuItems, ctaLabel, ctaHref }: StickyHeaderProps
     </AnimatePresence>
   )
 }
-
