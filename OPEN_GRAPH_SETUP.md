@@ -50,11 +50,11 @@ If not set, defaults to `https://www.clareartestudio.es`
 
 ### Default OG Image
 
-**Location**: `public/assets/og-image.png`
+**Location**: `public/assets/og-image.jpg`
 
 **Requirements**:
 - Dimensions: 1200x630px
-- Format: PNG
+- Format: JPG
 - Size: < 200KB (optimized)
 
 See `public/assets/README.md` for design guidelines.
@@ -150,7 +150,7 @@ return generateCollectionMetadata({
 When updating the default OG image, increment the version query parameter:
 
 ```typescript
-const defaultOGImage = `${baseUrl}/assets/og-image.png?v=2` // Increment version
+const defaultOGImage = `${baseUrl}/assets/og-image.jpg?v=2` // Increment version
 ```
 
 ## 📚 Additional Resources
@@ -158,4 +158,3 @@ const defaultOGImage = `${baseUrl}/assets/og-image.png?v=2` // Increment version
 - [Open Graph Protocol](https://ogp.me/)
 - [Twitter Cards Documentation](https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards)
 - [Facebook Sharing Best Practices](https://developers.facebook.com/docs/sharing/webmasters)
-

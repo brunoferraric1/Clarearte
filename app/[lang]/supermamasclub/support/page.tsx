@@ -76,32 +76,32 @@ const content = {
     backLink: '← Volver al Super Mamas Mail Club',
   },
   pt: {
-    title: 'Estamos aqui para te ajudar',
-    subtitle: 'Tens alguma pergunta ou precisas de ajuda?',
-    formTitle: 'Envia-nos uma mensagem',
+    title: 'Estamos aqui para ajudar você',
+    subtitle: 'Você tem alguma pergunta ou precisa de ajuda?',
+    formTitle: 'Envie uma mensagem',
     fields: {
-      name: 'O teu nome',
+      name: 'Seu nome',
       namePlaceholder: 'Maria Garcia',
-      email: 'O teu email',
+      email: 'Seu email',
       emailPlaceholder: 'maria@exemplo.com',
       topic: 'Tema',
-      topicPlaceholder: 'Seleciona um tema',
+      topicPlaceholder: 'Selecione um tema',
       topics: {
-        subscription: '📦 A minha subscrição',
+        subscription: '📦 Minha assinatura',
         shipping: '📮 Envios e entregas',
-        payment: '💳 Pagamentos e faturação',
-        cancel: '❌ Cancelar subscrição',
-        change: '✏️ Mudar morada',
+        payment: '💳 Pagamentos e cobrança',
+        cancel: '❌ Cancelar assinatura',
+        change: '✏️ Alterar endereço',
         other: '💬 Outro tema',
       },
-      message: 'A tua mensagem',
-      messagePlaceholder: 'Conta-nos como podemos ajudar-te...',
+      message: 'Sua mensagem',
+      messagePlaceholder: 'Conte pra gente como podemos ajudar...',
       submit: 'Enviar mensagem',
-      sending: 'A enviar...',
+      sending: 'Enviando...',
     },
     success: {
       title: 'Mensagem enviada!',
-      message: 'Vamos responder-te o mais rápido possível. Obrigada por nos contactares 💛',
+      message: 'Vamos responder o mais rápido possível. Obrigada por entrar em contato 💛',
       another: 'Enviar outra mensagem',
     },
     quickHelp: {
@@ -109,24 +109,24 @@ const content = {
       items: [
         {
           icon: 'subscription',
-          title: 'Como é que giro a minha subscrição?',
-          body: 'Podes gerir a tua subscrição através do portal do Stripe. Enviamos-te o link por email quando te subscreveste.',
+          title: 'Como eu gerencio a minha assinatura?',
+          body: 'Você pode gerenciar a sua assinatura através do portal do Stripe. Enviamos o link por email quando você assinou.',
         },
         {
           icon: 'shipping',
           title: 'Quando vou receber o meu correio?',
-          body: 'Enviamos no início de cada mês. O tempo de entrega depende do serviço postal do teu país.',
+          body: 'Enviamos no início de cada mês. O prazo de entrega depende do serviço postal do seu país.',
         },
         {
           icon: 'cancel',
           title: 'Posso cancelar quando quiser?',
-          body: 'Sim, podes cancelar a qualquer momento sem penalizações. O cancelamento é efetivo no final do período atual.',
+          body: 'Sim, você pode cancelar a qualquer momento sem penalizações. O cancelamento é efetivo no final do período atual.',
         },
       ],
     },
     directEmail: {
-      title: 'Preferes escrever diretamente?',
-      body: 'Também podes enviar-nos um email para:',
+      title: 'Prefere escrever diretamente?',
+      body: 'Você também pode enviar um email para:',
       email: 'hello@clarearte.com',
     },
     backLink: '← Voltar ao Super Mamas Mail Club',
@@ -487,4 +487,3 @@ export default function SupportPage({
   const { lang } = use(params)
   return <SupportPageContent lang={lang} />
 }
-

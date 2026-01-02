@@ -10,7 +10,7 @@ const pageMetadata = {
   },
   pt: {
     title: 'Política de Privacidade - Super Mamas Mail Club',
-    description: 'Política de privacidade do Super Mamas Mail Club. A tua informação está segura connosco.',
+    description: 'Política de privacidade do Super Mamas Mail Club. Suas informações estão seguras com a gente.',
   },
   en: {
     title: 'Privacy Policy - Super Mamas Mail Club',
@@ -85,59 +85,59 @@ const content = {
     title: 'Política de Privacidade',
     subtitle: 'Super Mamas Mail Club',
     lastUpdated: 'Última atualização: Dezembro 2024',
-    intro: 'No Super Mamas Mail Club, valorizamos profundamente a tua privacidade. Esta política explica como recolhemos, usamos e protegemos a tua informação pessoal.',
+    intro: 'No Super Mamas Mail Club, valorizamos profundamente a sua privacidade. Esta política explica como coletamos, usamos e protegemos suas informações pessoais.',
     sections: [
       {
-        title: '1. Informação que recolhemos',
-        content: 'Recolhemos apenas a informação necessária para te prestar o nosso serviço:',
+        title: '1. Informações que coletamos',
+        content: 'Coletamos apenas as informações necessárias para prestar o nosso serviço:',
         items: [
           'Nome completo',
-          'Morada (para o envio do teu correio mensal)',
-          'Endereço de email',
-          'Informação de pagamento (processada de forma segura pelo Stripe)',
+          'Endereço (para o envio do seu correio mensal)',
+          'E-mail',
+          'Informações de pagamento (processadas de forma segura pelo Stripe)',
         ],
       },
       {
-        title: '2. Como usamos a tua informação',
-        content: 'A tua informação é utilizada exclusivamente para:',
+        title: '2. Como usamos suas informações',
+        content: 'Suas informações são utilizadas exclusivamente para:',
         items: [
-          'Enviar-te o teu correio mensal do Super Mamas Mail Club',
-          'Comunicações relacionadas com a tua subscrição (confirmações, avisos de envio)',
-          'Marketing digital por email (apenas se deste o teu consentimento)',
+          'Enviar o seu correio mensal do Super Mamas Mail Club',
+          'Comunicações relacionadas com a sua assinatura (confirmações, avisos de envio)',
+          'Marketing digital por e-mail (apenas se você deu o seu consentimento)',
         ],
       },
       {
         title: '3. Partilha de informação com terceiros',
-        content: 'NÃO partilhamos a tua informação pessoal com NINGUÉM. Nunca. A tua informação é privada e permanece privada.',
+        content: 'NÃO compartilhamos suas informações pessoais com NINGUÉM. Nunca. Suas informações são privadas e permanecem privadas.',
         highlight: true,
         items: [
-          'Não vendemos os teus dados',
-          'Não partilhamos a tua informação com terceiros para marketing',
-          'Não cedemos os teus dados a nenhuma empresa ou indivíduo',
+          'Não vendemos os seus dados',
+          'Não compartilhamos suas informações com terceiros para marketing',
+          'Não cedemos seus dados a nenhuma empresa ou indivíduo',
         ],
       },
       {
         title: '4. Segurança dos dados',
-        content: 'Tomamos medidas apropriadas para proteger a tua informação pessoal:',
+        content: 'Tomamos medidas apropriadas para proteger suas informações pessoais:',
         items: [
           'Os pagamentos são processados de forma segura pelo Stripe',
-          'A tua informação é armazenada de forma segura',
-          'Só acedemos aos teus dados quando necessário para o serviço',
+          'Suas informações são armazenadas de forma segura',
+          'Só acessamos seus dados quando necessário para o serviço',
         ],
       },
       {
-        title: '5. Os teus direitos',
-        content: 'Tens direito a:',
+        title: '5. Seus direitos',
+        content: 'Você tem direito a:',
         items: [
-          'Aceder à tua informação pessoal',
-          'Solicitar a correção dos teus dados',
-          'Solicitar a eliminação dos teus dados',
-          'Cancelar a tua subscrição a qualquer momento',
+          'Acessar suas informações pessoais',
+          'Solicitar a correção dos seus dados',
+          'Solicitar a exclusão dos seus dados',
+          'Cancelar a sua assinatura a qualquer momento',
         ],
       },
       {
         title: '6. Contacto',
-        content: 'Se tens perguntas sobre esta política de privacidade ou queres exercer os teus direitos, visita a nossa página de suporte.',
+        content: 'Se você tiver dúvidas sobre esta política de privacidade ou quiser exercer seus direitos, visite a nossa página de suporte.',
         link: { text: 'Ir para suporte', href: '/supermamasclub/support' },
       },
     ],
@@ -296,4 +296,3 @@ export default async function PrivacyPolicyPage({
     </div>
   )
 }
-
