@@ -102,46 +102,46 @@ const content = {
     title: 'Termos e Condições',
     subtitle: 'Super Mamas Mail Club',
     lastUpdated: 'Última atualização: Dezembro 2024',
-    intro: 'Ao subscreveres o Super Mamas Mail Club, aceitas os seguintes termos e condições. Por favor, lê-os com atenção.',
+    intro: 'Ao assinar o Super Mamas Mail Club, você aceita os seguintes termos e condições. Por favor, leia com atenção.',
     sections: [
       {
         title: '1. Descrição do serviço',
-        content: 'O Super Mamas Mail Club é um serviço de subscrição mensal que inclui:',
+        content: 'O Super Mamas Mail Club é um serviço de assinatura mensal que inclui:',
         items: [
           'Um postal A6 ilustrado original',
           'Uma carta pessoal escrita pela Paola',
           'Um mini postal A7 com arte criada pela minha filha',
-          'Envio mensal para a morada fornecida',
+          'Envio mensal para o endereço informado',
         ],
       },
       {
-        title: '2. Subscrição e pagamentos',
-        content: 'Ao subscreveres, aceitas:',
+        title: '2. Assinatura e pagamentos',
+        content: 'Ao assinar, você concorda com:',
         items: [
           'A cobrança mensal recorrente segundo o plano escolhido (Espanha: €8/mês, Internacional: €10/mês)',
           'Os pagamentos são processados de forma segura através do Stripe',
-          'O primeiro pagamento é feito no momento da subscrição',
+          'O primeiro pagamento é feito no momento da assinatura',
           'Os pagamentos seguintes são cobrados mensalmente na mesma data',
         ],
       },
       {
         title: '3. Envios',
-        content: 'Sobre os envios do teu correio mensal:',
+        content: 'Sobre os envios do seu correio mensal:',
         items: [
           'Os envios são preparados e enviados no início de cada mês',
-          'O tempo de entrega depende do serviço postal do teu país',
+          'O prazo de entrega depende do serviço postal do seu país',
           'Não somos responsáveis por atrasos causados por serviços postais ou alfândegas',
-          'É tua responsabilidade fornecer uma morada de envio válida e atualizada',
+          'É sua responsabilidade fornecer um endereço de envio válido e atualizado',
         ],
       },
       {
         title: '4. Cancelamento',
-        content: 'Podes cancelar a tua subscrição a qualquer momento:',
+        content: 'Você pode cancelar a sua assinatura a qualquer momento:',
         items: [
-          'O cancelamento é efetivo no final do período de faturação atual',
+          'O cancelamento é efetivo no final do período de cobrança atual',
           'Não há penalizações por cancelar',
           'Não são feitos reembolsos por meses parciais',
-          'Podes gerir a tua subscrição através do portal do Stripe',
+          'Você pode gerenciar a sua assinatura através do portal do Stripe',
         ],
       },
       {
@@ -151,7 +151,7 @@ const content = {
           'Todas as ilustrações e textos são propriedade de Paola Ferrari / Clarearte',
           'O conteúdo é para uso pessoal apenas',
           'Não é permitida a reprodução comercial sem autorização',
-          'Podes partilhar fotos do teu correio nas redes sociais (adoramos!)',
+          'Você pode compartilhar fotos do seu correio nas redes sociais (adoramos!)',
         ],
       },
       {
@@ -170,7 +170,7 @@ const content = {
       },
       {
         title: '8. Contacto',
-        content: 'Para qualquer pergunta sobre estes termos, visita a nossa página de suporte.',
+        content: 'Se você tiver alguma dúvida sobre estes termos, visite a nossa página de suporte.',
         link: { text: 'Ir para suporte', href: '/supermamasclub/support' },
       },
     ],
@@ -353,4 +353,3 @@ export default async function TermsPage({
     </div>
   )
 }
-

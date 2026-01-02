@@ -9,7 +9,7 @@ const pageMetadata = {
   },
   pt: {
     title: 'Super Mamas Mail Club',
-    description: 'Ilustração e palavras reais, uma vez por mês na tua caixa de correio. Envio para Espanha e Internacional.',
+    description: 'Ilustração e palavras reais, uma vez por mês na sua caixa de correio. Planos com envio para a Espanha e Internacional.',
   },
   en: {
     title: 'Super Mamas Mail Club',
@@ -120,16 +120,16 @@ const copy = {
     signoffTagline: 'con amor desde mi estudio',
   },
   pt: {
-    tagline: 'Não é só uma postal',
-    headline: 'Um abraço mensal na tua caixa de correio',
-    cta: 'Entra no clube',
+    tagline: 'Não é só um postal',
+    headline: 'Um abraço mensal na sua caixa de correio',
+    cta: 'Entre no clube',
     ctaNote: '(em breve)',
     menu: {
       whatIsIt: 'O que é?',
       howItWorks: 'Como funciona',
       plans: 'Planos',
       faq: 'FAQ',
-      subscribe: 'Entrar no clube',
+      subscribe: 'Entre no clube',
     },
     intro: {
       items: [
@@ -146,29 +146,29 @@ const copy = {
     },
     whatIsTitle: 'O que é o Super Mamas Mail Club?',
     whatIsBody: [
-      'O Super Mamas Mail Club é uma subscrição mensal aberta a toda a gente.',
+      'O Super Mamas Mail Club é uma assinatura mensal aberta para todo mundo.',
       'Qualquer pessoa que se sinta atraída por slow mail, ilustração e palavras com intenção é bem-vinda aqui.',
       'Ainda assim, este clube foi criado especialmente para mães e futuras mães.',
-      'Existe porque a maternidade pode ser linda… mas também solitária — especialmente quando o dia a dia pesa ou quando sentes falta de conexão para além dos ecrãs.',
-      'Este clube é uma pausa mensal: algo real que podes segurar, ler devagar e guardar.',
-      'Se esta fase da vida faz sentido para ti, estás no lugar certo.',
+      'Existe porque a maternidade pode ser linda… mas também solitária — especialmente quando o dia a dia pesa ou quando você sente falta de conexão além das telas.',
+      'Este clube é uma pausa mensal: algo real que você pode segurar, ler devagar e guardar.',
+      'Se esta fase da vida faz sentido para você, você está no lugar certo.',
     ],
     howTitle: 'Como funciona',
     howSteps: [
       {
-        title: 'Escolhe o teu plano',
-        body: 'Escolhe a subscrição que melhor te serve: 📍 Espanha (correio nacional) ou 🌍 Internacional (qualquer outro lugar do mundo).',
+        title: 'Escolha seu plano',
+        body: 'Escolha a assinatura que mais combina com você: 📍 Espanha (correio nacional) ou 🌍 Internacional (qualquer outro lugar do mundo).',
       },
       {
-        title: 'Subscreve com Stripe',
-        body: 'Conclui o pagamento seguro com Stripe para ativar a tua subscrição mensal. Vais receber um email de confirmação e podes gerir ou cancelar quando quiseres.',
+        title: 'Assine com Stripe',
+        body: 'Conclua o pagamento seguro com Stripe para ativar a sua assinatura mensal. Você vai receber um email de confirmação e pode gerenciar ou cancelar quando quiser.',
       },
       {
-        title: 'Espera pelo teu correio',
-        body: 'No início de cada mês, o teu envelope é preparado, selado e enviado. Depois vem a melhor parte… abrir a tua caixa de correio e encontrar algo que não é uma conta 💌 Slow mail. Papel de verdade. Feito com carinho.',
+        title: 'Espere pelo seu correio',
+        body: 'No início de cada mês, seu envelope é preparado, selado e enviado. Depois vem a melhor parte… abrir a sua caixa de correio e encontrar algo que não é um boleto 💌 Slow mail. Papel de verdade. Feito com carinho.',
       },
     ],
-    receiveTitle: 'O que vais receber no correio',
+    receiveTitle: 'O que você vai receber no correio',
     receiveSubtitle: 'Cada envelope é uma experiência cuidadosamente criada.',
     receiveItems: [
       {
@@ -190,13 +190,13 @@ const copy = {
     valuesTitle: 'Nada genérico. Nada automatizado. Nada copiado.',
     values: [
       { title: 'Humano', body: 'Criado com mãos reais, inspirado por sentimentos reais, escrito com intenção e carinho reais.', color: 'yellow' },
-      { title: 'Feito com tempo', body: 'Num mundo rápido, isto é lento. Com sentido. Algo que podes segurar e guardar.', color: 'orange' },
-      { title: 'Intencional', body: 'Cada ilustração conta uma história. Cada palavra foi escolhida com cuidado para chegar ao teu coração.', color: 'sage' },
+      { title: 'Feito com tempo', body: 'Em um mundo rápido, isto é lento. Com sentido. Algo que você pode segurar e guardar.', color: 'orange' },
+      { title: 'Intencional', body: 'Cada ilustração conta uma história. Cada palavra foi escolhida com cuidado para chegar ao seu coração.', color: 'sage' },
     ],
-    plansTitle: 'Escolhe o teu plano',
-    plansNote: 'Cancela quando quiseres.',
+    plansTitle: 'Escolha seu plano',
+    plansNote: 'Cancele quando quiser.',
     planCta: 'Selecionar',
-    pricingNote: '🔒 Paga em segurança com Stripe. Cancela quando quiseres.',
+    pricingNote: '🔒 Pague com segurança com Stripe. Cancele quando quiser.',
     planSpain: {
       title: '🇪🇸 Espanha',
       price: '€8/mês',
@@ -207,15 +207,15 @@ const copy = {
       price: '€10/mês',
       bullets: ['Envio internacional (fora de Espanha)', 'Preparado e enviado com carinho no início do mês'],
     },
-    quote: 'El Super Mamas Mail Club fue creado para ser una pausa y un abrazo mensual en tu buzón.',
+    quote: 'O Super Mamas Mail Club foi criado para ser uma pausa e um abraço mensal na sua caixa de correio.',
     faqTitle: 'Perguntas frequentes',
     faqs: [
       { q: 'Quando é enviado?', a: 'No início de cada mês.' },
       { q: 'Posso cancelar?', a: 'Sim, a qualquer momento.' },
       { q: 'Para que países envias?', a: 'Para qualquer país (plano Internacional).' },
-      { q: 'É só para mães?', a: 'Não. Se fizer sentido para ti, és bem-vinda.' },
+      { q: 'É só para mães?', a: 'Não. Se fizer sentido para você, você é bem-vinda.' },
     ],
-    signoffTitle: 'Feito por mim, para ti.',
+    signoffTitle: 'Feito por mim, para você.',
     signoffBy: 'Paola Ferrari - Estúdio Clarearte',
     signoffBio: 'Ilustradora, designer e mãe',
     signoffTagline: 'com amor do meu estúdio',
