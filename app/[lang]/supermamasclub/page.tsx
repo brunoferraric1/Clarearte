@@ -68,6 +68,7 @@ const copy = {
       },
     ],
     receiveTitle: 'Qué recibirás en el correo',
+    receiveSubtitle: 'Cada sobre es una experiencia cuidadosamente creada.',
     receiveItems: [
       {
         title: 'Postal A6 ilustrada',
@@ -168,6 +169,7 @@ const copy = {
       },
     ],
     receiveTitle: 'O que vais receber no correio',
+    receiveSubtitle: 'Cada envelope é uma experiência cuidadosamente criada.',
     receiveItems: [
       {
         title: 'Postal A6 ilustrado',
@@ -268,6 +270,7 @@ const copy = {
       },
     ],
     receiveTitle: 'What you\'ll receive in the mail',
+    receiveSubtitle: 'Each envelope is a curated experience.',
     receiveItems: [
       {
         title: 'An illustrated A6 postcard',

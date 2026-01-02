@@ -71,6 +71,7 @@ type SuperMamasCopy = {
   howTitle: string
   howSteps: HowStep[]
   receiveTitle: string
+  receiveSubtitle: string
   receiveItems: ReceiveItem[]
   valuesTitle: string
   values: ValueItem[]
@@ -505,7 +506,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                {t.receiveTitle}
              </h2>
              <p className="text-xl text-stone-500 font-light">
-               Each envelope is a curated experience.
+               {t.receiveSubtitle}
              </p>
           </motion.div>
 
