@@ -333,6 +333,12 @@ export async function generateMetadata({
     description: meta.description,
     path: 'supermamasclub',
     lang,
+    image: {
+      url: '/assets/supermamasclub-og.jpg',
+      width: 1200,
+      height: 630,
+      alt: meta.title,
+    },
   })
 }
 

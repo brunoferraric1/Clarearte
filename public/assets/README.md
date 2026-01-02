@@ -4,9 +4,9 @@ This directory should contain the default Open Graph image for social media shar
 
 ## Requirements
 
-- **File**: `og-image.png`
+- **File**: `og-image.jpg`
 - **Dimensions**: 1200x630px (1.91:1 aspect ratio)
-- **Format**: PNG (with transparency support)
+- **Format**: JPG
 - **File size**: Optimize to under 200KB for fast loading
 
 ## Why This Size?
@@ -30,7 +30,7 @@ The image should:
 
 The image is automatically referenced in metadata via:
 ```
-https://www.clareartestudio.es/assets/og-image.png?v=1
+https://www.clareartestudio.es/assets/og-image.jpg?v=1
 ```
 
 The `?v=1` query parameter is used for cache-busting. Increment it when you update the image.
@@ -55,4 +55,3 @@ After adding the image, test your links on:
 - If you don't have a custom OG image yet, social platforms will use a generic preview
 - Page-specific images (from Sanity CMS) will override this default when available
 - Blog posts and collections use their featured images when available
-

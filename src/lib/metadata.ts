@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.clareartestudio.es'
 const siteName = 'ClareArte'
-const defaultOGImage = `${baseUrl}/assets/og-image.png?v=1`
+const defaultOGImage = `${baseUrl}/assets/og-image.jpg?v=1`
 
 // Locale mapping for Open Graph
 const localeMap: Record<string, string> = {
@@ -215,4 +215,3 @@ export function generatePageMetadata({
     type: 'website',
   })
 }
-
