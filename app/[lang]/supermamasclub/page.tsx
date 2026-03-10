@@ -98,12 +98,12 @@ const copy = {
     pricingNote: '🔒 Paga de forma segura con Stripe. Cancela cuando quieras.',
     planSpain: {
       title: '🇪🇸 España',
-      price: '€8/mes',
+      price: '€9/mes',
       bullets: ['Envío dentro de España', 'Preparado y enviado con cariño a principios de mes'],
     },
     planIntl: {
       title: '🌎 Internacional',
-      price: '€10/mes',
+      price: '€12/mes',
       bullets: ['Envío internacional (fuera de España)', 'Preparado y enviado con cariño a principios de mes'],
     },
     quote: 'El Super Mamas Mail Club fue creado para ser una pausa y un abrazo mensual en tu buzón.',
@@ -199,12 +199,12 @@ const copy = {
     pricingNote: '🔒 Pague com segurança com Stripe. Cancele quando quiser.',
     planSpain: {
       title: '🇪🇸 Espanha',
-      price: '€8/mês',
+      price: '€9/mês',
       bullets: ['Envio dentro de Espanha', 'Preparado e enviado com carinho no início do mês'],
     },
     planIntl: {
       title: '🌎 Internacional',
-      price: '€10/mês',
+      price: '€12/mês',
       bullets: ['Envio internacional (fora de Espanha)', 'Preparado e enviado com carinho no início do mês'],
     },
     quote: 'O Super Mamas Mail Club foi criado para ser uma pausa e um abraço mensal na sua caixa de correio.',
@@ -300,12 +300,12 @@ const copy = {
     pricingNote: '🔒 Pay securely with Stripe. Cancel anytime',
     planSpain: {
       title: '🇪🇸 Spain',
-      price: '€8/month',
+      price: '€9/month',
       bullets: ['Shipping within Spain', 'Packed and shipped with love at the beginning of the month'],
     },
     planIntl: {
       title: '🌎 International',
-      price: '€10/month',
+      price: '€12/month',
       bullets: ['International shipping (outside Spain)', 'Packed and shipped with love at the beginning of the month'],
     },
     quote: 'El Super Mamas Mail Club fue creado para ser una pausa y un abrazo mensual en tu buzón.',
