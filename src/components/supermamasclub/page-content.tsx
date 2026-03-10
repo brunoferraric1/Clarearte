@@ -678,7 +678,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
               className="w-full rounded-full border-stone-200 hover:bg-[#EAB308] hover:border-[#EAB308] hover:text-white"
             >
               <a
-                href="https://buy.stripe.com/cNidR8fqY5jl2oa1oHe3e00"
+                href="https://buy.stripe.com/4gMcN40w49zB9QC8R9e3e02"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -709,7 +709,7 @@ export function SuperMamasClubContent({ copy: t }: ContentProps) {
                className="w-full rounded-full border-stone-200 hover:bg-[#EAB308] hover:border-[#EAB308] hover:text-white"
              >
                <a
-                 href="https://buy.stripe.com/7sYfZg5QoeTV5Am5EXe3e01"
+                 href="https://buy.stripe.com/eVq28qceMdPRfaWc3le3e03"
                  target="_blank"
                  rel="noopener noreferrer"
                >
